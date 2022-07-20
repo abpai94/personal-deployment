@@ -1,17 +1,14 @@
-### UPDATE AND INSTALL RELEVANT APPLICATIONS ###
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install deluged deluge-web samba samba-common-bin
+# Raspbery Pi Configuration
+This repository should contain the instructions and configuration files to set up the raspberry pi as a media server.
 
-### FIND HDD UUID ###
-sudo blkid
+## Feature Backlog
+* VPN functionality
+* Cloudflare DNS
+* piHole for adverts
+* RAID capabilities
+* Opening port securely to the internet
 
-### RESTART AND RELOAD COMMANDS ###
-sudo systemctl restart smbd
-sudo systemctl daemon-reload
-sudo systemctl deluged
-
-### INSTRUCTIONS ###
+## Instructions
 Execute "sudo apt-get update"
 Execute "sudo apt-get upgrade"
 Execute "sudo apt-get install deluged deluge-web samba samba-common-bin"
@@ -25,4 +22,17 @@ Modify and copy "deluged-config" to /etc/defaults/deluged"
 Add the contents of "smb.conf" to /etc/samba/smb.conf"
 Execute "sudo reboot"
 Configure deluge
-Enjoy!
+
+## Helpful commands
+### Updating and installing required packages
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install deluged deluge-web samba samba-common-bin
+
+### HDD UUID command
+sudo blkid
+
+### Restart and reload system services
+sudo systemctl restart smbd
+sudo systemctl daemon-reload
+sudo systemctl deluged
