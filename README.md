@@ -23,6 +23,10 @@ This repository should contain the instructions and configuration files to set u
 * Execute ```curl -sSL https://install.pi-hole.net | bash``` and follow the instructions to configure Pi-hole
 * Set a static IP address for Raspberry Pi
 * Configure the primary DNS server to point to the Raspberry Pi static IP address
+* Install hdparm by executing ```sudo apt-get hdparm```
+* Check HDD ID with ```blkid```
+* Add the configuration in ```hdparm.conf``` to ```/etc/hdparm.conf```
+* Restart Raspberry Pi
 
 ## Helpful commands
 ### Updating and installing required packages
@@ -36,8 +40,9 @@ This repository should contain the instructions and configuration files to set u
 ### Restart and reload system services
 * ```sudo systemctl restart smbd```
 * ```sudo systemctl daemon-reload```
-* ```sudo systemctl deluged```
+* ```sudo systemctl restart deluged```
 
 ## Useful links
 https://dev.deluge-torrent.org/wiki/UserGuide/Service/DebianUbuntuInitd - Init script for deluged and deluge-web application to launch simultaneously at launch with the configuration to connect the deluge-daemon to each other automatically without requiring configuration at startup.
 https://github.com/pi-hole/pi-hole/#one-step-automated-install - Repository for Pi-hole containing more detailed instructions.
+https://www.htpcguides.com/spin-down-and-manage-hard-drive-power-on-raspberry-pi/ - Guide to spin down, rest the actuator arm and manage hdd usage to increase longevity.
