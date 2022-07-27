@@ -3,8 +3,6 @@ This repository should contain the instructions and configuration files to set u
 
 ## Feature Backlog
 * VPN functionality
-* Cloudflare DNS
-* piHole for adverts
 * RAID capabilities
 * Opening port securely to the internet
 
@@ -22,6 +20,9 @@ This repository should contain the instructions and configuration files to set u
 * Add the contents of ```smb.conf``` to ```/etc/samba/smb.conf```
 * Execute ```sudo reboot```
 * Configure deluge
+* Execute ```curl -sSL https://install.pi-hole.net | bash``` and follow the instructions to configure Pi-hole
+* Set a static IP address for Raspberry Pi
+* Configure the primary DNS server to point to the Raspberry Pi static IP address
 
 ## Helpful commands
 ### Updating and installing required packages
@@ -36,3 +37,7 @@ This repository should contain the instructions and configuration files to set u
 * ```sudo systemctl restart smbd```
 * ```sudo systemctl daemon-reload```
 * ```sudo systemctl deluged```
+
+## Useful links
+https://dev.deluge-torrent.org/wiki/UserGuide/Service/DebianUbuntuInitd - Init script for deluged and deluge-web application to launch simultaneously at launch with the configuration to connect the deluge-daemon to each other automatically without requiring configuration at startup.
+https://github.com/pi-hole/pi-hole/#one-step-automated-install - Repository for Pi-hole containing more detailed instructions.
