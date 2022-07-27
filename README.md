@@ -42,7 +42,12 @@ This repository should contain the instructions and configuration files to set u
 * ```sudo systemctl daemon-reload```
 * ```sudo systemctl restart deluged```
 
+### Headless Raspberry Pi installation (Complete steps after writing Raspbian image to microSD)
+* Create empty file called ```ssh```
+* Configure and copy ```wpa_supplicant.conf```
+
 ## Useful links
 https://dev.deluge-torrent.org/wiki/UserGuide/Service/DebianUbuntuInitd - Init script for deluged and deluge-web application to launch simultaneously at launch with the configuration to connect the deluge-daemon to each other automatically without requiring configuration at startup.
 https://github.com/pi-hole/pi-hole/#one-step-automated-install - Repository for Pi-hole containing more detailed instructions.
 https://www.htpcguides.com/spin-down-and-manage-hard-drive-power-on-raspberry-pi/ - Guide to spin down, rest the actuator arm and manage hdd usage to increase longevity.
+https://pimylifeup.com/headless-raspberry-pi-setup/ - Guide to creating a headless raspberry pi.
