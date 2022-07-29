@@ -21,8 +21,9 @@ This repository should contain the instructions and configuration files to set u
 * Execute ```sudo reboot```
 * Configure deluge
 * Execute ```curl -sSL https://install.pi-hole.net | bash``` and follow the instructions to configure Pi-hole
-* Set a static IP address for Raspberry Pi
-* Configure the primary DNS server to point to the Raspberry Pi static IP address
+* Add static IP address to ```static domain_name_servers=[IP Address]``` in ```/etc/dhcpcd.conf```
+* Set a static IP address for Raspberry Pi on the router
+* Configure the primary DNS server on the router to point to the Raspberry Pi static IP address
 * Install hdparm by executing ```sudo apt-get hdparm```
 * Check HDD ID with ```blkid```
 * Add the configuration in ```hdparm.conf``` to ```/etc/hdparm.conf```
