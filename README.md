@@ -1,10 +1,5 @@
 # Raspbery Pi Configuration
-This repository should contain the instructions and configuration files to set up the raspberry pi as a media server.
-
-## Feature Backlog
-* VPN functionality
-* RAID capabilities
-* Opening port securely to the internet
+This repository should contain the instructions and configuration files to set up the raspberry pi as a media server and recursive DNS.
 
 ## Instructions
 * Execute ```sudo apt-get update```
