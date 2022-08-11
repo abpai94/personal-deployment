@@ -1,10 +1,5 @@
 # Raspbery Pi Configuration
-This repository should contain the instructions and configuration files to set up the raspberry pi as a media server.
-
-## Feature Backlog
-* VPN functionality
-* RAID capabilities
-* Opening port securely to the internet
+This repository should contain the instructions and configuration files to set up the raspberry pi as a media server and recursive DNS.
 
 ## Instructions
 ### Deluge
@@ -64,8 +59,8 @@ This repository should contain the instructions and configuration files to set u
 * Configure and copy ```wpa_supplicant.conf```
 
 ## Useful links
-https://dev.deluge-torrent.org/wiki/UserGuide/Service/DebianUbuntuInitd - Init script for deluged and deluge-web application to launch simultaneously at launch with the configuration to connect the deluge-daemon to each other automatically without requiring configuration at startup.
-https://github.com/pi-hole/pi-hole/#one-step-automated-install - Repository for Pi-hole containing more detailed instructions.
-https://www.htpcguides.com/spin-down-and-manage-hard-drive-power-on-raspberry-pi/ - Guide to spin down, rest the actuator arm and manage hdd usage to increase longevity.
-https://pimylifeup.com/headless-raspberry-pi-setup/ - Guide to creating a headless raspberry pi.
-https://docs.pi-hole.net/guides/dns/unbound/ - Instructions to configure a reverse DNS server using unbound.
+* https://dev.deluge-torrent.org/wiki/UserGuide/Service/DebianUbuntuInitd - Init script for deluged and deluge-web application to launch simultaneously at launch with the configuration to connect the deluge-daemon to each other automatically without requiring configuration at startup.
+* https://github.com/pi-hole/pi-hole/#one-step-automated-install - Repository for Pi-hole containing more detailed instructions.
+* https://www.htpcguides.com/spin-down-and-manage-hard-drive-power-on-raspberry-pi/ - Guide to spin down, rest the actuator arm and manage hdd usage to increase longevity.
+* https://pimylifeup.com/headless-raspberry-pi-setup/ - Guide to creating a headless raspberry pi.
+* https://docs.pi-hole.net/guides/dns/unbound/ - Instructions to configure a reverse DNS server using unbound.
