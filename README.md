@@ -7,19 +7,23 @@ This repository should contain the instructions and configuration files to set u
 * Opening port securely to the internet
 
 ## Instructions
-* Execute ```sudo apt-get update```
-* Execute ```sudo apt-get upgrade```
-* Execute ```sudo apt-get install deluged deluge-web samba samba-common-bin```
-* Execute ```sudo blkid``` and take a note of the UUID of the storage drive
-* Add ```UUID=<Storage UUID> /media/hdd ntfs defaults,auto,users,rw,nofail,umask=000 0 0``` with custom modifications to ```/etc/fstab``` file
+### Deluge
+* Execute ```sudo apt-get install deluged deluge-web```
 * Copy ```deluge``` script to ```/etc/init.d/```
 * Delete existing ```deluged-daemon``` script
 * Execute ```sudo systemtctl daemon-reload```
 * Add the line from ```web.conf``` to ```/home/<user>/.config/deluge/web.conf```
 * Modify and copy ```deluged-config``` to ```/etc/defaults/deluged```
+* Configure deluge
+
+### Samba && HDD mount
+* Execute ```samba samba-common-bin```
+* Execute ```sudo blkid``` and take a note of the UUID of the storage drive
+* Add ```UUID=<Storage UUID> /media/hdd ntfs defaults,auto,users,rw,nofail,umask=000 0 0``` with custom modifications to ```/etc/fstab``` file
 * Add the contents of ```smb.conf``` to ```/etc/samba/smb.conf```
 * Execute ```sudo reboot```
-* Configure deluge
+
+### Pi-Hole
 * Execute ```curl -sSL https://install.pi-hole.net | bash``` and follow the instructions to configure Pi-hole
 * Add static IP address to ```static domain_name_servers=[IP Address]``` in ```/etc/dhcpcd.conf```
 * Set a static IP address for Raspberry Pi on the router
@@ -31,21 +35,26 @@ This repository should contain the instructions and configuration files to set u
 * Test recursive DNS using ```dig pi-hole.net @127.0.0.1 -p 5335```
 * Copy ```99-edns.conf``` to ```/etc/dnsmasq.d/```
 * Add ```127.0.0.1#5335``` as a custom DNS IPv4 provider to use local unbound DNS queries
+
+### HDD Maintainance
 * Install hdparm by executing ```sudo apt-get hdparm```
 * Check HDD ID with ```blkid```
 * Add the configuration in ```hdparm.conf``` to ```/etc/hdparm.conf```
 * Restart Raspberry Pi
 
+### DuckDNS
+* Copy ```duck.sh``` to ```~/duckdns/```
+* Execute ```chmod 700 duck.sh```
+* Execute ```crontab -e```
+* Add ```*/5 * * * * ~/duckdns/duck.sh >/dev/null 2>&1``` to the cron config
+* Start cron service ```sudo service cron start```
+* Test ```./duck.sh``` and check logs ```cat duck.log```
+
 ## Helpful commands
 ### Updating and installing required packages
 * ```sudo apt-get update```
 * ```sudo apt-get upgrade```
-* ```sudo apt-get install deluged deluge-web samba samba-common-bin```
-
-### HDD UUID command
 * ```sudo blkid```
-
-### Restart and reload system services
 * ```sudo systemctl restart smbd```
 * ```sudo systemctl daemon-reload```
 * ```sudo systemctl restart deluged```
