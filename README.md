@@ -33,7 +33,7 @@ This repository should contain the instructions and configuration files to set u
 
 ### HDD Maintainance
 * Install hdparm by executing ```sudo apt-get hdparm```
-* Check HDD ID with ```blkid```
+* Check HDD ID with ```sudo blkid```
 * Add the configuration in ```hdparm.conf``` to ```/etc/hdparm.conf```
 * Restart Raspberry Pi
 
