@@ -45,6 +45,15 @@ This repository should contain the instructions and configuration files to set u
 * Start cron service ```sudo service cron start```
 * Test ```./duck.sh``` and check logs ```cat duck.log```
 
+### OpenVPN
+* Download the following script ```wget https://github.com/Nyr/openvpn-install/raw/master/openvpn-install.sh```
+* Change permissions ```chmod 755 openvpn-install.sh```
+* Run the script as admin ```sudo ./openvpn-install.sh```
+* Script configuration use ```UDP``` with ```443```
+* Restart OVPN services ```sudo systemctl restart openvpn-iptables.service openvpn-server@server.service```
+* Add the configuration ```interface=tun0``` && ```interface=eth0``` to ```/etc/dnsmasq.d/01-pihole.conf```
+* Add the configuration ```PIHOLE_INTERFACE=tun0``` to ```/etc/pihole/setupVars.conf```
+
 ## Helpful commands
 ### Updating and installing required packages
 * ```sudo apt-get update```
@@ -53,6 +62,7 @@ This repository should contain the instructions and configuration files to set u
 * ```sudo systemctl restart smbd```
 * ```sudo systemctl daemon-reload```
 * ```sudo systemctl restart deluged```
+* ```sudo watch "vcgencmd measure_temp && hdparm -C /dev/sda1 && vcgencmd pm_get_status"```
 
 ### Headless Raspberry Pi installation (Complete steps after writing Raspbian image to microSD)
 * Create empty file called ```ssh```
@@ -64,3 +74,4 @@ This repository should contain the instructions and configuration files to set u
 * https://www.htpcguides.com/spin-down-and-manage-hard-drive-power-on-raspberry-pi/ - Guide to spin down, rest the actuator arm and manage hdd usage to increase longevity.
 * https://pimylifeup.com/headless-raspberry-pi-setup/ - Guide to creating a headless raspberry pi.
 * https://docs.pi-hole.net/guides/dns/unbound/ - Instructions to configure a reverse DNS server using unbound.
+* https://discourse.pi-hole.net/t/see-my-pihole-enabled-openvpn-server/111/3 - Forum instructions regarding enabling external VPN traffic to use Pi-Hole to manage the DNS queries and filtering of traffice.
