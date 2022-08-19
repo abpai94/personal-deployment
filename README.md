@@ -75,3 +75,6 @@ This repository should contain the instructions and configuration files to set u
 * https://pimylifeup.com/headless-raspberry-pi-setup/ - Guide to creating a headless raspberry pi.
 * https://docs.pi-hole.net/guides/dns/unbound/ - Instructions to configure a reverse DNS server using unbound.
 * https://discourse.pi-hole.net/t/see-my-pihole-enabled-openvpn-server/111/3 - Forum instructions regarding enabling external VPN traffic to use Pi-Hole to manage the DNS queries and filtering of traffice.
+* https://pimylifeup.com/raspberry-pi-nfs/ - Setting up NFS server
+* https://pimylifeup.com/raspberry-pi-nfs-client/ - Setting up NFS Client
+* https://pimylifeup.com/raspberry-pi-plex-server/ - Setting up Plex Server
