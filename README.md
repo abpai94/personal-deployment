@@ -16,6 +16,16 @@ This repository should contain the instructions and configuration files to set u
 * Add ```UUID=<Storage UUID> /media/hdd ntfs defaults,auto,users,rw,nofail,umask=000 0 0``` with custom modifications to ```/etc/fstab``` file
 * Execute ```sudo reboot```
 
+### NFS Server
+* Execute ```sudo apt-get install nfs-kernel-server -y```
+* Copy ```exports``` to ```/etc/exports```
+* Execute ```sudo exportfs -ra```
+
+### NFS Client
+* Execute ``sudo apt-get install nfs-common -y```
+* Copy NFS FSTAB configuration to ```/etc/fstab```
+* Execute ```sudo mount -a```
+
 ### Pi-Hole
 * Execute ```curl -sSL https://install.pi-hole.net | bash``` and follow the instructions to configure Pi-hole
 * Add static IP address to ```static domain_name_servers=[IP Address]``` in ```/etc/dhcpcd.conf```
@@ -51,6 +61,14 @@ This repository should contain the instructions and configuration files to set u
 * Restart OVPN services ```sudo systemctl restart openvpn-iptables.service openvpn-server@server.service```
 * Add the configuration ```interface=tun0``` && ```interface=eth0``` to ```/etc/dnsmasq.d/01-pihole.conf```
 * Add the configuration ```PIHOLE_INTERFACE=tun0``` to ```/etc/pihole/setupVars.conf```
+
+### Plex Media Server
+* Execute ```sudo apt-get install apt-transport-https```
+* Execute ```curl https://downloads.plex.tv/plex-keys/PlexSign.key | gpg --dearmor | sudo tee /usr/share/keyrings/plex-archive-keyring.gpg >/dev/null```
+* Execute ```echo deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list```
+* Execute ```sudo apt-get update```
+* Execute ```sudo apt install plexmediaserver```
+* Set-up Plex Media Server
 
 ## Helpful commands
 ### Updating and installing required packages
