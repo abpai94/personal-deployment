@@ -1,1 +1,3 @@
 UUID=<HDD UUID> /media/hdd ntfs defaults,auto,users,rw,nofail,umask=000 0 0
+
+{HOSTNAME}:/media/hdd0 /media/hdd0 nfs defaults,rw 0 0
