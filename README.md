@@ -44,7 +44,8 @@ This repository should contain the instructions and configuration files to set u
 * Check HDD UUID with ```sudo blkid```
 * Add the UUID to ```hdparm.service```
 * Copy ```hdparm.service``` to ```/lib/systemd/system/multi-user.target.wants/```
-* Execute the following commands ```sudo systemctl daemon-reload```
+* Execute the following commands:
+    * ```sudo systemctl daemon-reload```
     * ```sudo systemctl status hdparm.service```
     * ```sudo systemctl enable hdparm.service```
     * ```sudo systemctl start hdparm.service```
