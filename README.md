@@ -38,7 +38,7 @@ This repository should contain the instructions and configuration files to set u
 * Test recursive DNS using ```dig pi-hole.net @127.0.0.1 -p 5335```
 * Copy ```99-edns.conf``` to ```/etc/dnsmasq.d/```
 * Add ```127.0.0.1#5335``` as a custom DNS IPv4 provider to use local unbound DNS queries
-* Run the following script ```curl -L https://install.pivpn.io | bash``` and follow the instructions
+* Run the following script ```curl -L https://install.pivpn.io | bash``` and follow the instructions choosing WireGuard
 
 ### HDD Maintainance
 * Install hdparm by executing ```sudo apt-get hdparm```
