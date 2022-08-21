@@ -99,3 +99,5 @@ This repository should contain the instructions and configuration files to set u
 * https://pimylifeup.com/raspberry-pi-nfs/ - Setting up NFS server
 * https://pimylifeup.com/raspberry-pi-nfs-client/ - Setting up NFS Client
 * https://pimylifeup.com/raspberry-pi-plex-server/ - Setting up Plex Server
+* https://manpages.ubuntu.com/manpages/bionic/man5/hdparm.conf.5.html - hdparm configuration
+* https://man7.org/linux/man-pages/man8/hdparm.8.html - hdparm man page
