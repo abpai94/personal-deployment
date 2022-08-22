@@ -2,6 +2,10 @@
 This repository should contain the instructions and configuration files to set up the raspberry pi as a media server and recursive DNS.
 
 ## Instructions
+
+### GPIO Fan
+* Add ```dtoverlay=gpio-fan,gpiopin=3,temp=45000``` to ```/boot/config.txt```
+
 ### Deluge
 * Execute ```sudo apt-get install deluged deluge-web```
 * Copy ```deluge``` script to ```/etc/init.d/```
