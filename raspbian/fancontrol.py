@@ -45,24 +45,22 @@ if __name__ == '__main__':
         # NOTE: `fan.value` returns 1 for "on" and 0 for "off"
         if temp > OFF_THRESHOLD and not fan.value:
             fan.on()
-            time.sleep(0.005)
+            time.sleep(0.01)
             fan.off()
         elif temp > LOW_THRESHOLD and not fan.value:
             fan.on()
-            time.sleep(0.01)
-            fan.off()
-        elif temp > MEDIUM_THRESHOLD and not fan.value:
-            fan.on()
             time.sleep(0.05)
             fan.off()
-        elif temp > HIGH_THRESHOLD and not fan.value:
+        elif temp > MEDIUM_THRESHOLD and not fan.value:
             fan.on()
             time.sleep(0.1)
             fan.off()
         elif temp > HIGH_THRESHOLD and not fan.value:
             fan.on()
-            time.sleep(1)
+            time.sleep(0.5)
             fan.off()
+        elif temp > HIGH_THRESHOLD and not fan.value:
+            fan.on()
         # Stop the fan if the fan is running and the temperature has dropped
         # to 10 degrees below the limit.
         elif fan.value and temp < OFF_THRESHOLD:
