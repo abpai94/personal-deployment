@@ -12,6 +12,11 @@ This repository should contain the instructions and configuration files to set u
     * ```sudo systemctl enable fancontrol.service```
     * ```sudo systemctl start fancontrol.service```
 
+### Rock-Pi SATA ----------
+* Execute the script ```curl -sL https://rock.sh/get-rockpi-sata | sudo -H -E bash -```
+* Remove ```time.sleep(0.1)``` from ```/usr/bin/rockpi-sata/fan.py```
+* Copy ```rockpi-sata.conf``` to ```/etc/```
+
 ### Deluge
 * Execute ```sudo apt-get install deluged deluge-web```
 * Copy ```deluge``` script to ```/etc/init.d/```
