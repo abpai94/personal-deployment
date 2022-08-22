@@ -5,7 +5,6 @@ import time
 
 from gpiozero import OutputDevice
 
-FULL_THRESHOLD = 60
 HIGH_THRESHOLD = 55
 MEDIUM_THRESHOLD = 50
 LOW_THRESHOLD = 45  # (degrees Celsius) Fan kicks on at this temperature.
@@ -59,8 +58,6 @@ if __name__ == '__main__':
             fan.on()
             time.sleep(0.5)
             fan.off()
-        elif temp > HIGH_THRESHOLD and not fan.value:
-            fan.on()
         # Stop the fan if the fan is running and the temperature has dropped
         # to 10 degrees below the limit.
         elif fan.value and temp < OFF_THRESHOLD:
