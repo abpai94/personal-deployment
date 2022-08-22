@@ -4,7 +4,13 @@ This repository should contain the instructions and configuration files to set u
 ## Instructions
 
 ### GPIO Fan
-* Add ```dtoverlay=gpio-fan,gpiopin=3,temp=45000``` to ```/boot/config.txt```
+* Add ```dtoverlay=gpio-fan,gpiopin=3,temp=60000``` to ```/boot/config.txt```
+* Copy ```fancontrol.py``` to ```/home/pi/fancontrol```
+* Copy ```fancontrol.service``` to ```/lib/systemd/system/fancontrol.service```
+* Execute the following commands:
+    * ```sudo systemctl daemon-reload```
+    * ```sudo systemctl enable fancontrol.service```
+    * ```sudo systemctl start fancontrol.service```
 
 ### Deluge
 * Execute ```sudo apt-get install deluged deluge-web```
