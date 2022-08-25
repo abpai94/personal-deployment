@@ -19,7 +19,7 @@ This repository should contain the instructions and configuration files to set u
     * ```sudo systemctl stop dphys-swapfile.service```
     * ```sudo systemctl disable dphys-swapfile.service```
 
-### Rock-Pi SATA ----------
+### Rock-Pi SATA
 * Execute the script ```curl -sL https://rock.sh/get-rockpi-sata | sudo -H -E bash -```
 * Remove ```time.sleep(0.1)``` from ```/usr/bin/rockpi-sata/fan.py```
 * Copy ```rockpi-sata.conf``` to ```/etc/```
