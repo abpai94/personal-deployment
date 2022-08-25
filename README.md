@@ -12,6 +12,13 @@ This repository should contain the instructions and configuration files to set u
     * ```sudo systemctl enable fancontrol.service```
     * ```sudo systemctl start fancontrol.service```
 
+### Disable Swap file
+* Execute the following commands:
+    * ```sudo dphys-swapfile swapoff```
+    * ```sudo dphys-swapfile uninstall```
+    * ```sudo systemctl stop dphys-swapfile.service```
+    * ```sudo systemctl disable dphys-swapfile.service```
+
 ### Rock-Pi SATA ----------
 * Execute the script ```curl -sL https://rock.sh/get-rockpi-sata | sudo -H -E bash -```
 * Remove ```time.sleep(0.1)``` from ```/usr/bin/rockpi-sata/fan.py```
