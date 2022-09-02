@@ -21,7 +21,7 @@ This repository should contain the instructions and configuration files to set u
 
 ### Rock-Pi SATA
 * Execute the script ```curl -sL https://rock.sh/get-rockpi-sata | sudo -H -E bash -```
-* Remove ```time.sleep(0.1)``` from ```/usr/bin/rockpi-sata/fan.py```
+* Copy ```fan.py``` to ```/usr/bin/rockpi-sata/```
 * Copy ```rockpi-sata.conf``` to ```/etc/```
 
 ### Deluge
