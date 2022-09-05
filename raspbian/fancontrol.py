@@ -7,10 +7,9 @@ from gpiozero import OutputDevice
 
 HIGH_THRESHOLD = 55
 MEDIUM_THRESHOLD = 50
-LOW_THRESHOLD = 45  # (degrees Celsius) Fan kicks on at this temperature.
-OFF_THRESHOLD = 40  # (degress Celsius) Fan shuts off at this temperature.
-SLEEP_INTERVAL = 0.5  # (seconds) How often we check the core temperature.
-GPIO_PIN = 3  # Which GPIO pin you're using to control the fan.
+LOW_THRESHOLD = 45
+OFF_THRESHOLD = 40
+GPIO_PIN = 3
 
 
 def get_temp():
@@ -30,9 +29,6 @@ def get_temp():
 
 
 if __name__ == '__main__':
-    # Validate the on and off thresholds
-#    if OFF_THRESHOLD >= ON_THRESHOLD:
-#        raise RuntimeError('OFF_THRESHOLD must be less than ON_THRESHOLD')
 
     fan = OutputDevice(GPIO_PIN)
 
@@ -42,26 +38,19 @@ if __name__ == '__main__':
         # Start the fan if the temperature has reached the limit and the fan
         # isn't already running.
         # NOTE: `fan.value` returns 1 for "on" and 0 for "off"
-        if temp > OFF_THRESHOLD and not fan.value:
+        if temp > OFF_THRESHOLD:
             fan.on()
-            time.sleep(0.01)
+            time.sleep(0.015)
             fan.off()
-        elif temp > LOW_THRESHOLD and not fan.value:
+        elif temp > LOW_THRESHOLD:
             fan.on()
-            time.sleep(0.05)
+            time.sleep(0.030)
             fan.off()
-        elif temp > MEDIUM_THRESHOLD and not fan.value:
+        elif temp > MEDIUM_THRESHOLD:
             fan.on()
-            time.sleep(0.1)
+            time.sleep(0.075)
             fan.off()
-        elif temp > HIGH_THRESHOLD and not fan.value:
+        elif temp > HIGH_THRESHOLD:
             fan.on()
-            time.sleep(0.5)
+            time.sleep(0.090)
             fan.off()
-        # Stop the fan if the fan is running and the temperature has dropped
-        # to 10 degrees below the limit.
-        elif fan.value and temp < OFF_THRESHOLD:
-            fan.off()
-
-#        time.sleep(SLEEP_INTERVAL)
-#        time.sleep(0.01)
