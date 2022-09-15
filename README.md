@@ -90,9 +90,6 @@ This repository should contain the instructions and configuration files to set u
 * Execute ```sudo apt install plexmediaserver```
 * Set-up Plex Media Server
 
-### Open Media Vault
-* Execute ```wget -O - https://raw.githubusercontent.com/OpenMediaVault-Plugin-Developers/installScript/master/install | sudo bash```
-
 ## Helpful commands
 ### Updating and installing required packages
 * ```sudo apt-get update```
