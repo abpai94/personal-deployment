@@ -3,14 +3,9 @@ This repository should contain the instructions and configuration files to set u
 
 ## Instructions
 
-### GPIO Fan
-* Add ```dtoverlay=gpio-fan,gpiopin=3,temp=60000``` to ```/boot/config.txt```
-* Copy ```fancontrol.py``` to ```/home/pi/fancontrol```
-* Copy ```fancontrol.service``` to ```/lib/systemd/system/fancontrol.service```
-* Execute the following commands:
-    * ```sudo systemctl daemon-reload```
-    * ```sudo systemctl enable fancontrol.service```
-    * ```sudo systemctl start fancontrol.service```
+### Headless Raspberry Pi installation (Complete steps after writing Raspbian image to microSD)
+* Create empty file called ```ssh```
+* Configure and copy ```wpa_supplicant.conf```
 
 ### Disable Swap file
 * Execute the following commands:
@@ -19,12 +14,23 @@ This repository should contain the instructions and configuration files to set u
     * ```sudo systemctl stop dphys-swapfile.service```
     * ```sudo systemctl disable dphys-swapfile.service```
 
-### Rock-Pi SATA
-* Execute the script ```curl -sL https://rock.sh/get-rockpi-sata | sudo -H -E bash -```
-* Copy ```fan.py``` to ```/usr/bin/rockpi-sata/```
-* Copy ```rockpi-sata.conf``` to ```/etc/```
+### Setting up Franklin
 
-### Deluge
+#### GPIO Fan
+* Add ```dtoverlay=gpio-fan,gpiopin=3,temp=60000``` to ```/boot/config.txt```
+* Copy ```fancontrol.py``` to ```/home/pi/fancontrol```
+* Copy ```fancontrol.service``` to ```/lib/systemd/system/fancontrol.service```
+* Execute the following commands:
+    * ```sudo systemctl daemon-reload```
+    * ```sudo systemctl enable fancontrol.service```
+    * ```sudo systemctl start fancontrol.service```
+
+#### NFS Client
+* Execute ``sudo apt-get install nfs-common -y```
+* Copy NFS FSTAB configuration to ```/etc/fstab```
+* Execute ```sudo mount -a```
+
+#### Deluge
 * Execute ```sudo apt-get install deluged deluge-web```
 * Copy ```deluge``` script to ```/etc/init.d/```
 * Delete existing ```deluged-daemon``` script
@@ -33,25 +39,15 @@ This repository should contain the instructions and configuration files to set u
 * Modify and copy ```deluged-config``` to ```/etc/defaults/deluged```
 * Configure deluge
 
-### Sector error check, EXT4 formatting and RAID configuration
-* Execute ```sudo mkfs -t ext4 -c /dev/<sda/sdb/sdc/sdd> -v```
+#### DuckDNS
+* Copy ```duck.sh``` to ```~/duckdns/```
+* Execute ```chmod 700 duck.sh```
+* Execute ```crontab -e```
+* Add ```*/5 * * * * ~/duckdns/duck.sh >/dev/null 2>&1``` to the cron config
+* Start cron service ```sudo service cron start```
+* Test ```./duck.sh``` and check logs ```cat duck.log```
 
-### HDD mount
-* Execute ```sudo blkid``` and take a note of the UUID of the storage drive
-* Add ```UUID=<Storage UUID> /media/hdd ntfs defaults,auto,users,rw,nofail,umask=000 0 0``` with custom modifications to ```/etc/fstab``` file
-* Execute ```sudo reboot```
-
-### NFS Server
-* Execute ```sudo apt-get install nfs-kernel-server -y```
-* Copy ```exports``` to ```/etc/exports```
-* Execute ```sudo exportfs -ra```
-
-### NFS Client
-* Execute ``sudo apt-get install nfs-common -y```
-* Copy NFS FSTAB configuration to ```/etc/fstab```
-* Execute ```sudo mount -a```
-
-### Pi-Hole & PiVPN
+#### Pi-Hole & PiVPN
 * Execute ```curl -sSL https://install.pi-hole.net | bash``` and follow the instructions to configure Pi-hole
 * Add static IP address to ```static domain_name_servers=[IP Address]``` in ```/etc/dhcpcd.conf```
 * Set a static IP address for Raspberry Pi on the router
@@ -65,7 +61,33 @@ This repository should contain the instructions and configuration files to set u
 * Add ```127.0.0.1#5335``` as a custom DNS IPv4 provider to use local unbound DNS queries
 * Run the following script ```curl -L https://install.pivpn.io | bash``` and follow the instructions choosing WireGuard
 
-### HDD Maintainance
+#### Plex Media Server
+* Execute ```sudo apt-get install apt-transport-https```
+* Execute ```curl https://downloads.plex.tv/plex-keys/PlexSign.key | gpg --dearmor | sudo tee /usr/share/keyrings/plex-archive-keyring.gpg >/dev/null```
+* Execute ```echo deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list```
+* Execute ```sudo apt-get update```
+* Execute ```sudo apt install plexmediaserver```
+* Set-up Plex Media Server
+
+### Setting up Eleanor
+
+#### Rock-Pi SATA
+* Execute the script ```curl -sL https://rock.sh/get-rockpi-sata | sudo -H -E bash -```
+* Copy ```fan.py``` to ```/usr/bin/rockpi-sata/```
+* Copy ```rockpi-sata.conf``` to ```/etc/```
+
+#### Sector error check, EXT4 formatting, mount HDD and RAID configuration
+* Execute ```sudo mkfs -t ext4 -c /dev/<sda/sdb/sdc/sdd> -v```
+* Execute ```sudo blkid``` and take a note of the UUID of the storage drive
+* Add ```UUID=<Storage UUID> /media/hdd ntfs defaults,auto,users,rw,nofail,umask=000 0 0``` with custom modifications to ```/etc/fstab``` file
+* Execute ```sudo reboot```
+
+#### NFS Server
+* Execute ```sudo apt-get install nfs-kernel-server -y```
+* Copy ```exports``` to ```/etc/exports```
+* Execute ```sudo exportfs -ra```
+
+#### HDD Maintainance
 * Install hdparm by executing ```sudo apt-get hdparm```
 * Check HDD UUID with ```sudo blkid```
 * Add the UUID to ```hdparm.service```
@@ -77,22 +99,6 @@ This repository should contain the instructions and configuration files to set u
     * ```sudo systemctl start hdparm.service```
     * ```sudo hdparm -I /dev/sda1 /dev/sdb1```
 
-### DuckDNS
-* Copy ```duck.sh``` to ```~/duckdns/```
-* Execute ```chmod 700 duck.sh```
-* Execute ```crontab -e```
-* Add ```*/5 * * * * ~/duckdns/duck.sh >/dev/null 2>&1``` to the cron config
-* Start cron service ```sudo service cron start```
-* Test ```./duck.sh``` and check logs ```cat duck.log```
-
-### Plex Media Server
-* Execute ```sudo apt-get install apt-transport-https```
-* Execute ```curl https://downloads.plex.tv/plex-keys/PlexSign.key | gpg --dearmor | sudo tee /usr/share/keyrings/plex-archive-keyring.gpg >/dev/null```
-* Execute ```echo deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list```
-* Execute ```sudo apt-get update```
-* Execute ```sudo apt install plexmediaserver```
-* Set-up Plex Media Server
-
 ## Helpful commands
 ### Updating and installing required packages
 * ```sudo apt-get update```
@@ -102,10 +108,6 @@ This repository should contain the instructions and configuration files to set u
 * ```sudo systemctl daemon-reload```
 * ```sudo systemctl restart deluged```
 * ```sudo watch "vcgencmd measure_temp && hdparm -C /dev/sda1 && vcgencmd pm_get_status"```
-
-### Headless Raspberry Pi installation (Complete steps after writing Raspbian image to microSD)
-* Create empty file called ```ssh```
-* Configure and copy ```wpa_supplicant.conf```
 
 ## Useful links
 * https://dev.deluge-torrent.org/wiki/UserGuide/Service/DebianUbuntuInitd - Init script for deluged and deluge-web application to launch simultaneously at launch with the configuration to connect the deluge-daemon to each other automatically without requiring configuration at startup.
