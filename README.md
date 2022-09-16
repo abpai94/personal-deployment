@@ -33,6 +33,9 @@ This repository should contain the instructions and configuration files to set u
 * Modify and copy ```deluged-config``` to ```/etc/defaults/deluged```
 * Configure deluge
 
+### Sector error check, EXT4 formatting and RAID configuration
+* Execute ```sudo mkfs -t ext4 -c /dev/<sda/sdb/sdc/sdd> -v```
+
 ### HDD mount
 * Execute ```sudo blkid``` and take a note of the UUID of the storage drive
 * Add ```UUID=<Storage UUID> /media/hdd ntfs defaults,auto,users,rw,nofail,umask=000 0 0``` with custom modifications to ```/etc/fstab``` file
