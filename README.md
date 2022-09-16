@@ -1,13 +1,22 @@
 # Raspbery Pi Configuration
-This repository should contain the instructions and configuration files to set up the raspberry pi as a media server and recursive DNS.
+This repository should contain the instructions and configuration files to set up the raspberry pi's named Franklin and Eleanor. The instructions should help configure them with the following utilities.
+
+## Franklin
+* Recursive DNS
+* Pi-Hole
+* Pi-VPN
+* Deluge
+* Plex Media Server
+
+## Eleanor
+* Mount HDDs
+* RAID
 
 ## Instructions
 
-### Headless Raspberry Pi installation (Complete steps after writing Raspbian image to microSD)
-* Create empty file called ```ssh```
-* Configure and copy ```wpa_supplicant.conf```
+### General
 
-### Disable Swap file
+#### Disable Swap file
 * Execute the following commands:
     * ```sudo dphys-swapfile swapoff```
     * ```sudo dphys-swapfile uninstall```
