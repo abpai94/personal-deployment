@@ -90,6 +90,14 @@ This repository should contain the instructions and configuration files to set u
 * Execute ```sudo blkid``` and take a note of the UUID of the storage drive
 * Add ```UUID=<Storage UUID> /media/hdd ntfs defaults,auto,users,rw,nofail,umask=000 0 0``` with custom modifications to ```/etc/fstab``` file
 * Execute ```sudo reboot```
+* Install mdadm as follows ```sudo apt-get install mdadm```
+* Get USB path information from ```sudo ls /dev/disk/by-path/``` which should contain the following:
+    * /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:2:1.0-scsi-0:0:0:0
+    * /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:2:1.0-scsi-0:0:0:1
+    * /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1:1.0-scsi-0:0:0:0
+    * /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1:1.0-scsi-0:0:0:1
+* Execute the following command which contains the above disk/by-path
+    * ```sudo mdadm --create --verbose /dev/md0 --level=5 --raid-devices=4 /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:2:1.0-scsi-0:0:0:0 /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:2:1.0-scsi-0:0:0:1 /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1:1.0-scsi-0:0:0:0 /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1:1.0-scsi-0:0:0:1```
 
 #### NFS Server
 * Execute ```sudo apt-get install nfs-kernel-server -y```
@@ -117,6 +125,8 @@ This repository should contain the instructions and configuration files to set u
 * ```sudo systemctl daemon-reload```
 * ```sudo systemctl restart deluged```
 * ```sudo watch "vcgencmd measure_temp && hdparm -C /dev/sda1 && vcgencmd pm_get_status"```
+* ```sudo watch "cat /proc/mdstat"```
+* ```sudo watch "mdadm --detail /dev/md0"```
 
 ## Useful links
 * https://dev.deluge-torrent.org/wiki/UserGuide/Service/DebianUbuntuInitd - Init script for deluged and deluge-web application to launch simultaneously at launch with the configuration to connect the deluge-daemon to each other automatically without requiring configuration at startup.
