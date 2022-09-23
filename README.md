@@ -86,18 +86,18 @@ This repository should contain the instructions and configuration files to set u
 * Copy ```rockpi-sata.conf``` to ```/etc/```
 
 #### Sector error check, EXT4 formatting, mount HDD and RAID configuration
-* Execute ```sudo mkfs -t ext4 -c /dev/<sda/sdb/sdc/sdd> -v```
-* Execute ```sudo blkid``` and take a note of the UUID of the storage drive
-* Add ```UUID=<Storage UUID> /media/hdd ntfs defaults,auto,users,rw,nofail,umask=000 0 0``` with custom modifications to ```/etc/fstab``` file
-* Execute ```sudo reboot```
-* Install mdadm as follows ```sudo apt-get install mdadm```
-* Get USB path information from ```sudo ls /dev/disk/by-path/``` which should contain the following:
-    * /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:2:1.0-scsi-0:0:0:0
-    * /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:2:1.0-scsi-0:0:0:1
-    * /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1:1.0-scsi-0:0:0:0
-    * /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1:1.0-scsi-0:0:0:1
-* Execute the following command which contains the above disk/by-path
-    * ```sudo mdadm --create --verbose /dev/md0 --level=5 --raid-devices=4 /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:2:1.0-scsi-0:0:0:0 /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:2:1.0-scsi-0:0:0:1 /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1:1.0-scsi-0:0:0:0 /dev/disk/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1:1.0-scsi-0:0:0:1```
+* Execute ```sudo fdisk /dev/disk/<hdd uuid>```
+    * ```ata-ST1000LM024_HN-M101MBB_S30CJAEF433469```
+    * ```ata-HGST_HTS721010A9E630_JR10004M22L7UF```
+    * ```ata-TOSHIBA_MQ01ABD100_96G7C6MLT```
+    * ```ata-ST1000LM048-2E7172_ZKP2QKJJ```
+* Create a RAID 1 instance with 2 HDDs
+    * ```sudo mdadm --verbose --create --level=1 /dev/md0 --raid-devices=2 /dev/disk/by-id/ata-ST1000LM024_HN-M101MBB_S30CJAEF433469 /dev/disk/by-id/ata-HGST_HTS721010A9E630_JR10004M22L7UF```
+* Add ext4 filesystem and partition
+    * ```sudo mkfs -t ext4 /dev/disk/by-id/md-uuid-4b99e74b:24828ab4:56bf833a:75473490```
+    * ```sudo mkfs -t ext4 /dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_96G7C6MLT```
+    * ```sudo mkfs -t ext4 /dev/disk/by-id/ata-ST1000LM048-2E7172_ZKP2QKJJ```
+* Mount all partitions from ```fstab``` file to ```/etc/fstab```
 
 #### NFS Server
 * Execute ```sudo apt-get install nfs-kernel-server -y```

@@ -1,3 +1,7 @@
-UUID=<HDD UUID> /media/hdd ntfs defaults,auto,users,rw,nofail,umask=000 0 0
+### Franklin
+eleanor:/media/hdd0 /media/hdd0 nfs defaults,rw 0 0
 
-{HOSTNAME}:/media/hdd0 /media/hdd0 nfs defaults,rw 0 0
+### Eleanor
+UUID="a521acd0-e174-4b59-87f6-14fe41490f02" /media/md0 ext4 defaults,auto,users,rw,nofail,umask=000 0 0
+UUID="4904a2f3-056f-49c6-b986-e6c9a071b51b" /media/sdc ext4 defaults,auto,users,rw,nofail,umask=000 0 0
+UUID="ad7e287c-ecdd-44c7-9b27-0cd486f73aab" /media/sdd ext4 defaults,auto,users,rw,nofail,umask=000 0 0
