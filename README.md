@@ -93,6 +93,9 @@ This repository should contain the instructions and configuration files to set u
     * ```ata-ST1000LM048-2E7172_ZKP2QKJJ```
 * Create a RAID 1 instance with 2 HDDs
     * ```sudo mdadm --verbose --create --level=1 /dev/md0 --raid-devices=2 /dev/disk/by-id/ata-ST1000LM024_HN-M101MBB_S30CJAEF433469 /dev/disk/by-id/ata-HGST_HTS721010A9E630_JR10004M22L7UF```
+    * ```sudo mdadm --verbose --create --level=1 /dev/md1 --raid-devices=2 /dev/disk/by-id/ata-ST1000LM048-2E7172_ZKP2QKJJ /dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_96G7C6MLT```
+* Detect existing RAID configuration
+   * ```sudo mdadm --verbose --assemble /dev/md0 /dev/disk/by-id/ata-ST1000LM024_HN-M101MBB_S30CJAEF433469 /dev/disk/by-id/ata-HGST_HTS721010A9E630_JR10004M22L7UF```
 * Add ext4 filesystem and partition
     * ```sudo mkfs -t ext4 /dev/disk/by-id/md-uuid-4b99e74b:24828ab4:56bf833a:75473490```
     * ```sudo mkfs -t ext4 /dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_96G7C6MLT```
