@@ -97,6 +97,9 @@ This repository should contain the instructions and configuration files to set u
 * Detect existing RAID configuration
    * ```sudo mdadm --verbose --assemble /dev/md0 /dev/disk/by-id/ata-ST1000LM024_HN-M101MBB_S30CJAEF433469 /dev/disk/by-id/ata-HGST_HTS721010A9E630_JR10004M22L7UF```
    * ```sudo mdadm --verbose --assemble /dev/md1 /dev/disk/by-id/ata-ST1000LM048-2E7172_ZKP2QKJJ /dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_96G7C6MLT 
+* Enable Read-Write on RAID
+    * ```sudo mdadm --readwrite /dev/md0```
+    * ```sudo mdadm --readwrite /dev/md1```
 * Add ext4 filesystem and partition
     * ```sudo mkfs -t ext4 /dev/disk/by-id/md-uuid-4b99e74b:24828ab4:56bf833a:75473490```
     * ```sudo mkfs -t ext4 /dev/disk/by-id/md-uuid-11435132:302ccabd:aa2b0572:b8ed9f50```
