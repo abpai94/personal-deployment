@@ -85,8 +85,8 @@ This repository should contain the instructions and configuration files to set u
 * Copy ```fan.py``` to ```/usr/bin/rockpi-sata/```
 * Copy ```rockpi-sata.conf``` to ```/etc/```
 
-#### Sector error check, EXT4 formatting, mount HDD and RAID configuration
-* Execute ```sudo fdisk /dev/disk/<hdd uuid>```
+#### Delete filesystem, RAID configuration and mount md0/1
+* Execute ```sudo fdisk /dev/disk/<hdd uuid>``` and choose ```d``` and ```w``` for all the following drives
     * ```ata-ST1000LM024_HN-M101MBB_S30CJAEF433469```
     * ```ata-HGST_HTS721010A9E630_JR10004M22L7UF```
     * ```ata-TOSHIBA_MQ01ABD100_96G7C6MLT```
@@ -96,10 +96,10 @@ This repository should contain the instructions and configuration files to set u
     * ```sudo mdadm --verbose --create --level=1 /dev/md1 --raid-devices=2 /dev/disk/by-id/ata-ST1000LM048-2E7172_ZKP2QKJJ /dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_96G7C6MLT```
 * Detect existing RAID configuration
    * ```sudo mdadm --verbose --assemble /dev/md0 /dev/disk/by-id/ata-ST1000LM024_HN-M101MBB_S30CJAEF433469 /dev/disk/by-id/ata-HGST_HTS721010A9E630_JR10004M22L7UF```
+   * ```sudo mdadm --verbose --assemble /dev/md1 /dev/disk/by-id/ata-ST1000LM048-2E7172_ZKP2QKJJ /dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_96G7C6MLT 
 * Add ext4 filesystem and partition
     * ```sudo mkfs -t ext4 /dev/disk/by-id/md-uuid-4b99e74b:24828ab4:56bf833a:75473490```
-    * ```sudo mkfs -t ext4 /dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_96G7C6MLT```
-    * ```sudo mkfs -t ext4 /dev/disk/by-id/ata-ST1000LM048-2E7172_ZKP2QKJJ```
+    * ```sudo mkfs -t ext4 /dev/disk/by-id/md-uuid-11435132:302ccabd:aa2b0572:b8ed9f50```
 * Mount all partitions from ```fstab``` file to ```/etc/fstab```
 
 #### NFS Server
