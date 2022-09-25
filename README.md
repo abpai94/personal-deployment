@@ -104,6 +104,8 @@ This repository should contain the instructions and configuration files to set u
     * ```sudo mkfs -t ext4 /dev/disk/by-id/md-uuid-4b99e74b:24828ab4:56bf833a:75473490```
     * ```sudo mkfs -t ext4 /dev/disk/by-id/md-uuid-11435132:302ccabd:aa2b0572:b8ed9f50```
 * Mount all partitions from ```fstab``` file to ```/etc/fstab```
+* Copy ```mdadm.conf``` to ```/etc/mdadm/mdadm.conf```
+* Execute ```update-initramfs -u```
 
 #### NFS Server
 * Execute ```sudo apt-get install nfs-kernel-server -y```
