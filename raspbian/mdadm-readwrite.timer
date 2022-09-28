@@ -1,0 +1,10 @@
+[Unit]
+Description=Enable read-write privileges on /dev/md0 & /dev/md1
+
+[Service]
+Type=simple
+ExecStart=mdadm-readwrite.service
+OnBootSec=120
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Enable read-write privileges on /dev/md0 & /dev/md1
+
+[Service]
+Type=simple
+ExecStart=/home/pi/mdadm-readwrite.sh
+
+[Install]
+WantedBy=multi-user.target
