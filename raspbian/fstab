@@ -1,7 +1,7 @@
 ### Franklin
-eleanor:/media/md0 /media/md0 nfs defaults,rw 0 0
-eleanor:/media/md1 /media/md1 nfs defaults,rw 0 0
+eleanor:/media/md0 /media/md0 nfs defaults 0 0
+eleanor:/media/md1 /media/md1 nfs defaults 0 0
 
 ### Eleanor
-UUID="a521acd0-e174-4b59-87f6-14fe41490f02" /media/md0 ext4 defaults,auto,users,rw,nofail,umask=000 0 0
-UUID="5939687c-f849-44fe-996e-f0e8fb450cbd" /media/md1 ext4 defaults,auto,users,rw,nofail,umask=000 0 0
+UUID="a521acd0-e174-4b59-87f6-14fe41490f02" /media/md0 ext4 defaults 0 0
+UUID="5939687c-f849-44fe-996e-f0e8fb450cbd" /media/md1 ext4 defaults 0 0
