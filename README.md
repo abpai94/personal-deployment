@@ -5,8 +5,9 @@ This repository should contain the instructions and configuration files to set u
 * Recursive DNS
 * Pi-Hole
 * Pi-VPN
+* Mount NFS
 * Deluge
-* Plex Media Server
+* Jellyfin
 
 ## Eleanor
 * Mount HDDs
@@ -70,13 +71,13 @@ This repository should contain the instructions and configuration files to set u
 * Add ```127.0.0.1#5335``` as a custom DNS IPv4 provider to use local unbound DNS queries
 * Run the following script ```curl -L https://install.pivpn.io | bash``` and follow the instructions choosing WireGuard
 
-#### Plex Media Server
-* Execute ```sudo apt-get install apt-transport-https```
-* Execute ```curl https://downloads.plex.tv/plex-keys/PlexSign.key | gpg --dearmor | sudo tee /usr/share/keyrings/plex-archive-keyring.gpg >/dev/null```
-* Execute ```echo deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list```
+#### Jellyfin
+* Execute ```sudo apt install apt-transport-https lsb-release```
+* Execute ```curl https://repo.jellyfin.org/debian/jellyfin_team.gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/jellyfin-archive-keyring.gpg >/dev/null```
+* Execute ```echo "deb [signed-by=/usr/share/keyrings/jellyfin-archive-keyring.gpg arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/debian $( lsb_release -c -s ) main" | sudo tee /etc/apt/sources.list.d/jellyfin.list```
 * Execute ```sudo apt-get update```
-* Execute ```sudo apt install plexmediaserver```
-* Set-up Plex Media Server
+* Execute ```sudo apt install jellyfin```
+* Set-up Jellyfin
 
 ### Setting up Eleanor
 
@@ -108,7 +109,7 @@ This repository should contain the instructions and configuration files to set u
 * Execute ```update-initramfs -u```
 
 #### NFS Server
-* Execute ```sudo apt-get install nfs-kernel-server -y```
+* Execute ```sudo apt-get install nfs-kernel-server```
 * Copy ```exports``` to ```/etc/exports```
 * Execute ```sudo exportfs -ra```
 
@@ -147,4 +148,4 @@ This repository should contain the instructions and configuration files to set u
 * https://pimylifeup.com/headless-raspberry-pi-setup/ - Guide to creating a headless raspberry pi.
 * https://pimylifeup.com/raspberry-pi-nfs/ - Setting up NFS server
 * https://pimylifeup.com/raspberry-pi-nfs-client/ - Setting up NFS Client
-* https://pimylifeup.com/raspberry-pi-plex-server/ - Setting up Plex Server
+* https://pimylifeup.com/raspberry-pi-jellyfin/ - Setting up Jellyfin server
