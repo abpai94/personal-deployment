@@ -26,6 +26,9 @@ This repository should contain the instructions and configuration files to set u
 
 ### Setting up Franklin
 
+### Enable Hardware Encoding
+* Add ```dtoverlay=rpivid-v4l2``` to ```/boot/config.txt```
+
 #### GPIO Fan
 * Add ```dtoverlay=gpio-fan,gpiopin=3,temp=60000``` to ```/boot/config.txt```
 * Copy ```fancontrol.py``` to ```/home/pi/fancontrol```
