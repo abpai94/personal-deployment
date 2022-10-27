@@ -39,7 +39,7 @@ This repository should contain the instructions and configuration files to set u
     * ```sudo systemctl start fancontrol.service```
 
 #### NFS Client
-* Execute ``sudo apt-get install nfs-common -y```
+* Execute ```sudo apt-get install nfs-common -y```
 * Copy NFS FSTAB configuration to ```/etc/fstab```
 * Execute ```sudo mount -a```
 
