@@ -1,0 +1,7 @@
+---
+  - name: Franklin
+    hosts: localhost
+    remote_user: root
+    tasks:
+      - name: Disable Swap File
+        include_tasks: disable_swap.yml

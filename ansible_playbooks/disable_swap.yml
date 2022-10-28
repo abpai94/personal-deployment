@@ -1,0 +1,7 @@
+---
+  - name: Disable Swap File
+    ansible.builtin.shell:
+      cmd: dphys-swapfile swapoff
+      cmd: dphys-swapfile uninstall
+      cmd: systemctl stop dphys-swapfile.service
+      cmd: systemctl disblae dphys-swapfile.service
