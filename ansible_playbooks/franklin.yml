@@ -1,7 +1,37 @@
 ---
-  - name: Franklin
-    hosts: localhost
-    remote_user: root
-    tasks:
-      - name: Disable Swap File
-        include_tasks: disable_swap.yml
+- name: Franklin
+  hosts: franklin
+  tasks:
+    - name: Disable Swap File
+      ansible.builtin.include_tasks:
+        file: disable_swap.yml
+    - name: Hardware Video Encoding
+      ansible.builtin.lineinfile:
+        path: /boot/config.txt
+        regexp: '^dtoverlay='
+        line: '^dtoverlay/=/rpivid-v4l2'
+    - name: Fan controls GPIO Configuration
+      ansible.builtin.lineinfile:
+        path: /boot/config.txt
+        regexp: '^dtoverlay='
+        line: '^dtoverlay/=/gpio-fan,gpiopin/=/3,temp/=/60000'
+    - name: Copy fan controls script
+      ansible.builtin.copy:
+        src: ../fancontrol/fancontrol.py
+        dest: /home/pi/fancontrol/
+        owner: pi
+        group: pi
+        mode: '0755'
+    - name: Copy fan controls service
+      ansible.builtin.copy:
+        src: ../fancontrol/fancontrol.service
+        dest: /lib/systemd/system/fancontrol.service
+        owner: pi
+        group: pi
+        mode: '0755'
+    - name: Load, enable & start fancontrol service
+      ansible.builtin.systemd:
+        daemon_reload: true
+        name: fancontrol
+        enabled: true
+        state: started
