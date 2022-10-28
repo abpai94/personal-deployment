@@ -1,7 +1,11 @@
 ---
-- name: Disable Swap File
+- name: Common Configuration
   hosts: "*"
   tasks:
+    - name: Update Raspbian
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: full
     - name: Turn-off and uninstall swap file
       ansible.builtin.shell:
         cmd: dphys-swapfile swapoff && dphys-swapfile uninstall

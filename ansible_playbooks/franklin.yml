@@ -2,9 +2,9 @@
 - name: Franklin
   hosts: franklin
   tasks:
-    - name: Disable Swap File
+    - name: Common Configuiration
       ansible.builtin.include_tasks:
-        file: disable_swap.yml
+        file: common.yml
     - name: Hardware Video Encoding
       ansible.builtin.lineinfile:
         path: /boot/config.txt

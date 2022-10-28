@@ -2,6 +2,6 @@
 - name: Eleanor
   hosts: eleanor
   tasks:
-    - name: Disable Swap File
+    - name: Common Configuration
       ansible.builtin.include_tasks:
-        file: disable_swap.yml
+        file: common.yml
