@@ -8,6 +8,8 @@ This repository should contain the instructions and configuration files to set u
 * Mount NFS
 * Deluge
 * Jellyfin
+* Radarr
+* Sonarr
 
 ## Eleanor
 * Mount HDDs
