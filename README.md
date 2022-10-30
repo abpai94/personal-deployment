@@ -176,6 +176,7 @@ This repository should contain the instructions and configuration files to set u
 * https://pimylifeup.com/headless-raspberry-pi-setup/ - Guide to creating a headless raspberry pi.
 * https://pimylifeup.com/raspberry-pi-nfs/ - Setting up NFS server
 * https://pimylifeup.com/raspberry-pi-nfs-client/ - Setting up NFS Client
-* https://pimylifeup.com/raspberry-pi-jellyfin/ - Setting up Jellyfin server
+* https://pimylifeup.com/raspberry-pi-jellyfin/ - Jellyfin server installation instructions
 * https://wiki.servarr.com/radarr/installation#linux - Radarr configuration instructions
-* https://sonarr.tv/#downloads-v3-linux-debian - Sonarr configuration instructions
+* https://sonarr.tv/#downloads-v3-linux-debian - Sonarr installation instructions
+* https://github.com/Jackett/Jackett - Jackett installation instructions
