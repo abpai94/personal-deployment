@@ -1,0 +1,14 @@
+[Unit]
+Description=Radarr Daemon
+After=syslog.target network.target
+[Service]
+User=pi
+Group=pi
+Type=simple
+
+ExecStart=/opt/Radarr/Radarr -nobrowser -data=/home/pi/.config/Radarr
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target

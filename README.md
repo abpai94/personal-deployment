@@ -82,6 +82,20 @@ This repository should contain the instructions and configuration files to set u
 * Execute ```sudo apt install jellyfin```
 * Set-up Jellyfin
 
+#### Radarr
+* Execute ```wget --content-disposition 'http://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=arm'```
+* Extract tarball ```tar -xvzf Radarr*.linux*.tar.gz```
+* Move extracted contents ```sudo mv Radarr /opt/```
+* Change Permission ```sudo mv Radarr /opt/```
+* Copy ```radarr.service``` to ```/etc/systemd/system/radarr.service```
+* Reload systemd ```sudo systemctl daemon-reload```
+* Enable Radarr service ```sudo systemctl enable radarr.service```
+* Start Radarr service ```sudo systemctl start radarr.service```
+* Delete Radarr tarball ```rm Radarr*.linux*.tar.gz```
+
+### Sonarr
+
+
 ### Setting up Eleanor
 
 #### Rock-Pi SATA
@@ -152,3 +166,4 @@ This repository should contain the instructions and configuration files to set u
 * https://pimylifeup.com/raspberry-pi-nfs/ - Setting up NFS server
 * https://pimylifeup.com/raspberry-pi-nfs-client/ - Setting up NFS Client
 * https://pimylifeup.com/raspberry-pi-jellyfin/ - Setting up Jellyfin server
+* https://wiki.servarr.com/radarr/installation#linux - Radarr configuration instructions
