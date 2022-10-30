@@ -95,11 +95,16 @@ This repository should contain the instructions and configuration files to set u
 * Start Radarr service ```sudo systemctl start radarr.service```
 * Delete Radarr tarball ```rm Radarr*.linux*.tar.gz```
 
-### Sonarr
+#### Sonarr
 * Retrieve apt repository key ```sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 2009837CBFFD68F45BC180471F4F90DE2A9B4BF8```
 * Add apt source list ```echo "deb https://apt.sonarr.tv/debian buster main" | sudo tee /etc/apt/sources.list.d/sonarr.list```
 * Update local package list ```sudo apt update```
 * Install Sonarr ```sudo apt install sonarr```
+
+#### Jackett (http://localhost:9117)
+* Retrieve Jackett Binaries ```wget https://github.com/Jackett/Jackett/releases/download/<version>/Jackett.Binaries.LinuxARM32.tar.gz```
+* Extract tarball ```tar xvf Jackett.Binaries.LinuxARM32.tar.gz```
+* Execute ```sudo Jackett/./install_service_systemd.sh```
 
 ### Setting up Eleanor
 
