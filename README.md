@@ -10,6 +10,7 @@ This repository should contain the instructions and configuration files to set u
 * Jellyfin
 * Radarr
 * Sonarr
+* Jackett
 
 ## Eleanor
 * Mount HDDs
@@ -45,7 +46,7 @@ This repository should contain the instructions and configuration files to set u
 * Copy NFS FSTAB configuration to ```/etc/fstab```
 * Execute ```sudo mount -a```
 
-#### Deluge
+#### Deluge (http://hostname:8112)
 * Execute ```sudo apt-get install deluged deluge-web```
 * Copy ```deluge``` script to ```/etc/init.d/```
 * Delete existing ```deluged-daemon``` script
@@ -62,7 +63,7 @@ This repository should contain the instructions and configuration files to set u
 * Start cron service ```sudo service cron start```
 * Test ```./duck.sh``` and check logs ```cat duck.log```
 
-#### Pi-Hole & PiVPN
+#### Pi-Hole (http://hostname:80) & PiVPN
 * Execute ```curl -sSL https://install.pi-hole.net | bash``` and follow the instructions to configure Pi-hole
 * Add static IP address to ```static domain_name_servers=[IP Address]``` in ```/etc/dhcpcd.conf```
 * Set a static IP address for Raspberry Pi on the router
@@ -76,7 +77,7 @@ This repository should contain the instructions and configuration files to set u
 * Add ```127.0.0.1#5335``` as a custom DNS IPv4 provider to use local unbound DNS queries
 * Run the following script ```curl -L https://install.pivpn.io | bash``` and follow the instructions choosing WireGuard
 
-#### Jellyfin
+#### Jellyfin (http://hostname:8096)
 * Execute ```sudo apt install apt-transport-https lsb-release```
 * Execute ```curl https://repo.jellyfin.org/debian/jellyfin_team.gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/jellyfin-archive-keyring.gpg >/dev/null```
 * Execute ```echo "deb [signed-by=/usr/share/keyrings/jellyfin-archive-keyring.gpg arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/debian $( lsb_release -c -s ) main" | sudo tee /etc/apt/sources.list.d/jellyfin.list```
@@ -84,7 +85,7 @@ This repository should contain the instructions and configuration files to set u
 * Execute ```sudo apt install jellyfin```
 * Set-up Jellyfin
 
-#### Radarr
+#### Radarr (http://hostname:7878)
 * Execute ```wget --content-disposition 'http://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=arm'```
 * Extract tarball ```tar -xvzf Radarr*.linux*.tar.gz```
 * Move extracted contents ```sudo mv Radarr /opt/```
@@ -95,13 +96,13 @@ This repository should contain the instructions and configuration files to set u
 * Start Radarr service ```sudo systemctl start radarr.service```
 * Delete Radarr tarball ```rm Radarr*.linux*.tar.gz```
 
-#### Sonarr
+#### Sonarr (http://hostname:8989)
 * Retrieve apt repository key ```sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 2009837CBFFD68F45BC180471F4F90DE2A9B4BF8```
 * Add apt source list ```echo "deb https://apt.sonarr.tv/debian buster main" | sudo tee /etc/apt/sources.list.d/sonarr.list```
 * Update local package list ```sudo apt update```
 * Install Sonarr ```sudo apt install sonarr```
 
-#### Jackett (http://localhost:9117)
+#### Jackett (http://hostname:9117)
 * Retrieve Jackett Binaries ```wget https://github.com/Jackett/Jackett/releases/download/<version>/Jackett.Binaries.LinuxARM32.tar.gz```
 * Extract tarball ```tar xvf Jackett.Binaries.LinuxARM32.tar.gz```
 * Execute ```sudo Jackett/./install_service_systemd.sh```
