@@ -94,7 +94,10 @@ This repository should contain the instructions and configuration files to set u
 * Delete Radarr tarball ```rm Radarr*.linux*.tar.gz```
 
 ### Sonarr
-
+* Retrieve apt repository key ```sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 2009837CBFFD68F45BC180471F4F90DE2A9B4BF8```
+* Add apt source list ```echo "deb https://apt.sonarr.tv/debian buster main" | sudo tee /etc/apt/sources.list.d/sonarr.list```
+* Update local package list ```sudo apt update```
+* Install Sonarr ```sudo apt install sonarr```
 
 ### Setting up Eleanor
 
@@ -167,3 +170,4 @@ This repository should contain the instructions and configuration files to set u
 * https://pimylifeup.com/raspberry-pi-nfs-client/ - Setting up NFS Client
 * https://pimylifeup.com/raspberry-pi-jellyfin/ - Setting up Jellyfin server
 * https://wiki.servarr.com/radarr/installation#linux - Radarr configuration instructions
+* https://sonarr.tv/#downloads-v3-linux-debian - Sonarr configuration instructions
