@@ -18,9 +18,9 @@
       ansible.builtin.file:
         path: /media/md0
         state: directory
-        mode: '0755'
+        mode: 0755
     - name: RAID md1 directory
       ansible.builtin.file:
         path: /media/md1
         state: directory
-        mode: '0755'
+        mode: 0755

@@ -8,13 +8,13 @@
     - name: Hardware Video Encoding
       ansible.builtin.lineinfile:
         path: /boot/config.txt
-        regexp: '^dtoverlay='
-        line: '^dtoverlay/=/rpivid-v4l2'
+        search_string: 'dtoverlay='
+        line: 'dtoverlay/=/rpivid-v4l2'
     - name: Fan controls GPIO Configuration
       ansible.builtin.lineinfile:
         path: /boot/config.txt
-        regexp: '^dtoverlay='
-        line: '^dtoverlay/=/gpio-fan,gpiopin/=/3,temp/=/60000'
+        search_string: 'dtoverlay='
+        line: 'dtoverlay/=/gpio-fan,gpiopin/=/3,temp/=/60000'
     - name: Copy fan controls script
       ansible.builtin.copy:
         src: ../fancontrol/fancontrol.py
@@ -28,7 +28,7 @@
         dest: /lib/systemd/system/fancontrol.service
         owner: pi
         group: pi
-        mode: '0755'
+        mode: 0755
     - name: Load, enable & start fancontrol service
       ansible.builtin.systemd:
         daemon_reload: true
@@ -51,3 +51,39 @@
         path: /media/md1
         state: mounted
         fstype: nfs
+    - name: Install Deluge Daemon and Web Client
+      ansible.builtin.apt:
+        name:
+          - deluged
+          - deluge-web
+    - name: Copy Custom Deluge Service
+      ansible.builtin.copy:
+        src: ../deluged/deluged.service
+        dest: /lib/systemd/system/deluge.service
+        owner: pi
+        group: pi
+        mode: 0755
+    - name: Deluge Web Client Configuration
+      ansible.builtin.lineinfile:
+        path: /home/pi/.config/deluge/web.conf
+        line: '"default_daemon": "127.0.0.1:58846"'
+    - name: Copy Deluged Service Configuration
+      ansible.builtin.copy:
+        src: ../deluged/deluge-config
+        dest: /etc/defaults/deluged/
+        owner: pi
+        group: pi
+        mode: 0755
+    - name: Copy Deluged Application Configuration
+      ansible.builtin.copy:
+        src: ../deluged/core.conf
+        dest: /home/pi/.config/deluge/
+        owner: pi
+        group: pi
+        mode: 0755
+    - name: Load, enable & start Deluge service
+      ansible.builtin.systemd:
+        daemon_reload: true
+        name: deluge
+        enabled: true
+        state: started
