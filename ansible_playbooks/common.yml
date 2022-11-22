@@ -24,3 +24,8 @@
         path: /media/md1
         state: directory
         mode: 0755
+    - name: Duck DNS directory
+      ansible.builtin.file:
+        path: /home/pi/duckdns
+        state: directory
+        mode: 0755
