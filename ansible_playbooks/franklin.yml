@@ -87,3 +87,35 @@
         name: deluge
         enabled: true
         state: started
+    - name: DuckDNS
+      ansible.builtin.copy:
+        src: ../duckdns/duck.sh
+        dest: /home/pi/duckdns/
+        owner: pi
+        group: pi
+        mode: 0755
+    - name: Unbound DNS
+      ansible.builtin.apt:
+        name:
+          - unbound
+    - name: Copy root DNS list
+      ansible.builtin.copy:
+        src: ../pi-hole/root.hints
+        dest: /var/lib/unbound/
+        owner: pi
+        group: pi
+        mode: 0755
+    - name: Copy pihole DNS config
+      ansible.builtin.copy:
+        src: ../pi-hole/pi-hole.conf
+        dest: /etc/unbound/unbound.conf.d/
+        owner: pi
+        group: pi
+        mode: 0755
+    - name: EDNS Max packet size configuration
+      ansible.builtin.copy:
+        src: ../pi-hole/99-edns.conf
+        dest: /etc/dnsmasq.d/
+        owner: pi
+        group: pi
+        mode: 0755
