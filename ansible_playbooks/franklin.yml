@@ -87,13 +87,24 @@
         name: deluge
         enabled: true
         state: started
-    - name: DuckDNS
+    - name: Copy DuckDNS script
       ansible.builtin.copy:
         src: ../duckdns/duck.sh
         dest: /home/pi/duckdns/
         owner: pi
         group: pi
         mode: 0755
+    - name: DuckDNS Cron
+      ansible.builtin.cron:
+        name: DuckDNS
+        minute: "*/5"
+        user: root
+        job: "~/duckdns/duck.sh >/dev/null 2>&1"
+    - name: Cron Service
+      ansible.builtin.systemd:
+        name: cron
+        enabled: true
+        state: started
     - name: Unbound DNS
       ansible.builtin.apt:
         name:
