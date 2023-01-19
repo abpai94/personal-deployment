@@ -101,10 +101,9 @@ This repository should contain the instructions and configuration files to set u
 * Update local package list ```sudo apt update```
 * Install Sonarr ```sudo apt install sonarr```
 
-#### Jackett (http://hostname:9117)
-* Retrieve Jackett Binaries ```wget https://github.com/Jackett/Jackett/releases/download/<version>/Jackett.Binaries.LinuxARM32.tar.gz```
-* Extract tarball ```tar xvf Jackett.Binaries.LinuxARM32.tar.gz```
-* Execute ```sudo Jackett/./install_service_systemd.sh```
+#### Prowlarr (http://hostname:9696)
+* Run the script found here: https://wiki.servarr.com/install-script
+* Follow the instructions.
 
 ### Setting up Eleanor
 
