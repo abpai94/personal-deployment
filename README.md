@@ -10,7 +10,7 @@ This repository should contain the instructions and configuration files to set u
 * Jellyfin
 * Radarr
 * Sonarr
-* Jackett
+* Prowlarr
 
 ## Eleanor
 * Mount HDDs
