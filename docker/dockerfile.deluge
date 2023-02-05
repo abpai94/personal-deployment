@@ -1,0 +1,20 @@
+---
+version: "2.1"
+services:
+  deluge:
+    image: lscr.io/linuxserver/deluge:latest
+    container_name: deluge
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=CET
+      - DELUGE_LOGLEVEL=info
+    volumes:
+      - /media/md1/config/deluge/config:/config
+      - /media/md1/.media/:/downloads
+    ports:
+      - 8112:8112
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped

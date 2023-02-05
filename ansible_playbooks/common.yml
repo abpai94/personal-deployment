@@ -1,31 +1,35 @@
----
-- name: Common Configuration
-  hosts: "*"
-  tasks:
-    - name: Update Raspbian
-      ansible.builtin.apt:
-        update_cache: true
-        upgrade: full
-    - name: Turn-off and uninstall swap file
-      ansible.builtin.shell:
-        cmd: dphys-swapfile swapoff && dphys-swapfile uninstall
-    - name: Disable swap file service
-      ansible.builtin.systemd:
-        name: dphys-swapfile
-        enabled: false
-        state: stopped
-    - name: RAID md0 directory
-      ansible.builtin.file:
-        path: /media/md0
-        state: directory
-        mode: 0755
-    - name: RAID md1 directory
-      ansible.builtin.file:
-        path: /media/md1
-        state: directory
-        mode: 0755
-    - name: Duck DNS directory
-      ansible.builtin.file:
-        path: /home/pi/duckdns
-        state: directory
-        mode: 0755
+- name: Adding hostnames
+  ansible.builtin.blockinfile:
+    path: /etc/hosts
+    block: |
+      192.168.1.2     franklin
+      192.168.1.3     eleanor
+- name: Update Raspbian
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: full
+- name: Turn-off swap file
+  ansible.builtin.shell:
+    cmd: dphys-swapfile swapoff
+- name: Uninstall swap file
+  ansible.builtin.shell:
+    cmd: dphys-swapfile uninstall
+- name: Disable swap file service
+  ansible.builtin.systemd:
+    name: dphys-swapfile
+    enabled: false
+    state: stopped
+- name: RAID md0 directory
+  ansible.builtin.file:
+    path: /media/md0
+    state: directory
+    mode: 0755
+    owner: pi
+    group: pi
+- name: RAID md1 directory
+  ansible.builtin.file:
+    path: /media/md1
+    state: directory
+    mode: 0755
+    owner: pi
+    group: pi
