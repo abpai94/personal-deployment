@@ -8,6 +8,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - TZ=Europe/Paris
     volumes:
       - /media/md1/config/unbound/:/opt/unbound/etc/unbound/
     ports:

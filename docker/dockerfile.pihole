@@ -11,7 +11,7 @@ services:
       - 67:67/udp
       - 80:80/tcp
     environment:
-      TZ: CET
+      TZ: Europe/Paris
     volumes:
       - /media/md1/config/pihole/etc/pihole:/etc/pihole
       - /media/md1/config/pihole/etc/dnsmasq.d:/etc/dnsmasq.d
