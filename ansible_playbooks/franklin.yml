@@ -114,6 +114,10 @@
         - /media/md1/config/docker/dockerfile.radarr
         - /media/md1/config/docker/dockerfile.sonarr
         - /media/md1/config/docker/dockerfile.unbound
+    - name: Delete Docker files
+      ansible.builtin.file:
+        path: /media/md1/config/docker
+        state: absent
     - name: Download piVPN script
       ansible.builtin.get_url:
         url: https://install.pivpn.io
@@ -128,5 +132,6 @@
       ansible.builtin.command:
         cmd: bash /media/md1/config/pivpn/install.sh --unattended /media/md1/config/pivpn/setupVars.conf
     - name: Delete piVPN script
-      ansible.builtin.command:
-        cmd: rm /media/md1/config/pivpn/install.sh
+      ansible.builtin.file:
+        path: /media/md1/config/pivpn/install.sh
+        state: absent
