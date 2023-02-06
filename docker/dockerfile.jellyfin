@@ -9,10 +9,13 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=CET
+      - JELLYFIN_PublishedServerUrl=192.168.1.2
     volumes:
       - /media/md1/config/jellyfin/:/config
       - /media/md1/tv:/data/tvshows
       - /media/md1/movies:/data/movies
+    device:
+      - /dev/video12:/dev/video12
     ports:
       - 8096:8096      
       - 8920:8920
