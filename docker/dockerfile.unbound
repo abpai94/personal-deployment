@@ -9,7 +9,7 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /media/md1/config/unbound/:/etc/unbound/
+      - /media/md1/config/unbound/:/opt/unbound/etc/unbound/
     ports:
       - 5335:53/tcp
       - 5335:53/udp
