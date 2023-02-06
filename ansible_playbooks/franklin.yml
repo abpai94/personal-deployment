@@ -7,11 +7,6 @@
     - name: Common Configuiration
       ansible.builtin.include_tasks:
         file: common.yml
-    - name: Hardware Video Encoding
-      ansible.builtin.lineinfile:
-        path: /boot/config.txt
-        search_string: 'dtoverlay='
-        line: 'dtoverlay/=/rpivid-v4l2'
     - name: Fan controls GPIO Configuration
       ansible.builtin.lineinfile:
         path: /boot/config.txt
@@ -77,10 +72,11 @@
       ansible.builtin.get_url:
         force: true
         url: https://download.docker.com/linux/raspbian/gpg
-        dest: /etc/apt/trusted.gpg.d/docker.gpg
+        dest: /etc/apt/keyrings/docker.gpg
+        mode: 755
     - name: Adding repository
       ansible.builtin.apt_repository:
-        repo: deb [arch=arm64 signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/raspbian bullseye stable
+        repo: deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/raspbian bullseye stable
         state: present
         filename: docker
         update_cache: true
