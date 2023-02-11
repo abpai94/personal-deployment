@@ -14,3 +14,17 @@
     path: /media/md1
     state: mounted
     fstype: nfs
+- name: Symbolic links for md0
+  ansible.builtin.file:
+    src: /media/md0
+    dest: /mnt/
+    state: link
+    owner: pi
+    group: pi
+- name: Symbolic links for md1
+  ansible.builtin.file:
+    src: /media/md1
+    dest: /mnt/
+    state: link
+    owner: pi
+    group: pi

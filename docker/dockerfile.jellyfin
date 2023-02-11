@@ -11,9 +11,9 @@ services:
       - TZ=Europe/Paris
       - JELLYFIN_PublishedServerUrl=192.168.1.2
     volumes:
-      - /media/md1/config/jellyfin/:/config
-      - /media/md1/tv:/data/tvshows
-      - /media/md1/movies:/data/movies
+      - /mnt/md1/config/jellyfin/:/config
+      - /mnt/md1/tv:/data/tvshows
+      - /mnt/md1/movies:/data/movies
     devices:
       - /dev/video12:/dev/video12
     ports:
