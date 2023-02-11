@@ -1,0 +1,33 @@
+- name: Install unbound
+  ansible.builtin.apt:
+    name:
+      - unbound
+- name: Copy root.hints
+  ansible.builtin.copy:
+    src: ../pi-hole/root.hints
+    dest: /var/lib/unbound/
+- name: Copy pihole configuration
+  ansible.builtin.copy:
+    src: ../pi-hole/pi-hole.conf
+    dest: /etc/unbound/unbound.conf.d/    
+- name: Restart unbound service
+  ansible.builtin.systemd:
+    name: unbound
+    state: restarted
+- name: Download piVPN script
+  ansible.builtin.get_url:
+    url: https://install.pivpn.io
+    dest: /media/md1/config/pivpn/install.sh
+- name: Enable execute permission
+  ansible.builtin.file:
+    path: /media/md1/config/pivpn/install.sh
+    owner: pi
+    group: pi
+    mode: 0755
+- name: Execute piVPN setup
+  ansible.builtin.command:
+    cmd: bash /media/md1/config/pivpn/install.sh --unattended /media/md1/config/pivpn/setupVars.conf
+- name: Delete piVPN script
+  ansible.builtin.file:
+    path: /media/md1/config/pivpn/install.sh
+    state: absent

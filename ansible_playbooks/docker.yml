@@ -1,0 +1,50 @@
+- name: Install docker auxiliary packages
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - curl
+      - ca-certificates
+- name: Add repository key
+  ansible.builtin.get_url:
+    force: true
+    url: https://download.docker.com/linux/raspbian/gpg
+    dest: /etc/apt/keyrings/docker.gpg
+    mode: 755
+- name: Adding repository
+  ansible.builtin.apt_repository:
+    repo: deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/raspbian bullseye stable
+    state: present
+    filename: docker
+    update_cache: true
+- name: Install docker packages
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+- name: Copy docker files
+  ansible.builtin.copy:
+    src: '{{item}}'
+    dest: /media/md1/config/docker/
+  loop:
+    - ../docker/dockerfile.deluge
+    - ../docker/dockerfile.jellyfin
+    - ../docker/dockerfile.pihole
+    - ../docker/dockerfile.prowlarr
+    - ../docker/dockerfile.radarr
+    - ../docker/dockerfile.sonarr
+- name: Docker compose
+  ansible.builtin.command:
+    cmd: docker compose -f {{item}} up -d
+  loop:
+    - /media/md1/config/docker/dockerfile.deluge
+    - /media/md1/config/docker/dockerfile.jellyfin
+    - /media/md1/config/docker/dockerfile.pihole
+    - /media/md1/config/docker/dockerfile.prowlarr
+    - /media/md1/config/docker/dockerfile.radarr
+    - /media/md1/config/docker/dockerfile.sonarr
+- name: Delete Docker files
+  ansible.builtin.file:
+    path: /media/md1/config/docker
+    state: absent
