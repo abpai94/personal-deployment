@@ -12,6 +12,7 @@ services:
     volumes:
       - /media/md1/config/radarr/:/config
       - /media/md1/movies:/movies
+      - /media/md1/.media/:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped

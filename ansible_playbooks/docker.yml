@@ -25,7 +25,7 @@
       - docker-compose-plugin
 - name: Copy docker files
   ansible.builtin.copy:
-    src: '{{item}}'
+    src: '{{ item }}'
     dest: /media/md1/config/docker/
   loop:
     - ../docker/dockerfile.deluge
@@ -36,7 +36,7 @@
     - ../docker/dockerfile.sonarr
 - name: Docker compose
   ansible.builtin.command:
-    cmd: docker compose -f {{item}} up -d
+    cmd: docker compose -f {{ item }} up -d
   loop:
     - /media/md1/config/docker/dockerfile.deluge
     - /media/md1/config/docker/dockerfile.jellyfin

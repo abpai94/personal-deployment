@@ -12,6 +12,7 @@ services:
     volumes:
       - /media/md1/config/sonarr:/config
       - /media/md1/tv:/tv
+      - /media/md1/.media/:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
