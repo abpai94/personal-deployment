@@ -33,3 +33,17 @@
     mode: 0755
     owner: pi
     group: pi
+- name: Symbolic links for md0
+  ansible.builtin.file:
+    src: /media/md0
+    dest: /mnt/md0
+    state: link
+    owner: pi
+    group: pi
+- name: Symbolic links for md1
+  ansible.builtin.file:
+    src: /media/md1
+    dest: /mnt/md1
+    state: link
+    owner: pi
+    group: pi
