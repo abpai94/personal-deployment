@@ -2,10 +2,6 @@
   ansible.builtin.apt:
     name:
       - unbound
-- name: Copy root.hints
-  ansible.builtin.copy:
-    src: ../pi-hole/root.hints
-    dest: /var/lib/unbound/
 - name: Copy pihole configuration
   ansible.builtin.copy:
     src: ../pi-hole/pi-hole.conf

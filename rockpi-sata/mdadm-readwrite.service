@@ -1,0 +1,15 @@
+[Unit]
+Description=mdadm read/write privileges and mount directories
+After=rockpi-sata.service
+
+[Service]
+Type=simple
+#ExecStart=mdadm-readwrite.sh
+ExecStart=/bin/sleep 60 && mdadm-readwrite.sh
+Restart=on-failure
+RestartSecs=30s
+WorkingDirectory=/home/pi/
+User=root
+
+[Install]
+WantedBy=multi-user.target

@@ -38,25 +38,25 @@
       - containerd
 - name: Copy docker files
   ansible.builtin.copy:
-    src: '{{ item }}'
+    src: ../docker/'{{ item }}'
     dest: /mnt/md1/config/docker/
   loop:
-    - ../docker/dockerfile.deluge
-    - ../docker/dockerfile.jellyfin
-    - ../docker/dockerfile.pihole
-    - ../docker/dockerfile.prowlarr
-    - ../docker/dockerfile.radarr
-    - ../docker/dockerfile.sonarr
+    - dockerfile.deluge
+    - dockerfile.jellyfin
+    - dockerfile.pihole
+    - dockerfile.prowlarr
+    - dockerfile.radarr
+    - dockerfile.sonarr
 - name: Docker compose
   ansible.builtin.command:
-    cmd: docker-compose -f {{ item }} up -d
+    cmd: docker-compose -f /mnt/md1/config/docker/{{ item }} up -d
   loop:
-    - /mnt/md1/config/docker/dockerfile.deluge
-    - /mnt/md1/config/docker/dockerfile.jellyfin
-    - /mnt/md1/config/docker/dockerfile.pihole
-    - /mnt/md1/config/docker/dockerfile.prowlarr
-    - /mnt/md1/config/docker/dockerfile.radarr
-    - /mnt/md1/config/docker/dockerfile.sonarr
+    - dockerfile.deluge
+    - dockerfile.jellyfin
+    - dockerfile.pihole
+    - dockerfile.prowlarr
+    - dockerfile.radarr
+    - dockerfile.sonarr
 - name: Delete Docker files
   ansible.builtin.file:
     path: /mnt/md1/config/docker

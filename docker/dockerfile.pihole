@@ -12,7 +12,7 @@ services:
       - 80:80/tcp
     environment:
       - TZ=Europe/Paris
-      - PUID=999
+      - PUID=1000
       - PGID=1001
     volumes:
       - /mnt/md1/config/pihole/etc/pihole:/etc/pihole
