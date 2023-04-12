@@ -6,4 +6,4 @@ Type=simple
 ExecStart=/home/pi/mdadm-readwrite.sh
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=rockpi-sata.service
