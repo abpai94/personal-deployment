@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Europe/Paris
     volumes:
-      - /mnt/md1/config/sonarr:/config
+      - /home/pi/docker/sonarr:/config
       - /mnt/md1/tv:/tv
       - /mnt/md1/.media/:/downloads
     ports:

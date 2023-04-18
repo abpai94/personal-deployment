@@ -11,7 +11,7 @@ services:
       - TZ=Europe/Paris
       - DELUGE_LOGLEVEL=info
     volumes:
-      - /mnt/md1/config/deluge/config:/config
+      - /home/pi/docker/deluge/config:/config
       - /mnt/md1/.media/:/downloads
     ports:
       - 8112:8112

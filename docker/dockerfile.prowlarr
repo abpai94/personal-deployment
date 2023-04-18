@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Europe/Paris
     volumes:
-      - /mnt/md1/config/prowlarr/:/config
+      - /home/pi/docker/prowlarr/:/config
     ports:
       - 9696:9696
     restart: unless-stopped

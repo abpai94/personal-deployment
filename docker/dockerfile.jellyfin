@@ -11,7 +11,7 @@ services:
       - TZ=Europe/Paris
       - JELLYFIN_PublishedServerUrl=192.168.1.2
     volumes:
-      - /mnt/md1/config/jellyfin/:/config
+      - /home/pi/docker/jellyfin/:/config
       - /mnt/md1/tv:/data/tvshows
       - /mnt/md1/movies:/data/movies
     devices:

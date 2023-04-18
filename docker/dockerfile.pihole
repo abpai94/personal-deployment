@@ -15,8 +15,8 @@ services:
       - PUID=1000
       - PGID=1001
     volumes:
-      - /mnt/md1/config/pihole/etc/pihole:/etc/pihole
-      - /mnt/md1/config/pihole/etc/dnsmasq.d:/etc/dnsmasq.d
+      - /home/pi/docker/pihole/etc/pihole:/etc/pihole
+      - /home/pi/docker/pihole/etc/dnsmasq.d:/etc/dnsmasq.d
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
