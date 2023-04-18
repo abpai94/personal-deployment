@@ -1,0 +1,4 @@
+franklin:
+  hosts: 192.168.1.2
+eleanor:
+  hosts: 192.168.1.3
