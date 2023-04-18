@@ -10,6 +10,9 @@
     - name: Mount Configuiration
       ansible.builtin.include_tasks:
         file: mount.yml
+    - name: Restore & Configure Backup
+      ansible.builtin.include_tasks:
+        file: backup.yml
     - name: DDClient Configuiration
       ansible.builtin.include_tasks:
         file: ddclient.yml
