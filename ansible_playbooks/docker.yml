@@ -19,10 +19,6 @@
 - name: Docker Compose
   ansible.builtin.apt:
     name: docker-compose
-- name: Docker config folder
-  ansible.builtin.file:
-    path: /home/pi/docker/
-    state: directory
 - name: Copy docker files
   ansible.builtin.copy:
     src: ../docker/{{ item }}

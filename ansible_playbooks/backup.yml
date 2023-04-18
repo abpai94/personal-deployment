@@ -1,10 +1,11 @@
 - name: Copy Original Config
   ansible.builtin.copy:
-    src: /mnt/md1/config
-    dest: /home/pi/docker
+    src: /mnt/md1/config/
+    dest: /home/pi/docker/
     mode: 0755
     owner: pi
     group: pi
+    remote_src: true
 - name: Crontab backup
   ansible.builtin.cron:
     name: "Docker configuration"

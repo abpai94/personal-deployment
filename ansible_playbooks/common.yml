@@ -8,6 +8,9 @@
   ansible.builtin.apt:
     update_cache: true
     upgrade: full
+- name: Restart Raspbian
+  ansible.builtin.reboot:
+    reboot_timeout: 3000
 - name: Turn-off swap file
   ansible.builtin.shell:
     cmd: dphys-swapfile swapoff
