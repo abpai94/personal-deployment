@@ -12,4 +12,4 @@
     minute: "0"
     hour: "2"
     user: root
-    job: "rsync -a --delete-after /home/pi/docker/ pi@eleanor:/mnt/md1/config/"
+    job: "rsync -a --delete-after /home/pi/docker/ /mnt/md1/config/"
