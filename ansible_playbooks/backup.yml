@@ -8,7 +8,8 @@
     remote_src: true
 - name: Crontab backup
   ansible.builtin.cron:
-    name: "Docker configuration"
+    name: "Docker configuration backup"
     minute: "0"
     hour: "2"
-    job: "rsync -rpW /home/pi/docker/* pi@eleanor:/mnt/md1/config"
+    user: root
+    job: "rsync -a --delete-after /home/pi/docker/ pi@eleanor:/mnt/md1/config/"
