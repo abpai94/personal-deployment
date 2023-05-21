@@ -26,7 +26,6 @@
   loop:
     - dockerfile.deluge
     - dockerfile.jellyfin
-    - dockerfile.pihole
     - dockerfile.prowlarr
     - dockerfile.radarr
     - dockerfile.sonarr
@@ -36,7 +35,6 @@
   loop:
     - dockerfile.deluge
     - dockerfile.jellyfin
-    - dockerfile.pihole
     - dockerfile.prowlarr
     - dockerfile.radarr
     - dockerfile.sonarr
