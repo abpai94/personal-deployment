@@ -12,7 +12,7 @@
   ignore_errors: true
   ansible.builtin.command:
     cmd: bash /home/pi/installDocker.sh
-- name: Delete piVPN script
+- name: Delete docker installation script
   ansible.builtin.file:
     path: /home/pi/installDocker.sh
     state: absent
