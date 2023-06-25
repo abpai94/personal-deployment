@@ -29,6 +29,7 @@
     - dockerfile.prowlarr
     - dockerfile.radarr
     - dockerfile.sonarr
+    - dockerfile.certbot
 - name: Docker compose
   ansible.builtin.command:
     cmd: docker-compose -f /home/pi/docker_files/{{ item }} up -d
@@ -38,6 +39,7 @@
     - dockerfile.prowlarr
     - dockerfile.radarr
     - dockerfile.sonarr
+    - dockerfile.certbot
 - name: Delete Docker files
   ansible.builtin.file:
     path: /home/pi/docker_files/
