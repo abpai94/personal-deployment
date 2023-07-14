@@ -1,0 +1,24 @@
+- name: Install requires binaries
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+      - curl
+      - sudo
+- name: Adding GCloud Sources
+  ansible.builtin.shell: "echo \"deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main\" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list"
+- name: Adding GPG public key
+  ansible.builtin.shell: "curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -"
+- name: Install GCloud CLI
+  ansible.builtin.apt:
+    update_cache: true
+    name:
+      - google-cloud-cli
+- name: Copy authentication key
+  ansible.builtin.file:
+    src: ../gcloud/personal-deployment-384310-1ccdfedcc8d7.json
+    dest: /home/pi/
+- name: Authenticate GCloud Instance
+  ansible.builtin.shell: "gcloud auth activate-service-account franklin@personal-deployment-384310.iam.gserviceaccount.com --key-file=/home/pi/personal-deployment-384310-1ccdfedcc8d7.json --project=personal-deployment-384310"
+  
