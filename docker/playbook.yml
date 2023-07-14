@@ -19,6 +19,21 @@
 - name: Docker Compose
   ansible.builtin.apt:
     name: docker-compose
+- name: Copy Original Config
+  ansible.builtin.copy:
+    src: /mnt/md1/config/
+    dest: /home/pi/docker/
+    mode: 0755
+    owner: pi
+    group: pi
+    remote_src: true
+- name: Crontab backup
+  ansible.builtin.cron:
+    name: "Docker configuration backup"
+    minute: "0"
+    hour: "2"
+    user: root
+    job: "rsync -a --delete-after /home/pi/docker/ /mnt/md1/config/"
 - name: Copy Cloudflare API Key
   ansible.builtin.copy:
     src: certbot/cloudflare.ini
