@@ -1,0 +1,17 @@
+- name: Copy mdadm configuration
+  ansible.builtin.copy:
+    src: mdadm.conf
+    dest: /etc/mdadm/
+- name: Copy mdadm script
+  ansible.builtin.copy:
+    src: mdadm-readwrite.sh
+    dest: /home/pi/
+- name: Copy mdadm script
+  ansible.builtin.copy:
+    src: mdadm-readwrite.service
+    dest: /etc/systemd/system/
+- name: Configuration mdadm service
+  ansible.builtin.service:
+    name: mdadm-readwrite.service
+    enabled: true
+    state: reloaded
