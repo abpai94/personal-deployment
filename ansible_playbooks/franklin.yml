@@ -4,21 +4,24 @@
   remote_user: pi
   become: true
   tasks:
-    - name: Common Configuiration
+    - name: Common Configuration
       ansible.builtin.include_tasks:
         file: common.yml
-    - name: Mount Configuiration
+    - name: Mount Configuration
       ansible.builtin.include_tasks:
         file: mount.yml
     - name: Restore & Configure Backup
       ansible.builtin.include_tasks:
         file: backup.yml
-    - name: DDClient Configuiration
+    - name: DDClient Configuration
       ansible.builtin.include_tasks:
         file: ddclient.yml
-    - name: Docker Configuiration
+    - name: Docker Configuration
       ansible.builtin.include_tasks:
         file: docker.yml
-    - name: PiVPN Configuiration
+    - name: PiVPN Configuration
       ansible.builtin.include_tasks:
         file: pivpn.yml
+    - name: GCloud & GSUtil Configuration
+      ansible.builtin.include_tasks:
+        file: gcloud.yml
