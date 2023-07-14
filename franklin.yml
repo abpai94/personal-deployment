@@ -15,13 +15,13 @@
         file: backup.yml
     - name: DDClient Configuration
       ansible.builtin.include_tasks:
-        file: ddclient.yml
+        file: ddclient/playbook.yml
     - name: Docker Configuration
       ansible.builtin.include_tasks:
-        file: docker.yml
+        file: docker/playbook.yml
     - name: PiVPN Configuration
       ansible.builtin.include_tasks:
-        file: pivpn.yml
+        file: pivpn/playbook.yml
     - name: GCloud & GSUtil Configuration
       ansible.builtin.include_tasks:
-        file: gcloud.yml
+        file: gcloud/playbook.yml

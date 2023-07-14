@@ -4,7 +4,7 @@
   "private_key_id": "{{ franklin-service-account.private-key-id }}",
   "private_key": "{{ franklin-service-account.private-key }}",
   "client_email": "franklin@personal-deployment-384310.iam.gserviceaccount.com",
-  "client_id": "{{ franklin-service-account.client-id }}",
+  "client_id": "{{ franklin-service-account.private-key }}",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",

@@ -19,6 +19,10 @@
 - name: Docker Compose
   ansible.builtin.apt:
     name: docker-compose
+- name: Copy Cloudflare API Key
+  ansible.builtin.copy:
+    src: certbot/cloudflare.ini
+    dest: ~/docker/certbot/cloudflare.ini
 - name: Copy docker files
   ansible.builtin.copy:
     src: ../docker/{{ item }}

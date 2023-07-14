@@ -20,7 +20,7 @@
     dest: /home/pi/pivpn/install.sh
 - name: PiVPN configuration
   ansible.builtin.copy:
-    src: ../pivpn/setupVars.conf
+    src: setupVars.conf
     dest: /home/pi/pivpn/setupVars.conf
 - name: Enable execute permission
   ansible.builtin.file:
