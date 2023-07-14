@@ -1,2 +1,0 @@
-/media/md0 *(rw,insecure,sync,no_subtree_check,no_root_squash)
-/media/md1 *(rw,insecure,sync,no_subtree_check,no_root_squash)
