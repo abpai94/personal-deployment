@@ -8,8 +8,8 @@
     dest: /etc/unbound/unbound.conf.d/    
 - name: Restart unbound service
   ansible.builtin.systemd:
-    name: unbound
-    state: start
+    name: unbound.service
+    state: started
 - name: PiVPN config folder
   ansible.builtin.file:
     path: /home/pi/pivpn/
@@ -18,16 +18,13 @@
   ansible.builtin.get_url:
     url: https://install.pivpn.io
     dest: /home/pi/pivpn/install.sh
+    owner: pi
+    group: pi
+    mode: 0755
 - name: PiVPN configuration
   ansible.builtin.copy:
     src: setupVars.conf
     dest: /home/pi/pivpn/setupVars.conf
-- name: Enable execute permission
-  ansible.builtin.file:
-    path: /home/pi/docker/pivpn/install.sh
-    owner: pi
-    group: pi
-    mode: 0755
 - name: Execute piVPN setup
   ansible.builtin.command:
     cmd: bash /home/pi/pivpn/install.sh --unattended /home/pi/pivpn/setupVars.conf
