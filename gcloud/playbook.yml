@@ -35,4 +35,4 @@
   loop:
     - md0/personal
     - md0/family
-    - md1/config
+    - md1/docker_config

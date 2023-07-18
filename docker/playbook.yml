@@ -18,8 +18,8 @@
     name: docker-compose
 - name: Copy Original Config
   ansible.builtin.copy:
-    src: /mnt/md1/config/
-    dest: /home/pi/docker/
+    src: /mnt/md1/docker_config/
+    dest: /home/pi/docker_config/
     mode: 0755
     owner: pi
     group: pi
@@ -30,7 +30,7 @@
     minute: "0"
     hour: "2"
     user: root
-    job: "rsync -a --delete-after /home/pi/docker/ /mnt/md1/config/"
+    job: "rsync -a --delete-after /home/pi/docker_config/ /mnt/md1/docker_config/"
 - name: Copy Cloudflare API Key
   ansible.builtin.copy:
     src: certbot/cloudflare.ini
