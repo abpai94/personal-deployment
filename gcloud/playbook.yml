@@ -16,7 +16,7 @@
     name:
       - google-cloud-cli
 - name: Copy authentication key
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: personal-deployment-384310-1ccdfedcc8d7.json
     dest: /home/pi/
 - name: Authenticate GCloud Instance
@@ -31,7 +31,7 @@
     minute: 0
     hour: 2
     user: root
-    job: gsutil rsync -P -r -d /media/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/
+    job: gsutil rsync -P -r -d /media/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/{{ item }}
   loop:
     - md0/personal
     - md0/family
