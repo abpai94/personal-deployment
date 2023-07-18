@@ -1,0 +1,25 @@
+- name: Download rockpi-sata binaries
+  ansible.builtin.get_url:
+    url: "https://rock.sh/get-rockpi-sata"
+    dest: /home/pi/rockpi.sh
+    mode: 0755
+    owner: pi
+    group: pi
+- name: Copy custom fan script
+  ansible.builtin.copy:
+    src: fan.py
+    dest: /bin/rockpi-sata/
+    mode: 0755
+    owner: pi
+    group: pi
+- name: Copy custom rockpi-sata configuration
+  ansible.builtin.copy:
+    src: rockpi-sata.conf
+    dest: /etc/
+    mode: 0644
+    owner: pi
+    group: pi
+- name: Restart rockpi-sata.service
+  ansible.builtin.systemd:
+    name: rockpi-sata.service
+    state: restarted    
