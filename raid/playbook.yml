@@ -1,7 +1,17 @@
+- name: Install mdadm
+  ansible.builtin.apt:
+    name:
+      - mdadm
 - name: Copy mdadm configuration
   ansible.builtin.copy:
     src: mdadm.conf
     dest: /etc/mdadm/
+- name: Assemble RAID
+  ansible.builtin.command:
+    cmd: sudo mdadm --assemble --scan --verbose {{ item }}
+  loop:
+      - /dev/md0 /dev/sda /dev/sdb
+      - /dev/md1 /dev/sdc /dev/sdd
 - name: Copy mdadm script
   ansible.builtin.copy:
     src: mdadm-readwrite.sh
