@@ -7,6 +7,12 @@
     - name: Common Configuration
       ansible.builtin.include_tasks:
         file: common.yml
+    - name: Rock-pi SATA HAT configuration
+      ansible.builtin.include_tasks:
+        file: rockpi-sata/playbook.yml
+    - name: RAID configuration
+      ansible.builtin.include_tasks:
+        file: raid/playbook.yml
     - name: Mount Configuration
       ansible.builtin.include_tasks:
         file: mount.yml
