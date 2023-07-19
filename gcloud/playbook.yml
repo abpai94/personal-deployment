@@ -16,14 +16,14 @@
     name:
       - google-cloud-cli
 - name: Copy authentication key
-  ansible.builtin.copy:
-    src: personal-deployment-384310-1ccdfedcc8d7.json
+  ansible.builtin.template:
+    src: personal-deployment-384310-f294638f8965.json
     dest: /home/pi/
 - name: Authenticate GCloud Instance
-  ansible.builtin.shell: "gcloud auth activate-service-account franklin@personal-deployment-384310.iam.gserviceaccount.com --key-file=/home/pi/personal-deployment-384310-1ccdfedcc8d7.json --project=personal-deployment-384310"
+  ansible.builtin.shell: "gcloud auth activate-service-account franklin@personal-deployment-384310.iam.gserviceaccount.com --key-file=/home/pi/personal-deployment-384310-f294638f8965.json --project=personal-deployment-384310"
 - name: Delete authentication key
   ansible.builtin.file:
-    path: /home/pi/personal-deployment-384310-1ccdfedcc8d7.json
+    path: /home/pi/personal-deployment-384310-f294638f8965.json
     state: absent
 - name: GCloud Bucket Backup
   ansible.builtin.cron:
