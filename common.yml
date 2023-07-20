@@ -11,6 +11,12 @@
 - name: Restart Raspbian
   ansible.builtin.reboot:
     reboot_timeout: 3000
+- name: Update and Upgrade Cron job
+  ansible.builtin.cron:
+    name: Update and Upgrade OS
+    minute: 0
+    hour: 2
+    job: sudo apt-get update && sudo apt-get upgrade -y
 - name: Turn-off swap file
   ansible.builtin.shell:
     cmd: dphys-swapfile swapoff

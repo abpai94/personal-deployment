@@ -1,6 +1,8 @@
 ---
 - name: Eleanor
   hosts: eleanor
+  remote_user: pi
+  become: true
   tasks:
     - name: Common Configuration
       ansible.builtin.include_tasks:
