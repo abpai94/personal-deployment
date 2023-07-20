@@ -31,7 +31,7 @@
     minute: 0
     hour: 2
     user: root
-    job: gsutil rsync -P -r -d /media/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/{{ item }}
+    job: gsutil -m rsync -P -r -d /media/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/{{ item }}
   loop:
     - md0/personal
     - md0/family
