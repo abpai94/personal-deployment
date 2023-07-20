@@ -30,6 +30,7 @@
     name: GCloud Bucket Backup /media/{{ item }}
     minute: 0
     hour: 2
+    weekday: 1
     user: root
     job: gsutil -m rsync -P -r -d /media/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/{{ item }}
   loop:
