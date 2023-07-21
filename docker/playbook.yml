@@ -35,7 +35,32 @@
   ansible.builtin.copy:
     src: certbot/cloudflare.ini
     dest: ~/.secrets/cloudflare.ini
+- name: Stop containers
+  ignore_errors: true
+  ansible.builtin.command:
+    cmd: sudo docker stop {{ item }}
+  loop:
+    - deluge
+    - jellyfin
+    - prowlarr
+    - radarr
+    - sonarr
+    - certbot
+    - traefik
+- name: Remove containers
+  ignore_errors: true
+  ansible.builtin.command:
+    cmd: sudo docker rm {{ item }}
+  loop:
+    - deluge
+    - jellyfin
+    - prowlarr
+    - radarr
+    - sonarr
+    - certbot
+    - traefik
 - name: Copy docker files
+  ignore_errors: true
   ansible.builtin.copy:
     src: ../docker/{{ item }}
     dest: /home/pi/docker_files/
@@ -47,7 +72,8 @@
     - dockerfile.sonarr
     - dockerfile.certbot
     - dockerfile.traefik
-- name: Docker compose
+- name: Start containers
+  ignore_errors: true
   ansible.builtin.command:
     cmd: docker-compose -f /home/pi/docker_files/{{ item }} up -d
   loop:
