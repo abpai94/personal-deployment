@@ -9,7 +9,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Paris
-      - JELLYFIN_PublishedServerUrl=192.168.1.2
+      - JELLYFIN_PublishedServerUrl=jellyfin.abhishekpai.co.uk
     volumes:
       - /home/pi/docker_config/jellyfin/:/config
       - /mnt/md1/tv:/data/tvshows
@@ -22,3 +22,8 @@ services:
       - 7359:7359/udp
       - 1900:1900/udp
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.abhishekpai.co.uk`)"
+      - "traefik.http.services.jellyfin.loadbalancer.server.address=localhost:8096"
+      - "traefik.http.routers.jellyfin.entrypoints=websecure"
