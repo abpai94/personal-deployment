@@ -62,28 +62,28 @@
 - name: Copy docker files
   ignore_errors: true
   ansible.builtin.copy:
-    src: ../docker/{{ item }}
-    dest: /home/pi/docker_files/
+    src: ../docker/{{ item }}/docker-compose.yml
+    dest: /home/pi/docker_files/{{ item }}/
   loop:
-    - dockerfile.deluge
-    - dockerfile.jellyfin
-    - dockerfile.prowlarr
-    - dockerfile.radarr
-    - dockerfile.sonarr
-    - dockerfile.certbot
-    - dockerfile.traefik
+    - deluge
+    - jellyfin
+    - prowlarr
+    - radarr
+    - sonarr
+    - certbot
+    - traefik
 - name: Start containers
   ignore_errors: true
   ansible.builtin.command:
-    cmd: docker-compose -f /home/pi/docker_files/{{ item }} up -d
+    cmd: docker-compose -f /home/pi/docker_files/{{ item }}/docker-compose.yml up -d
   loop:
-    - dockerfile.deluge
-    - dockerfile.jellyfin
-    - dockerfile.prowlarr
-    - dockerfile.radarr
-    - dockerfile.sonarr
-    - dockerfile.certbot
-    - dockerfile.traefik
+    - deluge
+    - jellyfin
+    - prowlarr
+    - radarr
+    - sonarr
+    - certbot
+    - traefik
 - name: Delete Docker files
   ansible.builtin.file:
     path: /home/pi/docker_files/

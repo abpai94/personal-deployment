@@ -1,0 +1,30 @@
+---
+version: "2.1"
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      - JELLYFIN_PublishedServerUrl=jellyfin.abhishekpai.co.uk
+    volumes:
+      - /home/pi/docker_config/jellyfin/:/config
+      - /mnt/md1/tv:/data/tvshows
+      - /mnt/md1/movies:/data/movies
+    devices:
+      - /dev/video12:/dev/video12
+    ports:
+      - 8096:8096      
+      - 8920:8920
+      - 7359:7359/udp
+      - 1900:1900/udp
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.abhishekpai.co.uk`)"
+      - "traefik.http.services.jellyfin.loadbalancer.server.address=localhost:8096"
+      - "traefik.http.routers.jellyfin.entrypoints=websecure"
+      - "traefik.http.routers.jellyfin.tls=true"

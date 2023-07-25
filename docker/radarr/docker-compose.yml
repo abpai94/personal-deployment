@@ -1,0 +1,18 @@
+---
+version: "2.1"
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - /home/pi/docker_config/radarr/:/config
+      - /mnt/md1/movies:/movies
+      - /mnt/md1/.media/:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
