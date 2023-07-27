@@ -6,7 +6,7 @@
   tasks:
     - name: Common Configuration
       ansible.builtin.include_tasks:
-        file: common.yml
+        file: linux/playbook.yml
     - name: RAID Configuration
       ansible.builtin.include_tasks:
         file: raid/playbook.yml

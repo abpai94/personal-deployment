@@ -11,6 +11,17 @@
 - name: Restart Raspbian
   ansible.builtin.reboot:
     reboot_timeout: 3000
+- name: Update Script
+  ansible.builtin.file:
+    src: linux/update.sh
+    dest: /etc/update/
+    mode: 0500
+- name: Systemd Update Service
+  ansible.builtin.systemd:
+    serviceName: Update
+    file: /etc/update/update.sh
+    state: started
+    enabled: true
 - name: Update and Upgrade Cron job
   ansible.builtin.cron:
     name: Update and Upgrade OS
