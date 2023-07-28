@@ -67,3 +67,16 @@
     state: link
     owner: pi
     group: pi
+- name: NFS Server Installation
+  ansible.builtin.apt:
+    name: nfs-kernel-server
+    update_cache: true
+- name: NFS exports
+  ansible.builtin.blockinfile:
+    path: /etc/exports
+    block: |
+      /media/md0      *(rw,sync,no_subtree_check)
+      /media/md1      *(rw,sync,no_subtree_check)
+- name: Export NFS Server
+  ansible.builtin.shell:
+    cmd: exportfs -a
