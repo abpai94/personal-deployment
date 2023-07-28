@@ -8,14 +8,11 @@
     dest: /etc/mdadm/
 - name: Assemble RAID
   ansible.builtin.command:
-    cmd: sudo mdadm --assemble --scan --verbose {{ item }}
-  loop:
-      - /dev/md0 /dev/sda /dev/sdb
-      - /dev/md1 /dev/sdc /dev/sdd
+    cmd: sudo mdadm --assemble --scan
 - name: Copy mdadm script
   ansible.builtin.copy:
     src: mdadm-readwrite.sh
-    dest: /home/pi/
+    dest: /etc/mdadm-readwrite
 - name: Copy mdadm script
   ansible.builtin.copy:
     src: mdadm-readwrite.service
