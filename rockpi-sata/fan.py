@@ -4,6 +4,7 @@ import time
 import misc
 import syslog
 import pigpio  # pylint: disable=import-error
+import concurrent.futures
 from pathlib import Path
 
 pattern = re.compile(r't=(\d+)\n$')
@@ -79,6 +80,6 @@ def change_dc(dc, cache={}):
 def running():
     cache={}
     get_dc(cache)
-    while True:
-        if misc.fan_temp2dc(read_temp()) != cache.get('dc'):
-            change_dc(get_dc(cache))
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+        executor.submit(misc.fan_temp2dc(read_temp()) != cache.get('dc'))
+        executor.submit(change_dc(get_dc(cache)))
