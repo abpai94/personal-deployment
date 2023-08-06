@@ -4,7 +4,6 @@ import time
 import misc
 import syslog
 import pigpio  # pylint: disable=import-error
-import concurrent.futures
 from pathlib import Path
 
 pattern = re.compile(r't=(\d+)\n$')
@@ -76,12 +75,13 @@ def change_dc(dc, cache={}):
         gpio.hardware_PWM(12, 25000, dc * 10000)
         gpio.hardware_PWM(13, 25000, dc * 10000)
 
-def fanspeed():
+def fanspeed(cache):
     if misc.fan_temp2dc(read_temp()) != cache.get('dc'):
             change_dc(get_dc(cache))
 
 def running():
     cache={}
     get_dc(cache)
-    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-        executor.submit(fanspeed())
+    while True:
+        fanspeed(cache)
+        
