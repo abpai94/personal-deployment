@@ -76,10 +76,12 @@ def change_dc(dc, cache={}):
         gpio.hardware_PWM(12, 25000, dc * 10000)
         gpio.hardware_PWM(13, 25000, dc * 10000)
 
+def fanspeed():
+    if misc.fan_temp2dc(read_temp()) != cache.get('dc'):
+            change_dc(get_dc(cache))
 
 def running():
     cache={}
     get_dc(cache)
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-        executor.submit(misc.fan_temp2dc(read_temp()) != cache.get('dc'))
-        executor.submit(change_dc(get_dc(cache)))
+        executor.submit(fanspeed())
