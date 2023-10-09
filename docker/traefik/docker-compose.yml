@@ -2,26 +2,42 @@
 version: "3.3"
 services:
   traefik:
-    image: "traefik:v2.10"
-    container_name: "traefik"
-    command:
-      - "--log.level=DEBUG"
-      - "--log.filepath=/logs/traefik.log"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.web.secure.address=:443"
-      - "--entrypoints.tls.certificates.certFile=cert.pem"
-      - "--entrypoints.tls.certificates.keyFile=privKey.pem"
+    image: traefik:v2.10
+    container_name: traefik
+    network_mode: host
     ports:
-      - "80:80"
-      - "8080:8080"
+      - 80:80
+      - 443:443
+    environment:
+      - CF_API_EMAIL=abpai94@gmail.com
+      - CF_API_KEY=SPx1R2KCSFfvEDMyoH7oyz6HZcPZgYKbLT25JiBg
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "/home/pi/docker_config/certbot/etc/letsencrypt/live/abhishekpai.co.uk/:/etc/certs/"
-      - "/home/pi/docker_config/traefik/logs/:/logs/"
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/pi/docker_config/traefik/traefik.yml:/traefik.yml
+      - /home/pi/docker_config/traefik/config.yml:/config.yml
+      - /home/pi/.secrets/cloudflare.json:/cloudflare.json
+      - /home/pi/docker_config/traefik/:/var/logs/
     deploy:
       placement:
         constraints:
           - node.role == manager
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.traefik.entrypoints=http
+      - traefik.http.routers.traefik.rule=Host(`traefik.abhishekpai.co.uk`)
+      - traefik.http.middlewares.traefik-auth.basicauth.user=thisisatestpassword
+      - traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https
+      - traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https
+      - traefik.http.routers.traefik.middlewares=traefik-https-redirect
+      - traefik.http.routers.traefik-secure.entrypoints=https
+      - traefik.http.routers.traefik-secure.rule=Host(`traefik.abhishekpai.co.uk`)
+      - traefik.http.routers.traefik-secure.middlewares=traefik-auth
+      - traefik.http.routers.traefik-secure.tls=true
+      - traefik.http.routers.traefik-secure.tls.certresolver=cloudflare
+      - traefik.http.routers.traefik-secure.tls.domains[0].main=abhishekpai.co.uk
+      - traefik.http.routers.traefik-secure.tls.domains[0].sans=*.abhishekpai.co.uk
+      - traefik.http.routers.traefik-secure.service=api@internal
+
+networks:
+  host:
+    external: true
