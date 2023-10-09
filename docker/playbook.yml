@@ -35,6 +35,27 @@
   ansible.builtin.copy:
     src: certbot/cloudflare.ini
     dest: ~/.secrets/cloudflare.ini
+- name: Copy Traefik Configuration file
+  ansible.builtin.copy:
+    src: traefik/{{ item }}
+    dest: /home/pi/docker_config/traefik/
+  loop:
+    - traefik.yml
+    - config.yml
+- name: Pull latest images
+  ignore_errors: true
+  ansible.builtin.command:
+    cmd: sudo docker pull {{ item }}
+  loop:
+    - linuxserver/deluge
+    - linuxserver/jellyfin
+    - linuxserver/prowlarr
+    - linuxserver/radarr
+    - linuxserver/sonarr
+    # - certbot/dns-cloudflare
+    # - traefik
+    - linuxserver/wireguard
+    - pihole/pihole
 - name: Stop containers
   ignore_errors: true
   ansible.builtin.command:
@@ -45,8 +66,10 @@
     - prowlarr
     - radarr
     - sonarr
-    - certbot
-    - traefik
+    # - certbot
+    # - traefik
+    - wireguard
+    - pihole
 - name: Remove containers
   ignore_errors: true
   ansible.builtin.command:
@@ -57,8 +80,10 @@
     - prowlarr
     - radarr
     - sonarr
-    - certbot
-    - traefik
+    # - certbot
+    # - traefik
+    - wireguard
+    - pihole
 - name: Copy docker files
   ignore_errors: true
   ansible.builtin.copy:
@@ -70,8 +95,10 @@
     - prowlarr
     - radarr
     - sonarr
-    - certbot
-    - traefik
+    # - certbot
+    # - traefik
+    - wireguard
+    - pihole
 - name: Start containers
   ignore_errors: true
   ansible.builtin.command:
@@ -82,8 +109,10 @@
     - prowlarr
     - radarr
     - sonarr
-    - certbot
-    - traefik
+    # - certbot
+    # - traefik
+    - wireguard
+    - pihole
 - name: Delete Docker files
   ansible.builtin.file:
     path: /home/pi/docker_files/
