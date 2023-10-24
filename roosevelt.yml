@@ -1,6 +1,6 @@
 ---
-- name: Franklin
-  hosts: franklin
+- name: Roosevelt
+  hosts: roosevelt
   remote_user: pi
   become: true
   tasks:

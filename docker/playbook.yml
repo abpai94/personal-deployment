@@ -46,73 +46,28 @@
   ignore_errors: true
   ansible.builtin.command:
     cmd: sudo docker pull {{ item }}
-  loop:
-    - linuxserver/deluge
-    - linuxserver/jellyfin
-    - linuxserver/prowlarr
-    - linuxserver/radarr
-    - linuxserver/sonarr
-    # - certbot/dns-cloudflare
-    # - traefik
-    - linuxserver/wireguard
-    - pihole/pihole
+  loop: "{{ images }}"
 - name: Stop containers
   ignore_errors: true
   ansible.builtin.command:
     cmd: sudo docker stop {{ item }}
-  loop:
-    - deluge
-    - jellyfin
-    - prowlarr
-    - radarr
-    - sonarr
-    # - certbot
-    # - traefik
-    - wireguard
-    - pihole
+  loop: "{{ containers }}"
 - name: Remove containers
   ignore_errors: true
   ansible.builtin.command:
     cmd: sudo docker rm {{ item }}
-  loop:
-    - deluge
-    - jellyfin
-    - prowlarr
-    - radarr
-    - sonarr
-    # - certbot
-    # - traefik
-    - wireguard
-    - pihole
+  loop: "{{ containers }}"
 - name: Copy docker files
   ignore_errors: true
   ansible.builtin.copy:
     src: ../docker/{{ item }}/docker-compose.yml
     dest: /home/pi/docker_files/{{ item }}/
-  loop:
-    - deluge
-    - jellyfin
-    - prowlarr
-    - radarr
-    - sonarr
-    # - certbot
-    # - traefik
-    - wireguard
-    - pihole
+  loop: "{{ containers }}"
 - name: Start containers
   ignore_errors: true
   ansible.builtin.command:
     cmd: docker-compose -f /home/pi/docker_files/{{ item }}/docker-compose.yml up -d
-  loop:
-    - deluge
-    - jellyfin
-    - prowlarr
-    - radarr
-    - sonarr
-    # - certbot
-    # - traefik
-    - wireguard
-    - pihole
+  loop: "{{ containers }}"
 - name: Delete Docker files
   ansible.builtin.file:
     path: /home/pi/docker_files/

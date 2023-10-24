@@ -1,7 +1,7 @@
 ---
-- name: Eleanor
-  hosts: eleanor
-  remote_user: pi
+- name: Turing
+  hosts: turing
+  remote_user: root
   become: true
   tasks:
     - name: Common Configuration

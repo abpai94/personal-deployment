@@ -1,4 +1,27 @@
-franklin:
-  hosts: 192.168.1.2
-eleanor:
-  hosts: 192.168.1.3
+all:
+  hosts:
+    turing:
+      ansible_host: 192.168.1.1
+      images:
+        - linuxserver/wireguard
+        - pihole/pihole
+        - certbot/dns-cloudflare
+        - traefik
+      containers:
+        - wireguard
+        - pihole
+        - traefik
+    roosevelt:
+      ansible_host: 192.168.1.2
+      images:
+        - linuxserver/deluge
+        - linuxserver/jellyfin
+        - linuxserver/prowlarr
+        - linuxserver/radarr
+        - linuxserver/sonarr
+      containers:
+        - deluge
+        - jellyfin
+        - prowlarr
+        - radarr
+        - sonarr

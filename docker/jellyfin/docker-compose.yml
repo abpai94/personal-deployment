@@ -9,7 +9,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Paris
-      - JELLYFIN_PublishedServerUrl=jellyfin.abhishekpai.co.uk
     volumes:
       - /home/pi/docker_config/jellyfin/:/config
       - /mnt/md1/tv:/data/tvshows
