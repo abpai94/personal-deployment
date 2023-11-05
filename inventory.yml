@@ -14,12 +14,19 @@ all:
     roosevelt:
       ansible_host: 192.168.1.2
       images:
+        - weejewel/wg-easy
+        - pihole/pihole
+        - certbot/dns-cloudflare
+        - traefik
         - linuxserver/deluge
         - linuxserver/jellyfin
         - linuxserver/prowlarr
         - linuxserver/radarr
         - linuxserver/sonarr
       containers:
+        - wireguard
+        - pihole
+        - traefik
         - deluge
         - jellyfin
         - prowlarr
