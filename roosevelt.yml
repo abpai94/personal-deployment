@@ -4,7 +4,12 @@
   remote_user: pi
   become: true
   tasks:
+    - name: Update Raspbian
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: full
     - name: Common Configuration
+      when: clean is defined
       ansible.builtin.include_tasks:
         file: linux/playbook.yml
     - name: Rock-pi SATA HAT configuration
