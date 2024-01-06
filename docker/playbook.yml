@@ -1,5 +1,5 @@
 - name: Download Docker script
-  when: deploy == "clean"
+  when: clean is defined
   ansible.builtin.get_url:
     url: https://get.docker.com
     dest: /home/pi/installDocker.sh
@@ -7,21 +7,21 @@
     owner: pi
     group: pi
 - name: Execute Docker script
-  when: deploy == "clean"
+  when: clean is defined
   ignore_errors: true
   ansible.builtin.command:
     cmd: bash /home/pi/installDocker.sh
 - name: Delete docker installation script
-  when: deploy == "clean"
+  when: clean is defined
   ansible.builtin.file:
     path: /home/pi/installDocker.sh
     state: absent
 - name: Docker Compose
-  when: deploy == "clean"
+  when: clean is defined
   ansible.builtin.apt:
     name: docker-compose
 - name: Copy Original Config
-  when: deploy == "clean"
+  when: clean is defined
   ansible.builtin.copy:
     src: /mnt/md1/docker_config/
     dest: /home/pi/docker_config/
@@ -30,7 +30,7 @@
     group: pi
     remote_src: true
 - name: Crontab backup
-  when: deploy == "clean"
+  when: clean is defined
   ansible.builtin.cron:
     name: "Docker configuration backup"
     minute: "0"
@@ -38,12 +38,12 @@
     user: root
     job: "rsync -a --delete-after /home/pi/docker_config/ /mnt/md1/docker_config/"
 - name: Copy Cloudflare API Key
-  when: deploy == "clean"
+  when: clean is defined
   ansible.builtin.copy:
     src: certbot/cloudflare.ini
     dest: ~/.secrets/cloudflare.ini
 - name: Copy Traefik Configuration file
-  when: deploy == "clean"
+  when: clean is defined
   ansible.builtin.copy:
     src: traefik/{{ item }}
     dest: /home/pi/docker_config/traefik/
