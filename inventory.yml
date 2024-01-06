@@ -1,16 +1,5 @@
 all:
   hosts:
-    turing:
-      ansible_host: 192.168.1.1
-      images:
-        - weejewel/wg-easy
-        - pihole/pihole
-        - certbot/dns-cloudflare
-        - traefik
-      containers:
-        - wireguard
-        - pihole
-        - traefik
     roosevelt:
       ansible_host: 192.168.1.2
       images:
@@ -21,6 +10,10 @@ all:
         - linuxserver/prowlarr
         - linuxserver/radarr
         - linuxserver/sonarr
+        - ghcr.io/immich-app/immich-server
+        - ghcr.io/immich-app/immich-machine-learning
+        - redis:6.2-alpine@sha256:b6124ab2e45cc332e16398022a411d7e37181f21ff7874835e0180f56a09e82a
+        - tensorchord/pgvecto-rs:pg14-v0.1.11@sha256:0335a1a22f8c5dd1b697f14f079934f5152eaaa216c09b61e293be285491f8ee
       containers:
         - wireguard
         - pihole
@@ -29,4 +22,5 @@ all:
         - prowlarr
         - radarr
         - sonarr
+        - immich
 #clean:
