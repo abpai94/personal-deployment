@@ -2,8 +2,7 @@
   ansible.builtin.blockinfile:
     path: /etc/hosts
     block: |
-      192.168.1.2     franklin
-      192.168.1.3     eleanor
+      192.168.1.2     roosevelt
 - name: Restart Raspbian
   ansible.builtin.reboot:
     reboot_timeout: 3000

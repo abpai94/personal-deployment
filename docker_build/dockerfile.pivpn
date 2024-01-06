@@ -1,8 +1,0 @@
-
-FROM debian:stretch
-
-RUN curl -L https://install.pivpn.io -o install.sh | bash -s -- ./
-
-EXPOSE 51820/udp
-
-## WORK IN PROGRESS
