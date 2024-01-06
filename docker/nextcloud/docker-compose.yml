@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  nextcloud:
+    image: lscr.io/linuxserver/nextcloud:latest
+    container_name: nextcloud
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /home/pi/docker_config/nextcloud/config/:/config
+      - /mnt/md1/cloud/:/data
+    ports:
+      - 443:443
+    restart: unless-stopped

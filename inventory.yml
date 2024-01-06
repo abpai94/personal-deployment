@@ -10,6 +10,7 @@ all:
         - linuxserver/prowlarr
         - linuxserver/radarr
         - linuxserver/sonarr
+        - linuxserver/nextcloud
       containers:
         - wireguard
         - pihole
@@ -18,4 +19,4 @@ all:
         - prowlarr
         - radarr
         - sonarr
-#clean:
+        - nextcloud
