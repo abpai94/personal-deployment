@@ -1,4 +1,5 @@
 - name: Adding hostnames
+  when: deploy == "clean"
   ansible.builtin.blockinfile:
     path: /etc/hosts
     block: |
@@ -9,37 +10,32 @@
     update_cache: true
     upgrade: full
 - name: Restart Raspbian
+  when: deploy == "clean"
   ansible.builtin.reboot:
     reboot_timeout: 3000
-- name: Update Script
-  ansible.builtin.file:
-    src: linux/update.sh
-    dest: /etc/update/
-    mode: 0500
-- name: Systemd Update Service
-  ansible.builtin.systemd:
-    serviceName: Update
-    file: /etc/update/update.sh
-    state: started
-    enabled: true
 - name: Update and Upgrade Cron job
+  when: deploy == "clean"
   ansible.builtin.cron:
     name: Update and Upgrade OS
     minute: 0
     hour: 2
     job: sudo apt-get update && sudo apt-get upgrade -y
 - name: Turn-off swap file
+  when: deploy == "clean"
   ansible.builtin.shell:
     cmd: dphys-swapfile swapoff
 - name: Uninstall swap file
+  when: deploy == "clean"
   ansible.builtin.shell:
     cmd: dphys-swapfile uninstall
 - name: Disable swap file service
+  when: deploy == "clean"
   ansible.builtin.systemd:
     name: dphys-swapfile
     enabled: false
     state: stopped
 - name: RAID md0 directory
+  when: deploy == "clean"
   ansible.builtin.file:
     path: /media/md0
     state: directory
@@ -47,6 +43,7 @@
     owner: pi
     group: pi
 - name: RAID md1 directory
+  when: deploy == "clean"
   ansible.builtin.file:
     path: /media/md1
     state: directory
@@ -54,6 +51,7 @@
     owner: pi
     group: pi
 - name: Symbolic links for md0
+  when: deploy == "clean"
   ansible.builtin.file:
     src: /media/md0
     dest: /mnt/md0
@@ -61,6 +59,7 @@
     owner: pi
     group: pi
 - name: Symbolic links for md1
+  when: deploy == "clean"
   ansible.builtin.file:
     src: /media/md1
     dest: /mnt/md1
@@ -68,15 +67,18 @@
     owner: pi
     group: pi
 - name: NFS Server Installation
+  when: deploy == "clean"
   ansible.builtin.apt:
     name: nfs-kernel-server
     update_cache: true
 - name: NFS exports
+  when: deploy == "clean"
   ansible.builtin.blockinfile:
     path: /etc/exports
     block: |
       /media/md0      *(rw,sync,no_subtree_check)
       /media/md1      *(rw,sync,no_subtree_check)
 - name: Export NFS Server
+  when: deploy == "clean"
   ansible.builtin.shell:
     cmd: exportfs -a

@@ -3,7 +3,7 @@ all:
     turing:
       ansible_host: 192.168.1.1
       images:
-        - linuxserver/wireguard
+        - weejewel/wg-easy
         - pihole/pihole
         - certbot/dns-cloudflare
         - traefik
@@ -16,8 +16,6 @@ all:
       images:
         - weejewel/wg-easy
         - pihole/pihole
-        - certbot/dns-cloudflare
-        - traefik
         - linuxserver/deluge
         - linuxserver/jellyfin
         - linuxserver/prowlarr
@@ -26,9 +24,9 @@ all:
       containers:
         - wireguard
         - pihole
-        - traefik
         - deluge
         - jellyfin
         - prowlarr
         - radarr
         - sonarr
+deploy:
