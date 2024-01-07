@@ -10,8 +10,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /home/pi/docker_config/nextcloud/config/:/config
-      - /home/pi/docker_config/nextcloud/data:/data
-      - /mnt/md1/:/cloud
+      - /mnt/md1/cloud/:/data
     ports:
       - 443:443
     restart: unless-stopped
