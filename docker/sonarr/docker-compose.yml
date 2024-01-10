@@ -12,7 +12,7 @@ services:
     volumes:
       - /home/pi/docker_config/sonarr:/config
       - /mnt/md1/tv:/tv
-      - /mnt/md1/.media/:/downloads
+      - /mnt/md1/downloads/:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
