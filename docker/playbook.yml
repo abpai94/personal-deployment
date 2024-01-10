@@ -20,6 +20,14 @@
   when: clean is defined
   ansible.builtin.apt:
     name: docker-compose
+- name: Docker Pruning
+  ansible.builtin.cron:
+    name: Docker Pruning
+    minute: 0
+    hour: 2
+    day: 1
+    user: root
+    job: sudo docker system prune -a
 - name: Copy Original Config
   when: clean is defined
   ansible.builtin.copy:
@@ -80,6 +88,3 @@
   ansible.builtin.file:
     path: /home/pi/docker_files/
     state: absent
-- name: Docker System Pruning
-  ansible.builtin.command:
-    cmd: sudo docker system prune -a

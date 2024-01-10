@@ -44,8 +44,7 @@
   ansible.builtin.cron:
     name: GCloud Bucket Backup {{ item }}
     minute: 0
-    hour: 2
-    weekday: 1
+    hour: 1
     user: root
     job: gsutil -m rsync -P -r -d /media/md1/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/{{ item }}
   loop:
