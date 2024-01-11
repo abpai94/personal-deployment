@@ -6,7 +6,7 @@ services:
     container_name: onlyoffice
     volumes:
       - /home/pi/docker_config/onlyoffice/logs/:/var/log/onlyoffice
-      - /home/pi/docker_config/onlyoffice/config/:/var/www
+      - /home/pi/docker_config/onlyoffice/config/:/var/www/onlyoffice
     ports:
       - 8080:80
     restart: unless-stopped
