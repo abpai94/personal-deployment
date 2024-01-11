@@ -4,9 +4,11 @@ services:
   nextcloud:
     image: onlyoffice/documentserver:latest
     container_name: onlyoffice
+    network_mode: host
     volumes:
       - /home/pi/docker_config/onlyoffice/logs/:/var/log/onlyoffice
-      - /home/pi/docker_config/onlyoffice/config/:/var/www/onlyoffice
+      - /home/pi/docker_config/onlyoffice/data/:/var/www/onlyoffice/data
+      - /home/pi/docker_config/onlyoffice/config/:/etc/onlyoffice
     ports:
       - 8080:80
     restart: unless-stopped
