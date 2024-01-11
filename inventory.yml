@@ -11,6 +11,7 @@ all:
         - linuxserver/radarr
         - linuxserver/sonarr
         - linuxserver/nextcloud
+        - onlyoffice/documentserver
       containers:
         - wireguard
         - pihole
@@ -20,3 +21,4 @@ all:
         - radarr
         - sonarr
         - nextcloud
+        - onlyoffice

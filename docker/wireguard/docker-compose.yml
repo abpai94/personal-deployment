@@ -7,7 +7,6 @@ services:
       - WG_DEFAULT_DNS=192.168.1.2
       - WG_DEFAULT_ADDRESS=10.252.1.x
     image: weejewel/wg-easy
-    network_mode: host
     container_name: wireguard
     volumes:
       - /home/pi/docker_config/wireguard/:/etc/wireguard/

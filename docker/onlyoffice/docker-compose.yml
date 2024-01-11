@@ -1,0 +1,12 @@
+---
+version: "2.1"
+services:
+  nextcloud:
+    image: onlyoffice/documentserver:latest
+    container_name: onlyoffice
+    volumes:
+      - /home/pi/docker_config/onlyoffice/logs/:/var/log/onlyoffice
+      - /home/pi/docker_config/onlyoffice/config/:/var/www
+    ports:
+      - 8080:80
+    restart: unless-stopped
