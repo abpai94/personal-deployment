@@ -1,21 +1,30 @@
 - Network:
   - Router:
       href: http://192.168.1.254/
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/freebox-revolution.png
   - PiHole:
       href: http://192.168.1.1/admin/
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pi-hole.png
   - Wireguard:
       href: http://192.168.1.1:51821/
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png
 - Aggregatarrs:
   - Sonarr:
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/sonarr.png
       href: http://192.168.1.2:8989/
   - Radarr:
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/radarr.png
       href: http://192.168.1.2:7878/
   - Prowlarr:
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/prowlarr.png
       href: http://192.168.1.2:9696/
   - Deluge:
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/deluge.png
       href: http://192.168.1.2:8112/
 - Media:
   - Jellyfin:
       href: http://192.168.1.2:8096/
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellyfin.png
   - Nextcloud:
       href: https://192.168.1.2/
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png

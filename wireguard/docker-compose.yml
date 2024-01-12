@@ -6,6 +6,7 @@ services:
       - WG_HOST=abhishekpai.co.uk
       - WG_DEFAULT_DNS=192.168.1.1
       - WG_DEFAULT_ADDRESS=10.252.1.x
+      - PASSWORD={{ wireguard_password }}
     image: ghcr.io/wg-easy/wg-easy
     container_name: wireguard
     volumes:

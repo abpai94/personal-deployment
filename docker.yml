@@ -114,7 +114,7 @@
   loop: "{{ containers }}"
 - name: Copy docker files
   ignore_errors: true
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: "{{ item }}/docker-compose.yml"
     dest: /home/pi/docker_files/{{ item }}/
   loop: "{{ containers }}"

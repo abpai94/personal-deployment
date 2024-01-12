@@ -12,6 +12,7 @@ services:
       - "80:80/tcp"
     environment:
       TZ: 'Europe/Paris'
+      WEBPASSWORD: {{ pihole_password }}
     volumes:
       - '/home/pi/docker_config/pihole/etc-pihole:/etc/pihole'
       - '/home/pi/docker_config/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
