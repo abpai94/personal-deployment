@@ -12,4 +12,6 @@ services:
     volumes:
       - /home/pi/docker_config/homepage/config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /media/md0:/mnt/md0
+      - /media/md1:/mnt/md1
     restart: unless-stopped

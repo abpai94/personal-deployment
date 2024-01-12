@@ -1,0 +1,7 @@
+franklin:
+  host: 127.0.0.1
+  port: 2375
+  socket: /var/run/docker.sock
+
+# franklin:
+#   socket: /var/run/docker.sock

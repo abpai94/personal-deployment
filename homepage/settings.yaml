@@ -1,6 +1,9 @@
 title: Pai Cloud
-headerStyle: clean
+headerStyle: boxed
 layout:
-  Aggregatarrs:
+  Downloaders:
+    style: row
+    columns: 4
+  Services:
     style: row
     columns: 4

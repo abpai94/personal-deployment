@@ -89,6 +89,9 @@
   loop:
     - settings.yaml
     - services.yaml
+    - widgets.yaml
+    - docker.yaml
+    - bookmarks.yaml
 - name: Copy Traefik Configuration file
   when: inventory_hostname=='franklin'
   ansible.builtin.copy:
