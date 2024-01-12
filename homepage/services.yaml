@@ -1,0 +1,21 @@
+- Network:
+  - Router:
+      href: http://192.168.1.254/
+  - PiHole:
+      href: http://192.168.1.1/admin/
+  - Wireguard:
+      href: http://192.168.1.1:51821/
+- Aggregatarrs:
+  - Sonarr:
+      href: http://192.168.1.2:8989/
+  - Radarr:
+      href: http://192.168.1.2:7878/
+  - Prowlarr:
+      href: http://192.168.1.2:9696/
+  - Deluge:
+      href: http://192.168.1.2:8112/
+- Media:
+  - Jellyfin:
+      href: http://192.168.1.2:8096/
+  - Nextcloud:
+      href: https://192.168.1.2/

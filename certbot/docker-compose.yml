@@ -11,5 +11,5 @@ services:
       - /home/pi/docker_config/certbot/etc/letsencrypt/:/etc/letsencrypt/
       - /home/pi/docker_config/certbot/var/lib/letsencrypt/:/var/lib/letsencrypt/
       - /home/pi/docker_config/certbot/var/log/letsencrypt/:/var/log/letsencrypt/
-      - /home/pi/.secrets/cloudflare.ini:/root/cloudflare.ini
+      - ~/.secrets/certbot/cloudflare.ini:/root/cloudflare.ini
     command: certonly --dns-cloudflare --dns-cloudflare-credentials /root/cloudflare.ini --dns-cloudflare-propagation-seconds 15 --email abpai94@gmail.com --agree-tos --no-eff-email --force-renewal -d abhishekpai.co.uk -d *.abhishekpai.co.uk --preferred-challenges dns-01

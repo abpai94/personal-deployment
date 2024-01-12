@@ -4,9 +4,9 @@ services:
   wg-easy:
     environment:
       - WG_HOST=abhishekpai.co.uk
-      - WG_DEFAULT_DNS=192.168.1.2
+      - WG_DEFAULT_DNS=192.168.1.1
       - WG_DEFAULT_ADDRESS=10.252.1.x
-    image: weejewel/wg-easy
+    image: ghcr.io/wg-easy/wg-easy
     container_name: wireguard
     volumes:
       - /home/pi/docker_config/wireguard/:/etc/wireguard/

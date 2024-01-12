@@ -1,17 +1,13 @@
 ---
-- name: Roosevelt
-  hosts: roosevelt
+- name: Eleanor
+  hosts: eleanor
   remote_user: pi
   become: true
   tasks:
-    - name: Update Raspbian
-      ansible.builtin.apt:
-        update_cache: true
-        upgrade: full
     - name: Common Configuration
       when: clean is defined
       ansible.builtin.include_tasks:
-        file: linux/playbook.yml
+        file: linux.yml
     - name: Rock-pi SATA HAT configuration
       when: clean is defined
       ansible.builtin.include_tasks:
@@ -24,17 +20,9 @@
       when: clean is defined
       ansible.builtin.include_tasks:
         file: mount.yml
-    - name: DDClient Configuration
-      when: clean is defined
-      ansible.builtin.include_tasks:
-        file: ddclient/playbook.yml
     - name: Docker Configuration
       ansible.builtin.include_tasks:
-        file: docker/playbook.yml
-    - name: PiVPN Configuration
-      when: clean is defined
-      ansible.builtin.include_tasks:
-        file: pivpn/playbook.yml
+        file: docker.yml
     - name: GCloud & GSUtil Configuration
       when: clean is defined
       ansible.builtin.include_tasks:

@@ -22,3 +22,15 @@
     name: mdadm-readwrite.service
     enabled: true
     state: reloaded
+- name: NFS Mount md0 RAID from Eleanor
+  ansible.posix.mount:
+    src: /dev/md0
+    path: /media/md0
+    state: mounted
+    fstype: nfs
+- name: NFS Mount md1 RAID from Eleanor
+  ansible.posix.mount:
+    src: /dev/md1
+    path: /media/md1
+    state: mounted
+    fstype: nfs

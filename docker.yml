@@ -16,11 +16,11 @@
   ansible.builtin.file:
     path: /home/pi/installDocker.sh
     state: absent
-- name: Docker Compose
+- name: Install Docker Compose
   when: clean is defined
   ansible.builtin.apt:
     name: docker-compose
-- name: Docker Pruning
+- name: Cron job for Docker Pruning
   ansible.builtin.cron:
     name: Docker Pruning
     minute: 0
@@ -28,30 +28,69 @@
     day: 1
     user: root
     job: sudo docker system prune -a
+- name: Create docker_config
+  ansible.builtin.file:
+    path: /home/pi/docker_config
+    state: directory
+    mode: 0755
+    owner: pi
+    group: pi
 - name: Copy Original Config
+  ignore_errors: true
   when: clean is defined
+  become: false
   ansible.builtin.copy:
-    src: /mnt/md0/docker_config/
-    dest: /home/pi/docker_config/
+    src: /mnt/md0/docker_config/{{ item }}/
+    dest: /home/pi/docker_config/{{ item }}/
     mode: 0755
     owner: pi
     group: pi
     remote_src: true
+  loop: "{{ containers }}"
 - name: Crontab backup
-  when: clean is defined
   ansible.builtin.cron:
-    name: "Docker configuration backup"
+    name: "Docker configuration backup {{ item }}"
     minute: "0"
     hour: "2"
     user: root
-    job: "rsync -a --delete-after /home/pi/docker_config/ /mnt/md0/docker_config/"
-- name: Copy Cloudflare API Key
-  when: clean is defined
-  ansible.builtin.copy:
+    job: "rsync -a --delete-after /home/pi/docker_config/{{ item }} /mnt/md0/docker_config/{{ item }}"
+  loop: "{{ containers }}"
+- name: Create certbot secret directory
+  when: inventory_hostname=='franklin'
+  ansible.builtin.file:
+    path: /root/.secrets/certbot
+    state: directory
+    mode: 0700
+    owner: root
+    group: root
+- name: Create ddclient secret directory
+  when: inventory_hostname=='franklin'
+  ansible.builtin.file:
+    path: /root/.secrets/ddclient
+    state: directory
+    mode: 0700
+    owner: root
+    group: root
+- name: Copy Cloudflare API Key for Certbot
+  when: inventory_hostname=='franklin'
+  ansible.builtin.template:
     src: certbot/cloudflare.ini
-    dest: ~/.secrets/cloudflare.ini
+    dest: ~/.secrets/certbot/cloudflare.ini
+- name: Copy DDClient configuration
+  when: inventory_hostname=='franklin'
+  ansible.builtin.template:
+    src: ddclient/ddclient.conf
+    dest: ~/.secrets/ddclient/ddclient.conf
+- name: Copy homepage configuration
+  when: inventory_hostname=='franklin'
+  ansible.builtin.template:
+    src: homepage/{{ item }}
+    dest: /home/pi/docker_config/homepage/config/{{ item }}
+  loop:
+    - settings.yaml
+    - services.yaml
 - name: Copy Traefik Configuration file
-  when: clean is defined
+  when: inventory_hostname=='franklin'
   ansible.builtin.copy:
     src: traefik/{{ item }}
     dest: /home/pi/docker_config/traefik/
@@ -76,7 +115,7 @@
 - name: Copy docker files
   ignore_errors: true
   ansible.builtin.copy:
-    src: ../docker/{{ item }}/docker-compose.yml
+    src: "{{ item }}/docker-compose.yml"
     dest: /home/pi/docker_files/{{ item }}/
   loop: "{{ containers }}"
 - name: Start containers

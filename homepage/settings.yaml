@@ -1,0 +1,5 @@
+headerStyle: clean
+layout:
+  Aggregatarrs:
+    style: row
+    columns: 4

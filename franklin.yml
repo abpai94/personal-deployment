@@ -1,0 +1,17 @@
+---
+- name: Franklin
+  hosts: franklin
+  remote_user: pi
+  become: true
+  tasks:
+    - name: Common Configuration
+      when: clean is defined
+      ansible.builtin.include_tasks:
+        file: linux.yml
+    - name: Mount Configuration
+      when: clean is defined
+      ansible.builtin.include_tasks:
+        file: mount.yml
+    - name: Docker Configuration
+      ansible.builtin.include_tasks:
+        file: docker.yml
