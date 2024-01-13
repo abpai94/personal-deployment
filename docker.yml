@@ -53,7 +53,7 @@
     minute: "0"
     hour: "2"
     user: root
-    job: "rsync -a --delete-after /home/pi/docker_config/{{ item }} /mnt/md0/docker_config/{{ item }}"
+    job: "sudo -u pi rsync -a --delete-after /home/pi/docker_config/{{ item }} /mnt/md0/docker_config/"
   loop: "{{ containers }}"
 - name: Create certbot secret directory
   when: inventory_hostname=='franklin'
