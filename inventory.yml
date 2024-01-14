@@ -167,17 +167,19 @@ all:
           6339633231633538640a646235303562396333356262323538346165376666346562373666323962
           37303936613562653631346665346266313034666366376531306230386338613261
       images:
-        - ghcr.io/gethomepage/homepage:latest        
+        - ghcr.io/gethomepage/homepage
         - pihole/pihole
         - ghcr.io/wg-easy/wg-easy
         - certbot/dns-cloudflare
         - lscr.io/linuxserver/ddclient
+        - traefik
       containers:
         - homepage
         - pihole
         - wireguard
         - certbot
         - ddclient
+        - traefik
     eleanor:
       ansible_host: 192.168.1.2
       images:

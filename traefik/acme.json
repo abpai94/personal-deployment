@@ -1,0 +1,19 @@
+{
+    "email": "abpai94@gmail.com",
+    "caServer": "https://acme-v02.api.letsencrypt.org/directory",
+    "storage": "acme.json",
+    "keyType": "RSA4096",
+    "solvers": [
+      {
+        "dns01": {
+          "provider": "cloudflare"
+        }
+      },
+      {
+        "cloudflare": {
+          "email": "abpai94@gmail.com",
+          "token": "{{ cloudflare_certificate_generation }}"
+        }
+    } 
+    ]
+  }

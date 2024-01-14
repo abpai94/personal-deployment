@@ -1,14 +1,14 @@
 ---
 version: "3"
 services:
-  wg-easy:
+  wireguard:
+    container_name: wireguard
+    image: ghcr.io/wg-easy/wg-easy
     environment:
       - WG_HOST=abhishekpai.co.uk
       - WG_DEFAULT_DNS=192.168.1.1
       - WG_DEFAULT_ADDRESS=10.252.1.x
       - PASSWORD={{ wireguard_password }}
-    image: ghcr.io/wg-easy/wg-easy
-    container_name: wireguard
     volumes:
       - /home/pi/docker_config/wireguard/:/etc/wireguard/
     ports:

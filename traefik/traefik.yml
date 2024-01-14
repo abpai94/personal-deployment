@@ -1,3 +1,11 @@
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: true
+
+log:
+  level: DEBUG
+  filePath: /var/log/traefik/traefik.log
+
 api:
   insecure: true
   dashboard: true
@@ -6,25 +14,16 @@ entryPoints:
   http:
     address: :80
   https:
-    address: :433
-
-serversTransport:
-  insecureSkipVerify: true
+    address: :443
 
 providers:
   docker:
-    endpoint: unix:///var/run/docker.sock
-    exposedByDefault: false
-  file:
-    filename: /config.yml
+    watch: true
+    endpoint: "unix:///var/run/docker.sock"
 
 certificatesResolvers:
   cloudflare:
     acme:
       email: abpai94@gmail.com
-      storage: /cloudflare.ini
-      dnsChallenge:
-        provider: cloudflare
-        resolvers:
-          - 1.1.1.1:53
-          - 1.0.0.1:53
+      storage: /etc/traefik/acme.json
+      tlschallenge: true

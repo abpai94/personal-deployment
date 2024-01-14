@@ -94,12 +94,12 @@
     - bookmarks.yaml
 - name: Copy Traefik Configuration file
   when: inventory_hostname=='franklin'
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: traefik/{{ item }}
-    dest: /home/pi/docker_config/traefik/
+    dest: /home/pi/docker_config/traefik/{{ item }}
   loop:
     - traefik.yml
-    - config.yml
+    - acme.json
 - name: Pull latest images
   ignore_errors: true
   ansible.builtin.command:
