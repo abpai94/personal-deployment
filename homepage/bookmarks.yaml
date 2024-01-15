@@ -1,14 +1,24 @@
+- Social:
+    - LinkedIn:
+        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/linkedin.png
+          href: https://www.linkedin.com/in/abpai94
+
 - Developer:
     - Github:
-        - abbr: GH
-          href: https://github.com/
+        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/github.png
+          href: https://github.com/abpai94
 
-- Social:
-    - Reddit:
-        - abbr: RE
-          href: https://reddit.com/
+- Network:
+    - Cloudflare:
+        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/cloudflare.png
+          href: https://dash.cloudflare.com/
 
-- Entertainment:
-    - YouTube:
-        - abbr: YT
-          href: https://youtube.com/
+- Backup:
+    - GCP:
+        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/google-cloud-platform.png
+          href: https://console.cloud.google.com/
+
+- Vault:
+    - Bitwarden:
+        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/bitwarden.png
+          href: https://vault.bitwarden.com/#/vault
