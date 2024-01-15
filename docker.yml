@@ -48,6 +48,7 @@
     remote_src: true
   loop: "{{ containers }}"
 - name: Crontab backup
+  ignore_errors: true
   ansible.builtin.cron:
     name: "Docker configuration backup {{ item }}"
     minute: "0"
@@ -125,6 +126,11 @@
   ignore_errors: true
   ansible.builtin.command:
     cmd: docker-compose -f /home/pi/docker_files/{{ item }}/docker-compose.yml up -d
+  loop: "{{ containers }}"
+- name: Connect Traefik Network to Containers
+  ignore_errors: true
+  ansible.builtin.command:
+    cmd: sudo docker network connect {{ item }}_default traefik
   loop: "{{ containers }}"
 - name: Delete Docker files
   ansible.builtin.file:
