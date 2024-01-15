@@ -1,3 +1,37 @@
+- Services:
+  - PiHole:
+      href: http://192.168.1.1:81/admin/
+      siteMonitor: http://192.168.1.1:81/admin/
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pi-hole.png
+      container: pihole
+      widget:
+        type: pihole
+        url: http://192.168.1.1:81
+        key: {{ pihole_api_key }}
+  - Traefik:
+      href: http://192.168.1.1:8080/dashboard/
+      siteMonitor: http://192.168.1.1:8080/
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/traefik.png
+      widget:
+        type: traefik
+        url: http://192.168.1.1:8080
+  - Router:
+      href: http://192.168.1.254/
+      siteMonitor: http://192.168.1.254/
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/freebox-revolution.png
+  - Wireguard:
+      href: http://192.168.1.1:51821/
+      siteMonitor: http://192.168.1.1:51821/
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png
+      container: wireguard
+  - Jellyfin:
+      href: http://192.168.1.2:8096/
+      siteMonitor: http://192.168.1.2:8096/
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellyfin.png
+  - Nextcloud:
+      href: https://192.168.1.2/
+      siteMonitor: http://192.168.1.2/
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png
 - Downloaders:  
   - Prowlarr:
       href: http://192.168.1.2:9696/
@@ -31,30 +65,3 @@
         type: deluge
         url: http://192.168.1.2:8112
         password: {{ deluge_password }}
-- Services:
-  - PiHole:
-      href: http://192.168.1.1:81/admin/
-      siteMonitor: http://192.168.1.1:81/admin/
-      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pi-hole.png
-      container: pihole
-      widget:
-        type: pihole
-        url: http://192.168.1.1:81
-        key: {{ pihole_api_key }}
-  - Router:
-      href: http://192.168.1.254/
-      siteMonitor: http://192.168.1.254/
-      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/freebox-revolution.png
-  - Wireguard:
-      href: http://192.168.1.1:51821/
-      siteMonitor: http://192.168.1.1:51821/
-      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png
-      container: wireguard
-  - Jellyfin:
-      href: http://192.168.1.2:8096/
-      siteMonitor: http://192.168.1.2:8096/
-      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellyfin.png
-  - Nextcloud:
-      href: https://192.168.1.2/
-      siteMonitor: http://192.168.1.2/
-      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png

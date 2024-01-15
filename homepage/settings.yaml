@@ -1,9 +1,9 @@
 title: Pai Cloud
 headerStyle: boxed
 layout:
-  Downloaders:
+  Services:
     style: row
     columns: 4
-  Services:
+  Downloaders:
     style: row
     columns: 4
