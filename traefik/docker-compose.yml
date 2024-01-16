@@ -8,8 +8,10 @@ services:
       - 80:80
       - 443:443
       - 8080:8080
+    environment:
+      - CF_API_EMAIL=abpai94@gmail.com
+      - CF_API_KEY={{ cloudflare_global_api_key }}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /home/pi/docker_config/traefik/traefik.yml:/etc/traefik/traefik.yml
-      - /home/pi/docker_config/traefik/acme.json:/etc/traefik/acme.json
+      - /home/pi/docker_config/traefik/config/:/etc/traefik/
       - /home/pi/docker_config/traefik/log/:/var/log/traefik/

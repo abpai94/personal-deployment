@@ -96,11 +96,8 @@
 - name: Copy Traefik Configuration file
   when: inventory_hostname=='franklin'
   ansible.builtin.template:
-    src: traefik/{{ item }}
-    dest: /home/pi/docker_config/traefik/{{ item }}
-  loop:
-    - traefik.yml
-    - acme.json
+    src: traefik/traefik.yml
+    dest: /home/pi/docker_config/traefik/config/traefik.yml
 - name: Pull latest images
   ignore_errors: true
   ansible.builtin.command:
@@ -130,8 +127,7 @@
 - name: Connect Traefik Network to Containers
   ignore_errors: true
   ansible.builtin.command:
-    cmd: sudo docker network connect {{ item }}_default traefik
-  loop: "{{ containers }}"
+    cmd: sudo docker network connect homepage_default traefik
 - name: Delete Docker files
   ansible.builtin.file:
     path: /home/pi/docker_files/

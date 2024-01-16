@@ -16,8 +16,16 @@ services:
       - /media/md1:/mnt/md1
     restart: unless-stopped
     labels:
-      # - traefik.http.routers.homepage.entrypoints=https
-      # - traefik.http.routers.homepage.tls.certresolver=cloudflare
+      - traefik.enable=true
+      - traefik.http.routers.homepage.entrypoints=http
       - traefik.http.routers.homepage.rule=Host(`dashboard.abhishekpai.co.uk`)
+      - traefik.http.middlewares.homepage-https-redirect.redirectscheme.scheme=https
+      - traefik.http.routers.homepage.middlewares=homepage-https-redirect
+      - traefik.http.routers.homepage-secure.entrypoints=https
+      - traefik.http.routers.homepage-secure.rule=Host(`dashboard.abhishekpai.co.uk`)
+      - traefik.http.routers.homepage-secure.tls=true
+      - traefik.http.routers.homepage-secure.tls.certresolver=cloudflare
+      - traefik.http.routers.homepage-secure.tls.domains[0].main=abhishekpai.co.uk
+      - traefik.http.routers.homepage-secure.tls.domains[0].sans=*.abhishekpai.co.uk
       - traefik.http.services.homepage.loadbalancer.server.url=192.168.1.1
       - traefik.http.services.homepage.loadbalancer.server.port=3000
