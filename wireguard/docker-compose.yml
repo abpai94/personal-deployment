@@ -3,7 +3,7 @@ version: "3"
 services:
   wireguard:
     container_name: wireguard
-    image: ghcr.io/wg-easy/wg-easy
+    image: ghcr.io/wg-easy/wg-easy:latest
     environment:
       - WG_HOST=abhishekpai.co.uk
       - WG_DEFAULT_DNS=192.168.1.1
