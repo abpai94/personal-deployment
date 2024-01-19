@@ -185,14 +185,12 @@ all:
         - ghcr.io/gethomepage/homepage
         - pihole/pihole
         - ghcr.io/wg-easy/wg-easy
-        - certbot/dns-cloudflare
         - lscr.io/linuxserver/ddclient
         - traefik
       containers:
         - homepage
         - pihole
         - wireguard
-        - certbot
         - ddclient
         - traefik
     eleanor:
