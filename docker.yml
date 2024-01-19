@@ -56,14 +56,6 @@
     user: root
     job: "sudo -u pi rsync -a --delete-after /home/pi/docker_config/{{ item }} /mnt/md0/docker_config/"
   loop: "{{ containers }}"
-- name: Create certbot secret directory
-  when: inventory_hostname=='franklin'
-  ansible.builtin.file:
-    path: /root/.secrets/certbot
-    state: directory
-    mode: 0700
-    owner: root
-    group: root
 - name: Create ddclient secret directory
   when: inventory_hostname=='franklin'
   ansible.builtin.file:
@@ -72,11 +64,6 @@
     mode: 0700
     owner: root
     group: root
-- name: Copy Cloudflare API Key for Certbot
-  when: inventory_hostname=='franklin'
-  ansible.builtin.template:
-    src: certbot/cloudflare.ini
-    dest: ~/.secrets/certbot/cloudflare.ini
 - name: Copy DDClient configuration
   when: inventory_hostname=='franklin'
   ansible.builtin.template:
