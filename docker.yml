@@ -90,6 +90,12 @@
   ansible.builtin.command:
     cmd: sudo docker pull {{ item }}
   loop: "{{ images }}"
+- name: Copy docker files
+  ignore_errors: true
+  ansible.builtin.template:
+    src: "{{ item }}/docker-compose.yml"
+    dest: /home/pi/docker_files/{{ item }}/
+  loop: "{{ containers }}"
 - name: Stop containers
   ignore_errors: true
   ansible.builtin.command:
@@ -99,12 +105,6 @@
   ignore_errors: true
   ansible.builtin.command:
     cmd: sudo docker rm {{ item }}
-  loop: "{{ containers }}"
-- name: Copy docker files
-  ignore_errors: true
-  ansible.builtin.template:
-    src: "{{ item }}/docker-compose.yml"
-    dest: /home/pi/docker_files/{{ item }}/
   loop: "{{ containers }}"
 - name: Start containers
   ignore_errors: true
