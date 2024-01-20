@@ -189,18 +189,18 @@ all:
         3762633565303066360a303630346663616234323264363038656466313634653732336666346539
         35616230306236333730386462386331663661333966623764326136366238393332
       images:
-        # - ghcr.io/gethomepage/homepage
-        # - pihole/pihole
-        # - ghcr.io/wg-easy/wg-easy
-        # - lscr.io/linuxserver/ddclient
-        # - traefik
-        # - vaultwarden/server
+        - ghcr.io/gethomepage/homepage
+        - pihole/pihole
+        - ghcr.io/wg-easy/wg-easy
+        - lscr.io/linuxserver/ddclient
+        - traefik
+        - vaultwarden/server
       containers:
-        # - homepage
-        # - pihole
-        # - wireguard
-        # - ddclient
-        # - traefik
+        - homepage
+        - pihole
+        - wireguard
+        - ddclient
+        - traefik
         - vaultwarden
     eleanor:
       ansible_host: 192.168.1.2
