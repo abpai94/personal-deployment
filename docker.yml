@@ -114,7 +114,10 @@
 - name: Connect Traefik Network to Containers
   ignore_errors: true
   ansible.builtin.command:
-    cmd: sudo docker network connect homepage_default traefik
+    cmd: sudo docker network connect {{ item }}_default traefik
+  loop:
+    - homepage
+    - vaultwarden
 - name: Delete Docker files
   ansible.builtin.file:
     path: /home/pi/docker_files/

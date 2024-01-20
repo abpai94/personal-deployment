@@ -21,11 +21,9 @@ services:
       - traefik.http.routers.homepage.rule=Host(`dashboard.abhishekpai.co.uk`)
       - traefik.http.middlewares.homepage-https-redirect.redirectscheme.scheme=https
       - traefik.http.routers.homepage.middlewares=homepage-https-redirect
-      - traefik.http.routers.homepage-secure.entrypoints=https
-      - traefik.http.routers.homepage-secure.rule=Host(`dashboard.abhishekpai.co.uk`)
-      - traefik.http.routers.homepage-secure.tls=true
-      - traefik.http.routers.homepage-secure.tls.certresolver=cloudflare
-      - traefik.http.routers.homepage-secure.tls.domains[0].main=abhishekpai.co.uk
-      - traefik.http.routers.homepage-secure.tls.domains[0].sans=*.abhishekpai.co.uk
-      - traefik.http.services.homepage.loadbalancer.server.url=192.168.1.1
-      - traefik.http.services.homepage.loadbalancer.server.port=3000
+      - traefik.http.routers.homepage-https.entrypoints=https
+      - traefik.http.routers.homepage-https.rule=Host(`dashboard.abhishekpai.co.uk`)
+      - traefik.http.routers.homepage-https.tls=true
+      - traefik.http.routers.homepage-https.tls.certresolver=cloudflare
+      - traefik.http.routers.homepage-https.tls.domains[0].main=abhishekpai.co.uk
+      - traefik.http.routers.homepage-https.tls.domains[0].sans=*.abhishekpai.co.uk

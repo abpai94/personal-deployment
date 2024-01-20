@@ -181,18 +181,27 @@ all:
         63386535363135363365343431666336666565613437373735373833636639646262303231333732
         6432323066313139620a313066343932333139336165343066326462316365313433373535653231
         35323437343039616566666133303535306536366435373161323162313832316435
+      vaultwarden_admin_password: !vault |
+        $ANSIBLE_VAULT;1.1;AES256
+        62623665303764656435366631393833326333666365633139346634386539343164623333613865
+        3033396637393266326431663836653137626330643664650a613832373439353266306136663563
+        35393366633835373539383734373464626537336333373833613038663130313233663132326536
+        3762633565303066360a303630346663616234323264363038656466313634653732336666346539
+        35616230306236333730386462386331663661333966623764326136366238393332
       images:
-        - ghcr.io/gethomepage/homepage
-        - pihole/pihole
-        - ghcr.io/wg-easy/wg-easy
-        - lscr.io/linuxserver/ddclient
-        - traefik
+        # - ghcr.io/gethomepage/homepage
+        # - pihole/pihole
+        # - ghcr.io/wg-easy/wg-easy
+        # - lscr.io/linuxserver/ddclient
+        # - traefik
+        # - vaultwarden/server
       containers:
-        - homepage
-        - pihole
-        - wireguard
-        - ddclient
-        - traefik
+        # - homepage
+        # - pihole
+        # - wireguard
+        # - ddclient
+        # - traefik
+        - vaultwarden
     eleanor:
       ansible_host: 192.168.1.2
       images:
