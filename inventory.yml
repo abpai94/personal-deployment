@@ -191,17 +191,17 @@ all:
       images:
         - ghcr.io/gethomepage/homepage
         - pihole/pihole
-        - ghcr.io/wg-easy/wg-easy
-        - lscr.io/linuxserver/ddclient
+        # - ghcr.io/wg-easy/wg-easy
+        # - lscr.io/linuxserver/ddclient
         - traefik
-        - vaultwarden/server
+        # - vaultwarden/server
       containers:
         - homepage
         - pihole
-        - wireguard
-        - ddclient
+        # - wireguard
+        # - ddclient
         - traefik
-        - vaultwarden
+        # - vaultwarden
     eleanor:
       ansible_host: 192.168.1.2
       images:
