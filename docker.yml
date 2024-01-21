@@ -20,6 +20,18 @@
   when: clean is defined
   ansible.builtin.apt:
     name: docker-compose
+- name: Added dockerd remote access configuration
+  when: clean is defined and inventory_hostname=='eleanor'
+  ansible.builtin.replace:
+    path: //etc/systemd/system/multi-user.target.wants/docker.service
+    regexp: ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+    replace: ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock -H tcp://192.168.1.2:2375
+- name: Restart docker systemd service
+  when: clean is defined and inventory_hostname=='eleanor'
+  ansible.builtin.systemd_service:
+    name: docker
+    state: restarted
+    daemon_reload: true
 - name: Cron job for Docker Pruning
   ansible.builtin.cron:
     name: Docker Pruning
