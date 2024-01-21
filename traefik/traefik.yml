@@ -11,6 +11,9 @@ api:
   dashboard: true
   debug: true
 
+serversTransport:
+  insecureSkipVerify: true
+
 entryPoints:
   http:
     address: :81
@@ -33,6 +36,9 @@ providers:
     watch: true
     endpoint: "unix:///var/run/docker.sock"
     exposedByDefault: false
+  file:
+    watch: true
+    filename: /etc/traefik/config.yml
 
 certificatesResolvers:
   cloudflare:

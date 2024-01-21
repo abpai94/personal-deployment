@@ -95,8 +95,11 @@
 - name: Copy Traefik Configuration file
   when: inventory_hostname=='franklin'
   ansible.builtin.template:
-    src: traefik/traefik.yml
-    dest: /home/pi/docker_config/traefik/config/traefik.yml
+    src: traefik/{{ item }}
+    dest: /home/pi/docker_config/traefik/config/{{ item }}
+  loop:
+    - traefik.yml
+    - config.yml
 - name: Pull latest images
   ignore_errors: true
   when: update is defined
