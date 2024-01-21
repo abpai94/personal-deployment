@@ -99,6 +99,7 @@
     dest: /home/pi/docker_config/traefik/config/traefik.yml
 - name: Pull latest images
   ignore_errors: true
+  when: update is defined
   ansible.builtin.command:
     cmd: sudo docker pull {{ item }}
   loop: "{{ images }}"
@@ -131,6 +132,7 @@
   loop:
     - homepage
     - vaultwarden
+    - portainer
 - name: Delete Docker files
   ansible.builtin.file:
     path: /home/pi/docker_files/

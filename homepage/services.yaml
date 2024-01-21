@@ -12,14 +12,22 @@
       widget:
         type: traefik
         url: http://192.168.1.1:8080
-  - Portainer:
-      href: https://192.168.1.1:9443
+  - Portainer Franklin:
+      href: https://portainer.abhishekpai.co.uk/#!/2/docker/dashboard
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/portainer.png
       widget:
         type: portainer
         url: https://192.168.1.1:9443
-        env: 1
+        env: 2
         key: {{ portainer_dashboard_api }}
+  - Portainer Eleanor:
+      href: https://portainer.abhishekpai.co.uk/#!/7/docker/dashboard
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/portainer.png
+      widget:
+        type: portainer
+        url: https://192.168.1.1:9443
+        env: 7
+        key: {{ portainer_dashboard_api }} 
   - Router:
       href: http://192.168.1.254/
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/freebox-revolution.png
