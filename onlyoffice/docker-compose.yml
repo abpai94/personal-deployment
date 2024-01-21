@@ -4,7 +4,6 @@ services:
   nextcloud:
     image: onlyoffice/documentserver:latest
     container_name: onlyoffice
-    network_mode: host
     volumes:
       - /home/pi/docker_config/onlyoffice/logs/:/var/log/onlyoffice
       - /home/pi/docker_config/onlyoffice/data/:/var/www/onlyoffice

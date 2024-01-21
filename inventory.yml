@@ -216,12 +216,12 @@ all:
     eleanor:
       ansible_host: 192.168.1.2
       images:
-        - linuxserver/deluge
-        - linuxserver/jellyfin
-        - linuxserver/prowlarr
-        - linuxserver/radarr
-        - linuxserver/sonarr
-        - linuxserver/nextcloud
+        - lscr.io/linuxserver/deluge
+        - lscr.io/linuxserver/jellyfin
+        - lscr.io/linuxserver/prowlarr
+        - lscr.io/linuxserver/radarr
+        - lscr.io/linuxserver/sonarr
+        - lscr.io/linuxserver/nextcloud
         - onlyoffice/documentserver
       containers:
         - deluge
