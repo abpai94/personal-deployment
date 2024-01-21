@@ -21,8 +21,32 @@ http:
           - main: abhishekpai.com
             sans:
               - "*.abhishekpai.com"
+    pihole:
+      entryPoints:
+        - http
+      service: pihole
+      rule: Host(`pihole.abhishekpai.co.uk`)
+      middlewares:
+        - pihole-https-redirect
+    pihole-https:
+      entryPoints:
+        - https
+      service: pihole
+      rule: Host(`pihole.abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+          - main: abhishekpai.com
+            sans:
+              - "*.abhishekpai.com"
   middlewares:
     nextcloud-https-redirect:
+      redirectscheme:
+        scheme: https
+    pihole-https-redirect:
       redirectscheme:
         scheme: https
   services:
@@ -30,3 +54,7 @@ http:
       loadBalancer:
         servers:
           - url: "https://192.168.1.2"
+    pihole:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.1/admin"

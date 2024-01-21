@@ -1,6 +1,6 @@
 - Services:
   - PiHole:
-      href: http://192.168.1.1:80/admin/
+      href: https://pihole.abhishekpai.co.uk/admin/
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pi-hole.png
       widget:
         type: pihole
