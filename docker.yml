@@ -125,6 +125,7 @@
   loop: "{{ containers }}"
 - name: Connect Traefik Network to Containers
   ignore_errors: true
+  when: inventory_hostname=='eleanor'
   ansible.builtin.command:
     cmd: sudo docker network connect {{ item }}_default traefik
   loop:
