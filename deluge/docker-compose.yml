@@ -4,7 +4,6 @@ services:
   deluge:
     image: lscr.io/linuxserver/deluge:latest
     container_name: deluge
-    network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
