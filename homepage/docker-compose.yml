@@ -11,9 +11,8 @@ services:
       - 3000:3000
     volumes:
       - /home/pi/docker_config/homepage/config:/app/config
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /media/md0:/mnt/md0
-      - /media/md1:/mnt/md1
+      - /media/md0:/mnt/md0:ro
+      - /media/md1:/mnt/md1:ro
     restart: unless-stopped
     labels:
       - traefik.enable=true
