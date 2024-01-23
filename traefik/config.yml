@@ -42,11 +42,107 @@ http:
           - main: abhishekpai.com
             sans:
               - "*.abhishekpai.com"
+    sonarr:
+      entryPoints:
+        - http
+      service: sonarr
+      rule: Host(`sonarr.abhishekpai.co.uk`)
+      middlewares:
+        - sonarr-https-redirect
+    sonarr-https:
+      entryPoints:
+        - https
+      service: sonarr
+      rule: Host(`sonarr.abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+          - main: abhishekpai.com
+            sans:
+              - "*.abhishekpai.com"
+    radarr:
+      entryPoints:
+        - http
+      service: radarr
+      rule: Host(`radarr.abhishekpai.co.uk`)
+      middlewares:
+        - radarr-https-redirect
+    radarr-https:
+      entryPoints:
+        - https
+      service: radarr
+      rule: Host(`radarr.abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+          - main: abhishekpai.com
+            sans:
+              - "*.abhishekpai.com"
+    prowlarr:
+      entryPoints:
+        - http
+      service: prowlarr
+      rule: Host(`prowlarr.abhishekpai.co.uk`)
+      middlewares:
+        - prowlarr-https-redirect
+    prowlarr-https:
+      entryPoints:
+        - https
+      service: prowlarr
+      rule: Host(`prowlarr.abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+          - main: abhishekpai.com
+            sans:
+              - "*.abhishekpai.com"
+    deluge:
+      entryPoints:
+        - http
+      service: sonarr
+      rule: Host(`deluge.abhishekpai.co.uk`)
+      middlewares:
+        - deluge-https-redirect
+    deluge-https:
+      entryPoints:
+        - https
+      service: deluge
+      rule: Host(`deluge.abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+          - main: abhishekpai.com
+            sans:
+              - "*.abhishekpai.com"
   middlewares:
     nextcloud-https-redirect:
       redirectscheme:
         scheme: https
     pihole-https-redirect:
+      redirectscheme:
+        scheme: https
+    sonarr-https-redirect:
+      redirectscheme:
+        scheme: https
+    radarr-https-redirect:
+      redirectscheme:
+        scheme: https
+    prowlarr-https-redirect:
+      redirectscheme:
+        scheme: https
+    deluge-https-redirect:
       redirectscheme:
         scheme: https
   services:
@@ -58,3 +154,19 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.1.1/admin"
+    sonarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.2:8989"
+    radarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.2:7878"
+    prowlarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.2:9696"
+    deluge:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.2:8112"
