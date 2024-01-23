@@ -6,7 +6,7 @@ http:
       service: nextcloud
       rule: Host(`cloud.abhishekpai.co.uk`)
       middlewares:
-        - nextcloud-https-redirect
+        - https-redirect
     nextcloud-https:
       entryPoints:
         - https
@@ -27,7 +27,7 @@ http:
       service: pihole
       rule: Host(`pihole.abhishekpai.co.uk`)
       middlewares:
-        - pihole-https-redirect
+        - https-redirect
     pihole-https:
       entryPoints:
         - https
@@ -48,7 +48,7 @@ http:
       service: sonarr
       rule: Host(`sonarr.abhishekpai.co.uk`)
       middlewares:
-        - sonarr-https-redirect
+        - https-redirect
     sonarr-https:
       entryPoints:
         - https
@@ -69,7 +69,7 @@ http:
       service: radarr
       rule: Host(`radarr.abhishekpai.co.uk`)
       middlewares:
-        - radarr-https-redirect
+        - https-redirect
     radarr-https:
       entryPoints:
         - https
@@ -90,7 +90,7 @@ http:
       service: prowlarr
       rule: Host(`prowlarr.abhishekpai.co.uk`)
       middlewares:
-        - prowlarr-https-redirect
+        - https-redirect
     prowlarr-https:
       entryPoints:
         - https
@@ -111,7 +111,7 @@ http:
       service: sonarr
       rule: Host(`deluge.abhishekpai.co.uk`)
       middlewares:
-        - deluge-https-redirect
+        - https-redirect
     deluge-https:
       entryPoints:
         - https
@@ -127,24 +127,10 @@ http:
             sans:
               - "*.abhishekpai.com"
   middlewares:
-    nextcloud-https-redirect:
+    https-redirect:
       redirectscheme:
         scheme: https
-    pihole-https-redirect:
-      redirectscheme:
-        scheme: https
-    sonarr-https-redirect:
-      redirectscheme:
-        scheme: https
-    radarr-https-redirect:
-      redirectscheme:
-        scheme: https
-    prowlarr-https-redirect:
-      redirectscheme:
-        scheme: https
-    deluge-https-redirect:
-      redirectscheme:
-        scheme: https
+        permanent: true
   services:
     nextcloud:
       loadBalancer:

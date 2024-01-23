@@ -27,10 +27,7 @@
         type: portainer
         url: https://192.168.1.1:9443
         env: 7
-        key: {{ portainer_dashboard_api }} 
-  - Router:
-      href: http://192.168.1.254
-      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/freebox-revolution.png
+        key: {{ portainer_dashboard_api }}
   - Wireguard:
       href: http://192.168.1.1:51821
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png
