@@ -146,6 +146,7 @@
     - homepage
     - vaultwarden
     - portainer
+    - wireguard
 - name: Delete Docker files
   ansible.builtin.file:
     path: /home/pi/docker_files/

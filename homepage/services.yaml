@@ -29,7 +29,7 @@
         env: 7
         key: {{ portainer_dashboard_api }}
   - Wireguard:
-      href: http://192.168.1.1:51821
+      href: https://wireguard.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png
   - Jellyfin:
       href: http://192.168.1.2:8096
