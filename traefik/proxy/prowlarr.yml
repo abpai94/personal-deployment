@@ -1,0 +1,28 @@
+http:
+  routers:
+    prowlarr:
+      entryPoints:
+        - http
+      service: prowlarr
+      rule: Host(`prowlarr.abhishekpai.co.uk`)
+      middlewares:
+        - https-redirect
+    prowlarr-https:
+      entryPoints:
+        - https
+      service: prowlarr
+      rule: Host(`prowlarr.abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+          - main: abhishekpai.com
+            sans:
+              - "*.abhishekpai.com"
+  services:
+    prowlarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.2:9696"

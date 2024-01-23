@@ -1,0 +1,28 @@
+http:
+  routers:
+    radarr:
+      entryPoints:
+        - http
+      service: radarr
+      rule: Host(`radarr.abhishekpai.co.uk`)
+      middlewares:
+        - https-redirect
+    radarr-https:
+      entryPoints:
+        - https
+      service: radarr
+      rule: Host(`radarr.abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+          - main: abhishekpai.com
+            sans:
+              - "*.abhishekpai.com"
+  services:
+    radarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.2:7878"

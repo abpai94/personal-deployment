@@ -92,6 +92,11 @@
     - widgets.yaml
     - docker.yaml
     - bookmarks.yaml
+- name: Create folders
+  when: clean is defined and inventory_hostname=='franklin'
+  ansible.builtin.file:
+    path: /home/pi/docker_config/traefik/config/proxy
+    state: directory
 - name: Copy Traefik Configuration file
   when: inventory_hostname=='franklin'
   ansible.builtin.template:
@@ -99,7 +104,12 @@
     dest: /home/pi/docker_config/traefik/config/{{ item }}
   loop:
     - traefik.yml
-    - config.yml
+    - proxy/deluge.yml
+    - proxy/nextcloud.yml
+    - proxy/pihole.yml
+    - proxy/prowlarr.yml
+    - proxy/radarr.yml
+    - proxy/sonarr.yml
 - name: Pull latest images
   ignore_errors: true
   when: update is defined

@@ -1,0 +1,28 @@
+http:
+  routers:
+    nextcloud:
+      entryPoints:
+        - http
+      service: nextcloud
+      rule: Host(`cloud.abhishekpai.co.uk`)
+      middlewares:
+        - https-redirect
+    nextcloud-https:
+      entryPoints:
+        - https
+      service: nextcloud
+      rule: Host(`cloud.abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+          - main: abhishekpai.com
+            sans:
+              - "*.abhishekpai.com"
+  services:
+    nextcloud:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.1.2"

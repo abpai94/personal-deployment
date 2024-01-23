@@ -1,0 +1,28 @@
+http:
+  routers:
+    deluge:
+      entryPoints:
+        - http
+      service: sonarr
+      rule: Host(`deluge.abhishekpai.co.uk`)
+      middlewares:
+        - https-redirect
+    deluge-https:
+      entryPoints:
+        - https
+      service: deluge
+      rule: Host(`deluge.abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+          - main: abhishekpai.com
+            sans:
+              - "*.abhishekpai.com"
+  services:
+    deluge:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.2:8112"
