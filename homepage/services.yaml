@@ -7,7 +7,7 @@
         url: http://192.168.1.1:80
         key: {{ pihole_api_key }}
   - Traefik:
-      href: http://192.168.1.1:8080/dashboard
+      href: https://traefik.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/traefik.png
       widget:
         type: traefik
