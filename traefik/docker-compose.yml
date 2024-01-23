@@ -16,3 +16,20 @@ services:
       - /home/pi/docker_config/traefik/config/:/etc/traefik/
       - /home/pi/docker_config/traefik/log/:/var/log/traefik/
     restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.traefik.entrypoints=http
+      - traefik.http.routers.traefik.rule=Host(`traefik.abhishekpai.co.uk`)
+      - traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https
+      - traefik.http.routers.traefik.middlewares=traefik-https-redirect
+      - traefik.http.routers.traefik-https.entrypoints=https
+      - traefik.http.routers.traefik-https.rule=Host(`traefik.abhishekpai.co.uk`)
+      - traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$apr1$$68l27h3c$$hFql73BnB/ovqCNBoyVAt.
+      - traefik.http.middlewares.traefik-auth.basicauth.removeheader=true
+      - traefik.http.middlewares.traefik-sslheaders.headers.customrequestheaders.X-Forwarded-Proto=https
+      - traefik.http.routers.traefik-https.middlewares=traefik-auth
+      - traefik.http.routers.traefik-https.tls=true
+      - traefik.http.routers.traefik-https.tls.certresolver=cloudflare
+      - traefik.http.routers.traefik-https.tls.domains[0].main=abhishekpai.co.uk
+      - traefik.http.routers.traefik-https.tls.domains[0].sans=*.abhishekpai.co.uk
+      - traefik.http.routers.traefik-https.service=api@internal
