@@ -8,7 +8,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Paris
-      - JELLYFIN_PublishedServerUrl=192.168.1.2
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.abhishekpai.co.uk
     volumes:
       - /home/pi/docker_config/jellyfin/:/config
       - /mnt/md1/tv:/data/tvshows
@@ -18,6 +18,5 @@ services:
       - /dev/video11:/dev/video11
       - /dev/video12:/dev/video12
     ports:
-      - 8096:8096      
-      - 8920:8920
+      - 8096:8096
     restart: unless-stopped
