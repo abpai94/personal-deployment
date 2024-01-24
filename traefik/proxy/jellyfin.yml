@@ -1,0 +1,28 @@
+http:
+  routers:
+    jellyfin:
+      entryPoints:
+        - http
+      service: jellyfin
+      rule: Host(`jellyfin.abhishekpai.co.uk`)
+      middlewares:
+        - https-redirect
+    jellyfin-https:
+      entryPoints:
+        - https
+      service: jellyfin
+      rule: Host(`jellyfin.abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+          - main: abhishekpai.com
+            sans:
+              - "*.abhishekpai.com"
+  services:
+    jellyfin:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.2:8096"

@@ -32,7 +32,7 @@
       href: https://wireguard.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png
   - Jellyfin:
-      href: http://192.168.1.2:8096
+      href: https://jellyfin.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellyfin.png
   - Nextcloud:
       href: https://cloud.abhishekpai.co.uk

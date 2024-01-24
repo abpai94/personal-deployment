@@ -104,12 +104,14 @@
     dest: /home/pi/docker_config/traefik/config/{{ item }}
   loop:
     - traefik.yml
+    - proxy/common.yml
     - proxy/deluge.yml
     - proxy/nextcloud.yml
     - proxy/pihole.yml
     - proxy/prowlarr.yml
     - proxy/radarr.yml
     - proxy/sonarr.yml
+    - proxy/jellyfin.yml
 - name: Pull latest images
   ignore_errors: true
   when: update is defined

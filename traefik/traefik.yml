@@ -38,7 +38,7 @@ providers:
     exposedByDefault: false
   file:
     watch: true
-    filename: /etc/traefik/config.yml
+    directory: /etc/traefik/proxy/
 
 certificatesResolvers:
   cloudflare:
