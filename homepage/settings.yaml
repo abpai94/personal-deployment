@@ -1,5 +1,7 @@
 title: Pai Cloud
 headerStyle: boxed
+theme: dark
+color: gray
 layout:
   Services:
     style: row
