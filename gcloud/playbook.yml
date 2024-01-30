@@ -25,27 +25,27 @@
   ansible.builtin.file:
     path: /home/pi/personal-deployment-384310-f294638f8965.json
     state: absent
-- name: GCloud Bucket Backup MD0
+- name: GCloud Bucket Backup to add additional files
   ansible.builtin.cron:
     name: GCloud Bucket Backup {{ item }}
     minute: 0
     hour: 2
     weekday: 1
     user: root
-    job: gsutil -m rsync -P -r /media/md0/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/
+    job: gsutil -m rsync -P -r /media/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/
   loop:
-    - personal
-    - family
-    - docker_config
-    - india_wedding
-    - programs
-    - zips
-- name: GCloud Bucket Backup MD1
+    - md0/personal
+    - md0/family
+    - md0/india_wedding
+    - md0/programs
+    - md0/zips
+- name: GCloud Bucket Backup to duplicate local
   ansible.builtin.cron:
     name: GCloud Bucket Backup {{ item }}
     minute: 0
     hour: 1
     user: root
-    job: gsutil -m rsync -P -r /media/md1/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/
+    job: gsutil -m rsync -P -d -r /media/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/
   loop:
-    - cloud
+    - md1/cloud
+    - md0/docker_config
