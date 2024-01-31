@@ -1,7 +1,39 @@
 all:
   hosts:
+    eleanor:
+      ansible_host: 192.168.1.2
+      images:
+        - lscr.io/linuxserver/deluge
+        - lscr.io/linuxserver/jellyfin
+        - lscr.io/linuxserver/prowlarr
+        - lscr.io/linuxserver/radarr
+        - lscr.io/linuxserver/sonarr
+        - lscr.io/linuxserver/nextcloud
+      containers:
+        - deluge
+        - jellyfin
+        - prowlarr
+        - radarr
+        - sonarr
+        - nextcloud
     franklin:
       ansible_host: 192.168.1.1
+      images:
+        - portainer/portainer-ce
+        - pihole/pihole
+        - ghcr.io/wg-easy/wg-easy
+        - traefik
+        - lscr.io/linuxserver/ddclient
+        - vaultwarden/server
+        - ghcr.io/gethomepage/homepage
+      containers:
+        - portainer
+        - pihole
+        - wireguard
+        - traefik
+        - ddclient
+        - vaultwarden
+        - homepage
       cloudflare_global_api_key: !vault |
         $ANSIBLE_VAULT;1.1;AES256
         61623365643134323935363365663861656363343262333565323266336536343334633938373730
@@ -190,35 +222,3 @@ all:
         38623162373639393164653634396534383132373032363136376231663531323366363635336239
         64343164336330343538623530376664633333353062633731383863306335633265386632386261
         323637383737393930346130626634346338
-      images:
-        - portainer/portainer-ce
-        - pihole/pihole
-        - ghcr.io/wg-easy/wg-easy
-        - traefik
-        - lscr.io/linuxserver/ddclient
-        - vaultwarden/server
-        - ghcr.io/gethomepage/homepage
-      containers:
-        - portainer
-        - pihole
-        - wireguard
-        - traefik
-        - ddclient
-        - vaultwarden
-        - homepage
-    eleanor:
-      ansible_host: 192.168.1.2
-      images:
-        - lscr.io/linuxserver/deluge
-        - lscr.io/linuxserver/jellyfin
-        - lscr.io/linuxserver/prowlarr
-        - lscr.io/linuxserver/radarr
-        - lscr.io/linuxserver/sonarr
-        - lscr.io/linuxserver/nextcloud
-      containers:
-        - deluge
-        - jellyfin
-        - prowlarr
-        - radarr
-        - sonarr
-        - nextcloud
