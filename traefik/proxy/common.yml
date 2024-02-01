@@ -4,3 +4,12 @@ http:
       redirectscheme:
         scheme: https
         permanent: true
+    authelia-auth:
+      forwardauth:
+        address: http://192.168.1.1:9091/api/verify?rd=https://auth.abhishekpai.co.uk
+        trustforwardheader: true
+        authresponseheaders:
+          - Remote-User
+          - Remote-Groups
+          - Remote-Name
+          - Remote-Email

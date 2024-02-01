@@ -1,0 +1,11 @@
+---
+version: "3"
+services:
+  authelia:
+    container_name: authelia
+    image: authelia/authelia:latest
+    restart: unless-stopped
+    ports:
+      - 9091:9091
+    volumes:
+      - /home/pi/docker_config/authelia/data/authelia/config:/config

@@ -1,0 +1,39 @@
+server:
+  host: 0.0.0.0
+  port: 9091
+log:
+  level: debug
+  file_path: /config/authelia.log
+jwt_secret: {{ authelia_jwt_secret }}
+default_redirection_url: https://auth.abhishekpai.co.uk
+access_control:
+  default_policy: deny
+  rules:
+    - domain: pihole.abhishekpai.co.uk
+      policy: one_factor
+session:
+  name: authelia_session
+  secret: {{ authelia_session_secret }}
+  expiration: 1h
+  inactivity: 5m
+  remember_me_duration: 1M
+  domain: abhishekpai.co.uk
+regulation:
+  max_retries: 3
+  find_time: 2m
+  ban_time: 5m
+storage:
+  encryption_key: {{ authelia_storage_encryption_key }}
+  local:
+    path: /config/db.sqlite3
+notifier:
+  disable_startup_check: false
+  filesystem:
+    filename: '/config/notification.txt'
+authentication_backend:
+  refresh_interval: 5m
+  password_reset:
+    disable: false
+    custom_url: ""
+  file:
+    path: /config/users.yml

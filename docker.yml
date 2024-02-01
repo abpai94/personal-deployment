@@ -112,11 +112,20 @@
     - proxy/radarr.yml
     - proxy/sonarr.yml
     - proxy/jellyfin.yml
+    - proxy/authelia.yml
+- name: Authelia Secrets
+  when: inventory_hostname=='franklin'
+  ansible.builtin.template:
+    src: authelia/{{ item }}
+    dest: /home/pi/docker_config/authelia/data/authelia/config/{{ item }}
+  loop:
+    - configuration.yml
+    - users.yml
 - name: Pull latest images
   ignore_errors: true
   when: update is defined
   ansible.builtin.command:
-    cmd: sudo docker pull {{ item }}
+    cmd: sudo docker pull {{ item }}:latest
   loop: "{{ images }}"
 - name: Copy docker files
   ignore_errors: true
@@ -149,6 +158,7 @@
     - vaultwarden
     - portainer
     - wireguard
+    - authelia
 - name: Delete Docker files
   ansible.builtin.file:
     path: /home/pi/docker_files/
