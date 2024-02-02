@@ -10,16 +10,4 @@ services:
       - /home/pi/docker_config/vaultwarden:/data
     environment:
       - ADMIN_TOKEN={{ vaultwarden_admin_password }}
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.bitwarden.entrypoints=http
-      - traefik.http.routers.bitwarden.rule=Host(`vault.abhishekpai.co.uk`)
-      - traefik.http.middlewares.bitwarden-https-redirect.redirectScheme.scheme=https
-      - traefik.http.routers.bitwarden.middlewares=bitwarden-https-redirect
-      - traefik.http.routers.bitwarden-https.entrypoints=https
-      - traefik.http.routers.bitwarden-https.rule=Host(`vault.abhishekpai.co.uk`)
-      - traefik.http.routers.bitwarden-https.tls=true
-      - traefik.http.routers.bitwarden-https.tls.certresolver=cloudflare
-      - traefik.http.routers.bitwarden-https.tls.domains[0].main=abhishekpai.co.uk
-      - traefik.http.routers.bitwarden-https.tls.domains[0].sans=*.abhishekpai.co.uk
     restart: unless-stopped
