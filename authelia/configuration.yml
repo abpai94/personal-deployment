@@ -14,11 +14,7 @@ access_control:
       policy: one_factor
     - domain: 'wireguard.abhishekpai.co.uk'
       policy: one_factor
-    - domain: 'jellyfin.abhishekpai.co.uk'
-      policy: one_factor
     - domain: 'portainer.abhishekpai.co.uk'
-      policy: one_factor
-    - domain: 'cloud.abhishekpai.co.uk'
       policy: one_factor
     - domain: 'traefik.abhishekpai.co.uk'
       policy: one_factor
@@ -29,7 +25,7 @@ access_control:
     - domain: 'radarr.abhishekpai.co.uk'
       policy: one_factor
     - domain: 'deluge.abhishekpai.co.uk'
-      policy: one_factor
+      policy: one_factor  
 session:
   name: authelia_session
   secret: {{ authelia_session_secret }}
