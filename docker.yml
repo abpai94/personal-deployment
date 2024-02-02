@@ -117,7 +117,7 @@
     - proxy/wireguard.yml
     - proxy/portainer.yml
     - proxy/vaultwarden.yml
-    # - proxy/traefik.yml
+    - proxy/traefik.yml
 - name: Authelia Secrets
   when: inventory_hostname=='franklin'
   ansible.builtin.template:

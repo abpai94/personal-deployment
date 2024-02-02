@@ -12,17 +12,12 @@ http:
         - https
       service: homepage
       rule: Host(`dashboard.abhishekpai.co.uk`)
-      middlewares:
-        - authelia-auth
       tls:
         certResolver: cloudflare
         domains:
           - main: abhishekpai.co.uk
             sans:
               - "*.abhishekpai.co.uk"
-          - main: abhishekpai.com
-            sans:
-              - "*.abhishekpai.com"
   services:
     homepage:
       loadBalancer:

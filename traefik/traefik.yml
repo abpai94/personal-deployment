@@ -26,9 +26,6 @@ entryPoints:
           - main: "abhishekpai.co.uk"
             sans: 
              - "*.abhishekpai.co.uk"
-          - main: "abhishekpai.com"
-            sans: 
-             - "*.abhishekpai.com"
 
 providers:
   docker:
