@@ -21,7 +21,7 @@
   ansible.builtin.apt:
     name: docker-compose
 - name: Added dockerd remote access configuration
-  when: clean is defined and inventory_hostname=='eleanor'
+  when: inventory_hostname=='eleanor'
   ansible.builtin.replace:
     path: //etc/systemd/system/multi-user.target.wants/docker.service
     regexp: ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
@@ -108,11 +108,16 @@
     - proxy/deluge.yml
     - proxy/nextcloud.yml
     - proxy/pihole.yml
+    - proxy/homepage.yml
     - proxy/prowlarr.yml
     - proxy/radarr.yml
     - proxy/sonarr.yml
     - proxy/jellyfin.yml
     - proxy/authelia.yml
+    - proxy/wireguard.yml
+    - proxy/portainer.yml
+    - proxy/vaultwarden.yml
+    # - proxy/traefik.yml
 - name: Authelia Secrets
   when: inventory_hostname=='franklin'
   ansible.builtin.template:
