@@ -14,18 +14,9 @@ http:
       rule: Host(`traefik.abhishekpai.co.uk`)
       middlewares:
         - authelia-auth
-        - traefik-sslheaders
       tls:
         certResolver: cloudflare
         domains:
           - main: abhishekpai.co.uk
             sans:
               - "*.abhishekpai.co.uk"
-          - main: abhishekpai.com
-            sans:
-              - "*.abhishekpai.com"
-  middlewares:
-    traefik-sslheaders:
-      headers:
-        customrequestheders:
-          X-Forwarded-Proto: https
