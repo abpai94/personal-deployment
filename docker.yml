@@ -122,7 +122,7 @@
   when: inventory_hostname=='franklin'
   ansible.builtin.template:
     src: authelia/{{ item }}
-    dest: /home/pi/docker_config/authelia/data/authelia/config/{{ item }}
+    dest: /home/pi/docker_config/authelia/config/{{ item }}
   loop:
     - configuration.yml
     - users.yml
