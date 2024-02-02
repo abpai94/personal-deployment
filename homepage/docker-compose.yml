@@ -14,15 +14,3 @@ services:
       - /media/md0:/mnt/md0:ro
       - /media/md1:/mnt/md1:ro
     restart: unless-stopped
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.homepage.entrypoints=http
-      - traefik.http.routers.homepage.rule=Host(`dashboard.abhishekpai.co.uk`)
-      - traefik.http.middlewares.homepage-https-redirect.redirectscheme.scheme=https
-      - traefik.http.routers.homepage.middlewares=homepage-https-redirect
-      - traefik.http.routers.homepage-https.entrypoints=https
-      - traefik.http.routers.homepage-https.rule=Host(`dashboard.abhishekpai.co.uk`)
-      - traefik.http.routers.homepage-https.tls=true
-      - traefik.http.routers.homepage-https.tls.certresolver=cloudflare
-      - traefik.http.routers.homepage-https.tls.domains[0].main=abhishekpai.co.uk
-      - traefik.http.routers.homepage-https.tls.domains[0].sans=*.abhishekpai.co.uk

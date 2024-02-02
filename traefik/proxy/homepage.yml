@@ -1,0 +1,30 @@
+http:
+  routers:
+    homepage:
+      entryPoints:
+        - http
+      service: homepage
+      rule: Host(`dashboard.abhishekpai.co.uk`)
+      middlewares:
+        - https-redirect
+    homepage-https:
+      entryPoints:
+        - https
+      service: homepage
+      rule: Host(`dashboard.abhishekpai.co.uk`)
+      middlewares:
+        - authelia-auth
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+          - main: abhishekpai.com
+            sans:
+              - "*.abhishekpai.com"
+  services:
+    homepage:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.1:3000"
