@@ -25,7 +25,7 @@ access_control:
     - domain: 'radarr.abhishekpai.co.uk'
       policy: one_factor
     - domain: 'deluge.abhishekpai.co.uk'
-      policy: one_factor  
+      policy: one_factor
 session:
   name: authelia_session
   secret: {{ authelia_session_secret }}
