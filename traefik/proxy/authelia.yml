@@ -12,8 +12,6 @@ http:
         - https
       service: authelia
       rule: Host(`auth.abhishekpai.co.uk`)
-      middlewares:
-        - authelia-auth
       tls:
         certResolver: cloudflare
         domains:

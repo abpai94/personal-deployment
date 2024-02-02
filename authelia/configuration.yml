@@ -1,6 +1,7 @@
 server:
   host: 0.0.0.0
   port: 9091
+theme: dark
 log:
   level: debug
   file_path: /config/authelia.log
@@ -9,7 +10,31 @@ default_redirection_url: https://auth.abhishekpai.co.uk
 access_control:
   default_policy: deny
   rules:
-    - domain: pihole.abhishekpai.co.uk
+    - domain: 'pihole.abhishekpai.co.uk'
+      policy: one_factor
+      resources:
+        - '^/admin'
+    - domain: 'dashboard.abhishekpai.co.uk'
+      policy: one_factor
+    - domain: 'wireguard.abhishekpai.co.uk'
+      policy: one_factor
+    - domain: 'jellyfin.abhishekpai.co.uk'
+      policy: one_factor
+    - domain: 'portainer.abhishekpai.co.uk'
+      policy: one_factor
+    - domain: 'vault.abhishekpai.co.uk'
+      policy: bypass
+    - domain: 'cloud.abhishekpai.co.uk'
+      policy: one_factor
+    # - domain: 'traefik.abhishekpai.co.uk'
+    #   policy: one_factor
+    - domain: 'prowlarr.abhishekpai.co.uk'
+      policy: one_factor
+    - domain: 'sonarr.abhishekpai.co.uk'
+      policy: one_factor
+    - domain: 'radarr.abhishekpai.co.uk'
+      policy: one_factor
+    - domain: 'deluge.abhishekpai.co.uk'
       policy: one_factor
 session:
   name: authelia_session

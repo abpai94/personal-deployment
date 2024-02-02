@@ -1,19 +1,20 @@
 http:
   routers:
-    jellyfin:
+    traefik:
       entryPoints:
         - http
-      service: jellyfin
-      rule: Host(`jellyfin.abhishekpai.co.uk`)
+      service: api@internal
+      rule: Host(`traefik.abhishekpai.co.uk`)
       middlewares:
         - https-redirect
-    jellyfin-https:
+    traefik-https:
       entryPoints:
         - https
-      service: jellyfin
-      rule: Host(`jellyfin.abhishekpai.co.uk`)
+      service: api@internal
+      rule: Host(`traefik.abhishekpai.co.uk`)
       middlewares:
         - authelia-auth
+        - traefik-sslheaders
       tls:
         certResolver: cloudflare
         domains:
@@ -23,8 +24,8 @@ http:
           - main: abhishekpai.com
             sans:
               - "*.abhishekpai.com"
-  services:
-    jellyfin:
-      loadBalancer:
-        servers:
-          - url: "http://192.168.1.2:8096"
+  middlewares:
+    traefik-sslheaders:
+      headers:
+        customrequestheders:
+          X-Forwarded-Proto: https

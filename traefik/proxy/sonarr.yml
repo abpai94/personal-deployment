@@ -12,6 +12,8 @@ http:
         - https
       service: sonarr
       rule: Host(`sonarr.abhishekpai.co.uk`)
+      middlewares:
+        - authelia-auth
       tls:
         certResolver: cloudflare
         domains:

@@ -30,7 +30,6 @@ entryPoints:
             sans: 
              - "*.abhishekpai.com"
 
-
 providers:
   docker:
     watch: true

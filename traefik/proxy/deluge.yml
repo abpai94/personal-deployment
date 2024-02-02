@@ -3,7 +3,7 @@ http:
     deluge:
       entryPoints:
         - http
-      service: sonarr
+      service: deluge
       rule: Host(`deluge.abhishekpai.co.uk`)
       middlewares:
         - https-redirect
@@ -12,6 +12,8 @@ http:
         - https
       service: deluge
       rule: Host(`deluge.abhishekpai.co.uk`)
+      middlewares:
+        - authelia-auth
       tls:
         certResolver: cloudflare
         domains:
