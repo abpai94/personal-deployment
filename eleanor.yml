@@ -7,28 +7,28 @@
     - name: Common Configuration
       when: clean is defined
       ansible.builtin.include_tasks:
-        file: linux/playbook.yml
+        file: linux/main.yml
     - name: Rock-pi SATA HAT configuration
       when: clean is defined
       ansible.builtin.include_tasks:
-        file: rockpi-sata/playbook.yml
+        file: rockpi-sata/main.yml
     - name: RAID configuration
       when: clean is defined
       ansible.builtin.include_tasks:
-        file: raid/playbook.yml
+        file: raid/main.yml
     - name: Mount Configuration
       when: clean is defined
       ansible.builtin.include_tasks:
-        file: mount/playbook.yml
+        file: mount/main.yml
     - name: Setup Docker
       ansible.builtin.include_tasks:
-        file: docker/setup/playbook.yml
+        file: docker/setup/main.yml
     - name: Docker deployment
       ansible.builtin.include_tasks:
-        file: docker/deploy/playbook.yml
+        file: docker/deploy/main.yml
       with_items:
         - "{{ services }}"
     - name: GCloud & GSUtil Configuration
       when: clean is defined
       ansible.builtin.include_tasks:
-        file: gcloud/playbook.yml
+        file: gcloud/main.yml

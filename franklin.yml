@@ -7,16 +7,16 @@
     - name: Common Configuration
       when: clean is defined
       ansible.builtin.include_tasks:
-        file: linux/playbook.yml
+        file: linux/main.yml
     - name: Mount Configuration
       when: clean is defined
       ansible.builtin.include_tasks:
-        file: mount/playbook.yml
+        file: mount/main.yml
     - name: Docker Configuration
       ansible.builtin.include_tasks:
-        file: docker/setup/playbook.yml
+        file: docker/setup/main.yml
     - name: Docker deployment
       ansible.builtin.include_tasks:
-        file: docker/deploy/playbook.yml
+        file: docker/deploy/main.yml
       with_items:
         - "{{ services }}"
