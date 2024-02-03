@@ -8,27 +8,27 @@ all:
           container: traefik
           config: true
           traefik: true
-        - image: portainer/portainer-ce
-          container: portainer
-          traefik: true
-        - image: pihole/pihole
-          container: pihole
+        - image: authelia/authelia
+          container: authelia
+          config: true
           traefik: true
         - image: ghcr.io/wg-easy/wg-easy
           container: wireguard
           traefik: true
-        - image: lscr.io/linuxserver/ddclient
-          container: ddclient
-          config: true
+        - image: pihole/pihole
+          container: pihole
+          traefik: true
         - image: vaultwarden/server
           container: vaultwarden
           traefik: true
+        - image: portainer/portainer-ce
+          container: portainer
+          traefik: true
+        - image: lscr.io/linuxserver/ddclient
+          container: ddclient
+          config: true
         - image: ghcr.io/gethomepage/homepage
           container: homepage
-          config: true
-          traefik: true
-        - image: authelia/authelia
-          container: authelia
           config: true
           traefik: true
     eleanor:
