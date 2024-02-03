@@ -1,0 +1,9 @@
+- name: Authelia Secrets
+  ansible.builtin.template:
+    src: "{{ file }}"
+    dest: /home/pi/docker_config/authelia/config/{{ file }}
+  loop:
+    - configuration.yml
+    - users.yml
+  loop_control:
+    loop_var: file

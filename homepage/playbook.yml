@@ -1,0 +1,12 @@
+- name: Copy homepage configuration
+  ansible.builtin.template:
+    src: "{{ file }}"
+    dest: /home/pi/docker_config/homepage/config/{{ file }}
+  loop:
+    - settings.yaml
+    - services.yaml
+    - widgets.yaml
+    - docker.yaml
+    - bookmarks.yaml
+  loop_control:
+    loop_var: file
