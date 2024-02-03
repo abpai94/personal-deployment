@@ -1,5 +1,5 @@
 - name: Install requires binaries
-  ansible.builtin.apt:
+  apt:
     name:
       - apt-transport-https
       - ca-certificates
@@ -7,26 +7,26 @@
       - curl
       - sudo
 - name: Adding GCloud Sources
-  ansible.builtin.shell: "echo \"deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main\" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list"
+  shell: "echo \"deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main\" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list"
 - name: Adding GPG public key
-  ansible.builtin.shell: "curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -"
+  shell: "curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -"
 - name: Install GCloud CLI
-  ansible.builtin.apt:
+  apt:
     update_cache: true
     name:
       - google-cloud-cli
 - name: Copy authentication key
-  ansible.builtin.template:
+  template:
     src: personal-deployment-384310-f294638f8965.json
     dest: /home/pi/
 - name: Authenticate GCloud Instance
-  ansible.builtin.shell: "gcloud auth activate-service-account franklin@personal-deployment-384310.iam.gserviceaccount.com --key-file=/home/pi/personal-deployment-384310-f294638f8965.json --project=personal-deployment-384310"
+  shell: "gcloud auth activate-service-account franklin@personal-deployment-384310.iam.gserviceaccount.com --key-file=/home/pi/personal-deployment-384310-f294638f8965.json --project=personal-deployment-384310"
 - name: Delete authentication key
-  ansible.builtin.file:
+  file:
     path: /home/pi/personal-deployment-384310-f294638f8965.json
     state: absent
 - name: GCloud Bucket Backup to add additional files
-  ansible.builtin.cron:
+  cron:
     name: GCloud Bucket Backup {{ item }}
     minute: 0
     hour: 2
@@ -40,7 +40,7 @@
     - md0/programs
     - md0/zips
 - name: GCloud Bucket Backup to duplicate local
-  ansible.builtin.cron:
+  cron:
     name: GCloud Bucket Backup {{ item }}
     minute: 0
     hour: 1

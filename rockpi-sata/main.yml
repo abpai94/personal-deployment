@@ -1,38 +1,38 @@
 - name: NFS Server Installation
-  ansible.builtin.apt:
+  apt:
     name: nfs-kernel-server
     update_cache: true
 - name: NFS exports
-  ansible.builtin.blockinfile:
+  blockinfile:
     path: /etc/exports
     block: |
       /media/md0      *(rw,sync,no_subtree_check)
       /media/md1      *(rw,sync,no_subtree_check)
 - name: Export NFS Server
-  ansible.builtin.shell:
+  shell:
     cmd: exportfs -a
 - name: Download rockpi-sata binaries
-  ansible.builtin.get_url:
+  get_url:
     url: "https://rock.sh/get-rockpi-sata"
     dest: /home/pi/rockpi.sh
     mode: 0755
     owner: pi
     group: pi
 - name: Copy custom fan script
-  ansible.builtin.copy:
+  copy:
     src: fan.py
     dest: /bin/rockpi-sata/
     mode: 0755
     owner: pi
     group: pi
 - name: Copy custom rockpi-sata configuration
-  ansible.builtin.copy:
+  copy:
     src: rockpi-sata.conf
     dest: /etc/
     mode: 0644
     owner: pi
     group: pi
 - name: Restart rockpi-sata.service
-  ansible.builtin.systemd:
+  systemd:
     name: rockpi-sata.service
     state: restarted    

@@ -1,42 +1,38 @@
 - name: Adding hostnames
-  ansible.builtin.blockinfile:
+  blockinfile:
     path: /etc/hosts
     block: |
       192.168.1.1     franklin
       192.168.1.2     eleanor
-- name: Update Raspbian
-  ansible.builtin.apt:
-    update_cache: true
-    upgrade: full
 - name: Update and Upgrade Cron job
-  ansible.builtin.cron:
+  cron:
     name: Update and Upgrade OS
     minute: 0
     hour: 2
     job: sudo apt update && sudo apt upgrade -y && sudo apt autoremove
 - name: RAID md0 directory
-  ansible.builtin.file:
+  file:
     path: /media/md0
     state: directory
     mode: 0755
     owner: pi
     group: pi
 - name: RAID md1 directory
-  ansible.builtin.file:
+  file:
     path: /media/md1
     state: directory
     mode: 0755
     owner: pi
     group: pi
 - name: Symbolic links for md0
-  ansible.builtin.file:
+  file:
     src: /media/md0
     dest: /mnt/md0
     state: link
     owner: pi
     group: pi
 - name: Symbolic links for md1
-  ansible.builtin.file:
+  file:
     src: /media/md1
     dest: /mnt/md1
     state: link

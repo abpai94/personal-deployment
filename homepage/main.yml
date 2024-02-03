@@ -1,5 +1,5 @@
 - name: Copy homepage configuration
-  ansible.builtin.template:
+  template:
     src: "{{ file }}"
     dest: /home/pi/docker_config/homepage/config/{{ file }}
   loop:

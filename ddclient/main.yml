@@ -1,11 +1,11 @@
 - name: Create ddclient secret directory
-  ansible.builtin.file:
+  file:
     path: /root/.secrets/ddclient
     state: directory
     mode: 0700
     owner: root
     group: root
 - name: Copy DDClient configuration
-  ansible.builtin.template:
+  template:
     src: ddclient.conf
     dest: ~/.secrets/ddclient/ddclient.conf

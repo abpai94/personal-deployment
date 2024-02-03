@@ -1,11 +1,11 @@
 - name: Pull latest {{ item.image }}
   when: pull is true
-  ansible.builtin.command:
+  command:
     cmd: sudo docker pull {{ item.image }}:latest
 - name: Copy original config {{ item.container }}
-  when: clean is defined
+  when: clean is true
   become: false
-  ansible.builtin.copy:
+  copy:
     src: /mnt/md0/docker_config/{{ item.container }}/
     dest: /home/pi/docker_config/{{ item.container }}/
     mode: 0755
@@ -15,33 +15,33 @@
   loop: "{{ containers }}"
 - name: Copy {{ item.container }} configuration
   when: item.config is defined
-  ansible.builtin.include_tasks:
+  include_tasks:
     file: "{{ item.container }}/main.yml"
 - name: Copy {{ item.container }} docker files
-  ansible.builtin.template:
+  template:
     src: "{{ item.container }}/docker-compose.yml"
     dest: /home/pi/docker-compose.yml
 - name: Stop {{ item.container }} container
-  ansible.builtin.command:
+  command:
     cmd: sudo docker stop {{ item.container }}
 - name: Remove {{ item.container }} container
-  ansible.builtin.command:
+  command:
     cmd: sudo docker rm {{ item.container }}
 - name: Start {{ item.container }} container
-  ansible.builtin.command:
+  command:
     cmd: docker-compose -f /home/pi/docker-compose.yml up -d
 - name: Copy {{ item.container }} traefik configuration
   when: item.traefik is defined
-  ansible.builtin.include_tasks:
+  include_tasks:
     file: traefik/deploy/main.yml
 - name: Crontab {{ item.container }} backup
-  ansible.builtin.cron:
+  cron:
     name: "Docker configuration backup {{ item.container }}"
     minute: "0"
     hour: "2"
     user: root
     job: "sudo -u pi rsync -a --delete-after /home/pi/docker_config/{{ item.container }} /mnt/md0/docker_config/"
 - name: Delete {{ item.container }} docker compose file
-  ansible.builtin.file:
+  file:
     path: /home/pi/docker-compose.yml
     state: absent

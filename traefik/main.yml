@@ -1,10 +1,10 @@
 - name: Create folders
-  when: clean is defined
-  ansible.builtin.file:
+  when: clean is true
+  file:
     path: /home/pi/docker_config/traefik/config/proxy
     state: directory
 - name: Copy traefik configuration file
-  ansible.builtin.template:
+  template:
     src: "{{ file }}"
     dest: /home/pi/docker_config/traefik/config/{{ file }}
   loop:

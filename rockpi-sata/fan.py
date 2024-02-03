@@ -40,7 +40,7 @@ def read_temp(cache={}):
             w1_slave = 'not exist'
         cache['w1_slave'] = w1_slave
 
-    if w1_slave == 'not exist':
+    if w1_slave  is  'not exist':
         t1 = 42
     else:
         with open(w1_slave) as f:

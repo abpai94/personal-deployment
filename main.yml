@@ -1,0 +1,39 @@
+---
+- name: Personal Deployment
+  hosts: all
+  remote_user: pi
+  become: true
+  tasks:
+    - name: Update Raspbian
+      when: update is true
+      apt:
+        update_cache: true
+        upgrade: full
+    - name: Common configuration
+      when: clean is true
+      include_tasks:
+        file: linux/main.yml
+    - name: Rock-pi SATA HAT configuration
+      when: clean is true and inventory_hostname == 'eleanor'
+      include_tasks:
+        file: rockpi-sata/main.yml
+    - name: RAID configuration
+      when: clean is true and inventory_hostname == 'eleanor'
+      include_tasks:
+        file: raid/main.yml
+    - name: Mount configuration
+      when: clean is true
+      include_tasks:
+        file: mount/main.yml
+    - name: Setup docker
+      include_tasks:
+        file: docker/setup/main.yml
+    - name: Docker deployment
+      include_tasks:
+        file: docker/deploy/main.yml
+      with_items:
+        - "{{ services }}"
+    - name: GCloud & GSUtil configuration
+      when: clean is true and inventory_hostname == 'eleanor'
+      include_tasks:
+        file: gcloud/main.yml

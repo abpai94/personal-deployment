@@ -1,5 +1,5 @@
 - name: Install NFS Client
-  ansible.builtin.apt:
+  apt:
     name:
       - nfs-common
 - name: NFS Mount md0 RAID from Eleanor

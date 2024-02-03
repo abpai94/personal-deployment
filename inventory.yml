@@ -2,6 +2,8 @@ all:
   hosts:
     franklin:
       ansible_host: 192.168.1.1
+      clean: false
+      update: true
       pull: true
       services:
         - image: traefik
@@ -33,6 +35,8 @@ all:
           traefik: true
     eleanor:
       ansible_host: 192.168.1.2
+      clean: false
+      update: false
       pull: true
       services:
         - image: lscr.io/linuxserver/deluge
