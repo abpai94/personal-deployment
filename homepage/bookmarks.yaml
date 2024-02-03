@@ -10,7 +10,7 @@
 
 - Network:
     - Cloudflare:
-        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/cloudflare.png
+        - icon: si-cloudflare-#F38020
           href: https://dash.cloudflare.com/
 
 - Backup:
@@ -18,7 +18,7 @@
         - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/google-cloud-platform.png
           href: https://console.cloud.google.com/
 
-- Vault:
-    - Bitwarden:
-        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/bitwarden.png
-          href: https://vault.bitwarden.com/#/vault
+- CVE:
+    - openCVE:
+        - icon: mdi-bug
+          href: https://www.opencve.io/
