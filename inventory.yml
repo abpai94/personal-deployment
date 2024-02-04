@@ -6,6 +6,9 @@ all:
       update: false
       prune: false
       pull: true
+      delete: true
+      stop: true
+      skip: false
       services:
         - image: traefik
           container: traefik
@@ -40,6 +43,9 @@ all:
       update: false
       prune: false
       pull: true
+      delete: true
+      stop: true
+      skip: false
       services:
         - image: lscr.io/linuxserver/deluge
           container: deluge

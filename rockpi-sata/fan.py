@@ -84,4 +84,3 @@ def running():
     get_dc(cache)
     while True:
         fanspeed(cache)
-        

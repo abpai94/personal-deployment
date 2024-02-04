@@ -29,6 +29,7 @@
       include_tasks:
         file: docker/setup/main.yml
     - name: Docker deployment
+      when: skip is false
       include_tasks:
         file: docker/deploy/main.yml
       with_items:

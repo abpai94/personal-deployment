@@ -5,9 +5,13 @@ services:
     image: onlyoffice/documentserver:latest
     container_name: onlyoffice
     volumes:
-      - /home/pi/docker_config/onlyoffice/logs/:/var/log/onlyoffice
-      - /home/pi/docker_config/onlyoffice/data/:/var/www/onlyoffice
-      - /home/pi/docker_config/onlyoffice/config/:/etc/onlyoffice
+      - /home/pi/docker_config/onlyoffice/logs:/var/log/onlyoffice
+      - /home/pi/docker_config/onlyoffice/data:/var/www/onlyoffice/Data
+      - /home/pi/docker_config/onlyoffice/rabbitmq:/var/lib/rabbitmq
+      - /home/pi/docker_config/onlyoffice/redis:/var/lib/redis
+      - /home/pi/docker_config/onlyoffice/onlyoffice:/var/lib/onlyoffice
+      - /home/pi/docker_config/onlyoffice/postgresql:/var/lib/postgresql
+      - /home/pi/docker_config/onlyoffice/truetype:/usr/share/fonts/truetype/custom
     ports:
-      - 8080:80
+      - 83:80
     restart: unless-stopped
