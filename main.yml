@@ -33,6 +33,9 @@
         file: docker/deploy/main.yml
       with_items:
         - "{{ services }}"
+    - name: Docker pruning
+      when: prune is true
+      command: sudo docker system prune -a
     - name: GCloud & GSUtil configuration
       when: clean is true and inventory_hostname == 'eleanor'
       include_tasks:

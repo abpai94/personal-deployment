@@ -4,12 +4,6 @@
     block: |
       192.168.1.1     franklin
       192.168.1.2     eleanor
-- name: Update and Upgrade Cron job
-  cron:
-    name: Update and Upgrade OS
-    minute: 0
-    hour: 2
-    job: sudo apt update && sudo apt upgrade -y && sudo apt autoremove
 - name: RAID md0 directory
   file:
     path: /media/md0
