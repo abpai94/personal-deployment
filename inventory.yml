@@ -8,7 +8,7 @@ all:
       pull: true
       delete: true
       stop: true
-      skip: false
+      skip: true
       services:
         - image: traefik
           container: traefik
