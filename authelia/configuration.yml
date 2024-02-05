@@ -14,8 +14,6 @@ access_control:
       policy: one_factor
     - domain: 'wireguard.abhishekpai.co.uk'
       policy: one_factor
-    - domain: 'portainer.abhishekpai.co.uk'
-      policy: one_factor
     - domain: 'traefik.abhishekpai.co.uk'
       policy: one_factor
     - domain: 'prowlarr.abhishekpai.co.uk'

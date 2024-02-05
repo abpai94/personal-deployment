@@ -2,7 +2,7 @@ users:
   abpai94:
     disabled: false
     displayname: "Abhishek Pai"
-    password: "$argon2id$v=19$m=65536,t=3,p=4$Vcs2l20Dy0OrLlC98xVGgQ$WKCngio3JidmjI7aIv25JbQRsNn+3TR/61jmr3dS7Mc"
+    password: "{{ autheliad_user_abhishek_password }}"
     email: abpai94@gmail.com
     groups:
       - admins
