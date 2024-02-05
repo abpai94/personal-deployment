@@ -1,0 +1,25 @@
+http:
+  routers:
+    personal-website:
+      entryPoints:
+        - http
+      service: personal-website
+      rule: Host(`www.abhishekpai.co.uk`) || Host (`abhishekpai.co.uk`)
+      middlewares:
+        - https-redirect
+    personal-website-https:
+      entryPoints:
+        - https
+      service: personal-website
+      rule: Host(`www.abhishekpai.co.uk`) || Host (`abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+  services:
+    personal-website:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.1:84"

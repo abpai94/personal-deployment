@@ -1,0 +1,9 @@
+---
+version: "3.3"
+services:
+  personal-website:
+    image: abpai94/personal-website:latest
+    container_name: personal-website
+    ports:
+      - 84:80
+    restart: unless-stopped
