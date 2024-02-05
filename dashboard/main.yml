@@ -1,7 +1,7 @@
-- name: Copy homepage configuration
+- name: Copy dashboard configuration
   template:
     src: "{{ file }}"
-    dest: /home/pi/docker_config/homepage/{{ file }}
+    dest: /home/pi/docker_config/dashboard/{{ file }}
   loop:
     - settings.yaml
     - services.yaml

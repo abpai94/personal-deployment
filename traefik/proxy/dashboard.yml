@@ -1,19 +1,17 @@
 http:
   routers:
-    homepage:
+    dashboard:
       entryPoints:
         - http
-      service: homepage
-      rule: Host(`homepage.abhishekpai.co.uk`)
+      service: dashboard
+      rule: Host(`dashboard.abhishekpai.co.uk`)
       middlewares:
         - https-redirect
-    homepage-https:
+    dashboard-https:
       entryPoints:
         - https
-      service: homepage
-      rule: Host(`homepage.abhishekpai.co.uk`)
-      middlewares:
-        - authelia-auth
+      service: dashboard
+      rule: Host(`dashboard.abhishekpai.co.uk`)
       tls:
         certResolver: cloudflare
         domains:
@@ -21,7 +19,7 @@ http:
             sans:
               - "*.abhishekpai.co.uk"
   services:
-    homepage:
+    dashboard:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.2:3000"
+          - url: "http://192.168.1.1:3000"

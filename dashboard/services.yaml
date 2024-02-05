@@ -1,0 +1,50 @@
+- Services:
+  - PiHole:
+      href: https://pihole.abhishekpai.co.uk/admin
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pi-hole.png
+      target: _self
+      widget:
+        type: pihole
+        url: http://192.168.1.1:80
+        key: {{ pihole_api_key }}
+  - Traefik:
+      href: https://traefik.abhishekpai.co.uk
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/traefik.png
+      target: _self
+      widget:
+        type: traefik
+        url: http://192.168.1.1:8080
+  - Portainer Franklin:
+      href: https://portainer.abhishekpai.co.uk/#!/2/docker/dashboard
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/portainer.png
+      target: _self
+      widget:
+        type: portainer
+        url: https://192.168.1.1:9443
+        env: 2
+        key: {{ portainer_dashboard_api }}
+  - Portainer Eleanor:
+      href: https://portainer.abhishekpai.co.uk/#!/7/docker/dashboard
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/portainer.png
+      target: _self
+      widget:
+        type: portainer
+        url: https://192.168.1.1:9443
+        env: 7
+        key: {{ portainer_dashboard_api }}
+  - Wireguard:
+      href: https://wireguard.abhishekpai.co.uk
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png
+      target: _self
+  - Jellyfin:
+      href: https://jellyfin.abhishekpai.co.uk
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellyfin.png
+      target: _self
+  - Nextcloud:
+      href: https://cloud.abhishekpai.co.uk
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png
+      target: _self
+  - Bitwarden:
+      href: https://vault.abhishekpai.co.uk
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vaultwarden.png
+      target: _self

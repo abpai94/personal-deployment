@@ -16,5 +16,6 @@
     - proxy/radarr.yml
     - proxy/sonarr.yml
     - proxy/nextcloud.yml
+    - proxy/homepage.yml
   loop_control:
     loop_var: file

@@ -4,11 +4,12 @@ all:
       ansible_host: 192.168.1.1
       clean: false
       update: false
+      skip: true
+      gcp: false
       prune: false
       pull: true
       delete: true
       stop: true
-      skip: true
       services:
         - image: traefik
           container: traefik
@@ -33,22 +34,23 @@ all:
         - image: lscr.io/linuxserver/ddclient
           container: ddclient
           config: true
-        - image: ghcr.io/gethomepage/homepage
-          container: homepage
-          config: true
-          traefik: true
         - image: abpai94/personal-website
           container: personal-website
+          traefik: true
+        - image: ghcr.io/gethomepage/homepage
+          container: dashboard
+          config: true
           traefik: true
     eleanor:
       ansible_host: 192.168.1.2
       clean: false
       update: false
+      skip: true
+      gcp: false
       prune: false
       pull: true
       delete: true
       stop: true
-      skip: true
       services:
         - image: lscr.io/linuxserver/deluge
           container: deluge
@@ -62,3 +64,6 @@ all:
           container: sonarr
         - image: lscr.io/linuxserver/nextcloud
           container: nextcloud
+        - image: ghcr.io/gethomepage/homepage
+          container: homepage
+          config: true

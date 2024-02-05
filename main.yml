@@ -38,6 +38,6 @@
       when: prune is true
       command: sudo docker system prune -a
     - name: GCloud & GSUtil configuration
-      when: inventory_hostname == 'eleanor'
+      when: gcp is true
       include_tasks:
         file: gcloud/main.yml

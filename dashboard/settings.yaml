@@ -1,0 +1,11 @@
+title: Pai Cloud
+headerStyle: boxed
+theme: dark
+color: gray
+layout:
+  Services:
+    style: row
+    columns: 4
+  Downloaders:
+    style: row
+    columns: 4

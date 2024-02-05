@@ -1,0 +1,29 @@
+- Social:
+    - LinkedIn:
+        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/linkedin.png
+          href: https://www.linkedin.com/in/abpai94
+          target: _self
+
+- Developer:
+    - Github:
+        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/github.png
+          href: https://github.com/abpai94
+          target: _self
+
+- Network:
+    - Cloudflare:
+        - icon: si-cloudflare-#F38020
+          href: https://dash.cloudflare.com
+          target: _self
+
+- Backup:
+    - GCP:
+        - icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/google-cloud-platform.png
+          href: https://console.cloud.google.com
+          target: _self
+
+- CVE:
+    - openCVE:
+        - icon: mdi-bug
+          href: https://www.opencve.io
+          target: _self

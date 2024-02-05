@@ -13,6 +13,13 @@
     group: pi
     remote_src: true
   loop: "{{ containers }}"
+- name: Create {{ item.container }} configuration directory
+  file:
+    path: /home/pi/docker_config/{{ item.container }}
+    state: directory
+    mode: 0700
+    owner: root
+    group: root
 - name: Copy {{ item.container }} configuration
   when: item.config is defined
   include_tasks:
