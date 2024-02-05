@@ -1,4 +1,4 @@
-- name: Install requires binaries
+- name: Install required binaries
   apt:
     name:
       - apt-transport-https
@@ -17,13 +17,13 @@
       - google-cloud-cli
 - name: Copy authentication key
   template:
-    src: personal-deployment-384310-f294638f8965.json
+    src: personal-deployment.json
     dest: /home/pi/
 - name: Authenticate GCloud Instance
-  shell: "gcloud auth activate-service-account franklin@personal-deployment-384310.iam.gserviceaccount.com --key-file=/home/pi/personal-deployment-384310-f294638f8965.json --project=personal-deployment-384310"
+  shell: "gcloud auth activate-service-account franklin@personal-deployment-384310.iam.gserviceaccount.com --key-file=/home/pi/personal-deployment.json --project=personal-deployment-384310"
 - name: Delete authentication key
   file:
-    path: /home/pi/personal-deployment-384310-f294638f8965.json
+    path: /home/pi/personal-deployment.json
     state: absent
 - name: GCloud Bucket Backup to add additional files
   cron:
