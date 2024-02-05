@@ -2,6 +2,7 @@
   - PiHole:
       href: https://pihole.abhishekpai.co.uk/admin
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pi-hole.png
+      target: _self
       widget:
         type: pihole
         url: http://192.168.1.1:80
@@ -9,12 +10,14 @@
   - Traefik:
       href: https://traefik.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/traefik.png
+      target: _self
       widget:
         type: traefik
         url: http://192.168.1.1:8080
   - Portainer Franklin:
       href: https://portainer.abhishekpai.co.uk/#!/2/docker/dashboard
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/portainer.png
+      target: _self
       widget:
         type: portainer
         url: https://192.168.1.1:9443
@@ -23,6 +26,7 @@
   - Portainer Eleanor:
       href: https://portainer.abhishekpai.co.uk/#!/7/docker/dashboard
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/portainer.png
+      target: _self
       widget:
         type: portainer
         url: https://192.168.1.1:9443
@@ -31,19 +35,24 @@
   - Wireguard:
       href: https://wireguard.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png
+      target: _self
   - Jellyfin:
       href: https://jellyfin.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellyfin.png
+      target: _self
   - Nextcloud:
       href: https://cloud.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png
+      target: _self
   - Bitwarden:
       href: https://vault.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vaultwarden.png
+      target: _self
 - Downloaders:
   - Prowlarr:
       href: https://prowlarr.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/prowlarr.png
+      target: _self
       widget:
         type: prowlarr
         url: http://192.168.1.2:9696
@@ -51,6 +60,7 @@
   - Sonarr:
       href: https://sonarr.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/sonarr.png
+      target: _self
       widget:
         type: sonarr
         url: http://192.168.1.2:8989
@@ -58,6 +68,7 @@
   - Radarr:
       href: https://radarr.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/radarr.png
+      target: _self
       widget:
         type: radarr
         url: http://192.168.1.2:7878
@@ -65,6 +76,7 @@
   - Deluge:
       href: https://deluge.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/deluge.png
+      target: _self
       widget:
         type: deluge
         url: http://192.168.1.2:8112
