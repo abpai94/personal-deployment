@@ -2,14 +2,19 @@ all:
   hosts:
     franklin:
       ansible_host: 192.168.1.1
-      clean: false
       update: false
-      skip: true
+      linux: false
+      rockpi: false
+      raid: false
+      mount: false
       gcp: false
-      prune: false
-      pull: true
-      delete: true
-      stop: true
+      docker:
+        setup: false
+        deploy: false
+        prune: false
+        pull: false
+        delete: false
+        stop: false
       services:
         - image: traefik
           container: traefik
@@ -43,14 +48,19 @@ all:
           traefik: true
     eleanor:
       ansible_host: 192.168.1.2
-      clean: false
       update: false
-      skip: true
+      linux: false
+      rockpi: false
+      raid: false
+      mount: false
       gcp: false
-      prune: false
-      pull: true
-      delete: true
-      stop: true
+      docker:
+        setup: false
+        deploy: false
+        prune: false
+        pull: false
+        delete: false
+        stop: false
       services:
         - image: lscr.io/linuxserver/deluge
           container: deluge

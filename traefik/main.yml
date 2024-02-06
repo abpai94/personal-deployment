@@ -1,5 +1,4 @@
 - name: Create folders
-  when: clean is true
   file:
     path: /home/pi/docker_config/traefik/config/proxy
     state: directory

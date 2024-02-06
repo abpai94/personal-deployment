@@ -1,5 +1,4 @@
 - name: Download docker script
-  when: clean is true
   get_url:
     url: https://get.docker.com
     dest: /home/pi/installDocker.sh
@@ -7,32 +6,28 @@
     owner: pi
     group: pi
 - name: Execute docker script
-  when: clean is true
   command:
     cmd: bash /home/pi/installDocker.sh
 - name: Delete docker installation script
-  when: clean is true
   file:
     path: /home/pi/installDocker.sh
     state: absent
 - name: Install docker Compose
-  when: clean is true
   apt:
     name: docker-compose
 - name: Added dockerd remote access configuration
-  when: update is true and inventory_hostname == 'eleanor'
+  when: inventory_hostname == 'eleanor'
   replace:
     path: /etc/systemd/system/multi-user.target.wants/docker.service
     regexp: ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
     replace: ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock -H tcp://192.168.1.2:2375
 - name: Restart docker systemd service
-  when: update is true and inventory_hostname == 'eleanor'
+  when: inventory_hostname == 'eleanor'
   systemd_service:
     name: docker
     state: restarted
     daemon_reload: true
 - name: Create docker_config folder
-  when: clean is true
   file:
     path: /home/pi/docker_config
     state: directory
