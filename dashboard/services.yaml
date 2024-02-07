@@ -48,3 +48,36 @@
       href: https://vault.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vaultwarden.png
       target: _self
+- Downloaders:
+  - Prowlarr:
+      href: https://prowlarr.abhishekpai.co.uk
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/prowlarr.png
+      target: _self
+      widget:
+        type: prowlarr
+        url: http://192.168.1.2:9696
+        key: {{ prowlarr_api_key }}
+  - Sonarr:
+      href: https://sonarr.abhishekpai.co.uk
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/sonarr.png
+      target: _self
+      widget:
+        type: sonarr
+        url: http://192.168.1.2:8989
+        key: {{ sonarr_api_key }}
+  - Radarr:
+      href: https://radarr.abhishekpai.co.uk
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/radarr.png
+      target: _self
+      widget:
+        type: radarr
+        url: http://192.168.1.2:7878
+        key: {{ radarr_api_key }}
+  - Deluge:
+      href: https://deluge.abhishekpai.co.uk
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/deluge.png
+      target: _self
+      widget:
+        type: deluge
+        url: http://192.168.1.2:8112
+        password: ""

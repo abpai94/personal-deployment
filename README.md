@@ -2,7 +2,7 @@
 This repository tracks the journey of deploying services on my raspberry pi's named Franklin and Eleanor. I use Ansible to configure each of them and deploy docker containers in order to self-host services that I wish to use for my personal use. 
 
 ## Franklin
-* Homepage (https://dashboard.abhishekpai.co.uk)
+* Dashboard (https://dashboard.abhishekpai.co.uk)
 * Pi-Hole (https://pihole.abhishekpai.co.uk/admin)
 * Wireguard (https://wireguard.abhishekpai.co.uk)
 * Traefik (https://traefik.abhishekpai.co.uk)

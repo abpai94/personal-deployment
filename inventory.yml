@@ -74,6 +74,3 @@ all:
           container: sonarr
         - image: lscr.io/linuxserver/nextcloud
           container: nextcloud
-        - image: ghcr.io/gethomepage/homepage
-          container: homepage
-          config: true
