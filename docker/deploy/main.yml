@@ -9,8 +9,8 @@
     src: /mnt/md0/docker_config/{{ item.container }}/
     dest: /home/pi/docker_config/{{ item.container }}/
     mode: 0755
-    owner: pi
-    group: pi
+    owner: '{{ owner }}'
+    group: '{{ group }}'
     remote_src: true
   loop: "{{ containers }}"
 - name: Create {{ item.container }} configuration directory

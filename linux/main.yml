@@ -9,26 +9,26 @@
     path: /media/md0
     state: directory
     mode: 0755
-    owner: pi
-    group: pi
+    owner: '{{ owner }}'
+    group: '{{ group }}'
 - name: RAID md1 directory
   file:
     path: /media/md1
     state: directory
     mode: 0755
-    owner: pi
-    group: pi
+    owner: '{{ owner }}'
+    group: '{{ group }}'
 - name: Symbolic links for md0
   file:
     src: /media/md0
     dest: /mnt/md0
     state: link
-    owner: pi
-    group: pi
+    owner: '{{ owner }}'
+    group: '{{ group }}'
 - name: Symbolic links for md1
   file:
     src: /media/md1
     dest: /mnt/md1
     state: link
-    owner: pi
-    group: pi
+    owner: '{{ owner }}'
+    group: '{{ group }}'

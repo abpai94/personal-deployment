@@ -3,8 +3,8 @@
     url: https://get.docker.com
     dest: /home/pi/installDocker.sh
     mode: 0755
-    owner: pi
-    group: pi
+    owner: '{{ owner }}'
+    group: '{{ group }}'
 - name: Execute docker script
   command:
     cmd: bash /home/pi/installDocker.sh
@@ -32,5 +32,5 @@
     path: /home/pi/docker_config
     state: directory
     mode: 0755
-    owner: pi
-    group: pi
+    owner: '{{ owner }}'
+    group: '{{ group }}'

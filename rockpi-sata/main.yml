@@ -16,22 +16,22 @@
     url: "https://rock.sh/get-rockpi-sata"
     dest: /home/pi/rockpi.sh
     mode: 0755
-    owner: pi
-    group: pi
+    owner: '{{ owner }}'
+    group: '{{ group }}'
 - name: Copy custom fan script
   copy:
     src: fan.py
     dest: /bin/rockpi-sata/
     mode: 0755
-    owner: pi
-    group: pi
+    owner: '{{ owner }}'
+    group: '{{ group }}'
 - name: Copy custom rockpi-sata configuration
   copy:
     src: rockpi-sata.conf
     dest: /etc/
     mode: 0644
-    owner: pi
-    group: pi
+    owner: '{{ owner }}'
+    group: '{{ group }}'
 - name: Restart rockpi-sata.service
   systemd:
     name: rockpi-sata.service
