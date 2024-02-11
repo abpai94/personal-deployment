@@ -1,20 +1,24 @@
 - name: Download docker script
   get_url:
     url: https://get.docker.com
-    dest: /home/pi/installDocker.sh
+    dest: '{{ home_directory }}/installDocker.sh'
     mode: 0755
     owner: '{{ owner }}'
     group: '{{ group }}'
 - name: Execute docker script
   command:
-    cmd: bash /home/pi/installDocker.sh
+    cmd: bash '{{ home_directory }}/installDocker.sh'
 - name: Delete docker installation script
   file:
-    path: /home/pi/installDocker.sh
+    path: '{{ home_directory }}/installDocker.sh'
     state: absent
 - name: Install docker Compose
   apt:
     name: docker-compose
+- name: Docker login
+  ignore_errors: true
+  command:
+    cmd: 'sudo docker login -u abpai94 --password {{ docker_token }}'
 - name: Added dockerd remote access configuration
   when: inventory_hostname == 'eleanor'
   replace:
@@ -29,7 +33,7 @@
     daemon_reload: true
 - name: Create docker_config folder
   file:
-    path: /home/pi/docker_config
+    path: '{{ home_directory }}/docker_config'
     state: directory
     mode: 0755
     owner: '{{ owner }}'

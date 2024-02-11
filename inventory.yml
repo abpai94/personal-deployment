@@ -1,7 +1,9 @@
 all:
   hosts:
     franklin:
-      ansible_host: 192.168.1.1
+      ansible_host: franklin.local
+      remote_user: pi
+      home_directory: /home/pi
       owner: pi
       group: pi
       update: false
@@ -12,6 +14,7 @@ all:
       gcp: false
       docker:
         setup: false
+        old_config: false
         deploy: false
         prune: false
         pull: false
@@ -49,7 +52,9 @@ all:
           config: true
           traefik: true
     eleanor:
-      ansible_host: 192.168.1.2
+      ansible_host: eleanor.local
+      remote_user: pi
+      home_directory: /home/pi
       owner: pi
       group: pi
       update: false
@@ -60,6 +65,91 @@ all:
       gcp: false
       docker:
         setup: false
+        old_config: false
+        deploy: false
+        prune: false
+        pull: false
+        delete: false
+        stop: false
+      services:
+        - image: lscr.io/linuxserver/deluge
+          container: deluge
+        - image: lscr.io/linuxserver/jellyfin
+          container: jellyfin
+        - image: lscr.io/linuxserver/prowlarr
+          container: prowlarr
+        - image: lscr.io/linuxserver/radarr
+          container: radarr
+        - image: lscr.io/linuxserver/sonarr
+          container: sonarr
+        - image: lscr.io/linuxserver/nextcloud
+          container: nextcloud
+    vagrant_franklin:
+      ansible_host: franklin
+      remote_user: vagrant
+      home_directory: /home/vagrant
+      owner: vagrant
+      group: vagrant
+      update: false
+      linux: false
+      rockpi: false
+      raid: false
+      mount: false
+      gcp: false
+      docker:
+        setup: false
+        old_config: false
+        deploy: false
+        prune: false
+        pull: false
+        delete: false
+        stop: false
+      services:
+        - image: traefik
+          container: traefik
+          config: true
+          traefik: true
+        - image: authelia/authelia
+          container: authelia
+          config: true
+          traefik: true
+        - image: ghcr.io/wg-easy/wg-easy
+          container: wireguard
+          traefik: true
+        - image: pihole/pihole
+          container: pihole
+          traefik: true
+        - image: vaultwarden/server
+          container: vaultwarden
+          traefik: true
+        - image: portainer/portainer-ce
+          container: portainer
+          traefik: true
+        - image: lscr.io/linuxserver/ddclient
+          container: ddclient
+          config: true
+        - image: abpai94/personal-website
+          container: personal-website
+          traefik: true
+        - image: ghcr.io/gethomepage/homepage
+          container: dashboard
+          config: true
+          traefik: true
+    vagrant_eleanor:
+      ansible_host: eleanor
+      remote_user: vagrant
+      home_directory: /home/vagrant
+      owner: vagrant
+      group: vagrant
+      update: false
+      linux: false
+      rockpi: false
+      raid: false
+      mount: false
+      gcp: false
+      docker:
+        setup: false
+        old_config: false
         deploy: false
         prune: false
         pull: false

@@ -1,21 +1,20 @@
 - name: Pull latest {{ item.image }}
   when: docker.pull is true
   command:
-    cmd: sudo docker pull {{ item.image }}:latest
+    cmd: sudo docker pull {{ item.image }}
 - name: Copy original config {{ item.container }}
-  when: docker.setup is true
+  when: docker.old_config is true
   become: false
   copy:
     src: /mnt/md0/docker_config/{{ item.container }}/
-    dest: /home/pi/docker_config/{{ item.container }}/
+    dest: '{{ home_directory }}/docker_config/{{ item.container }}/'
     mode: 0755
     owner: '{{ owner }}'
     group: '{{ group }}'
     remote_src: true
-  loop: "{{ containers }}"
 - name: Create {{ item.container }} configuration directory
   file:
-    path: /home/pi/docker_config/{{ item.container }}
+    path: '{{ home_directory }}/docker_config/{{ item.container }}'
     state: directory
     mode: 0700
     owner: root
@@ -23,11 +22,11 @@
 - name: Copy {{ item.container }} configuration
   when: item.config is defined
   include_tasks:
-    file: "{{ item.container }}/main.yml"
+    file: '{{ item.container }}/main.yml'
 - name: Copy {{ item.container }} docker files
   template:
-    src: "{{ item.container }}/docker-compose.yml"
-    dest: /home/pi/docker-compose.yml
+    src: '{{ item.container }}/docker-compose.yml'
+    dest: '{{ home_directory }}/docker-compose.yml'
 - name: Stop {{ item.container }} container
   when: docker.stop is true
   command:
@@ -38,19 +37,19 @@
     cmd: sudo docker rm {{ item.container }}
 - name: Start {{ item.container }} container
   command:
-    cmd: docker-compose -f /home/pi/docker-compose.yml up -d
+    cmd: 'docker-compose -f {{ home_directory }}/docker-compose.yml up -d'
 - name: Copy {{ item.container }} traefik configuration
   when: item.traefik is defined
   include_tasks:
     file: traefik/deploy/main.yml
 - name: Crontab {{ item.container }} backup
   cron:
-    name: "Docker configuration backup {{ item.container }}"
-    minute: "0"
-    hour: "2"
+    name: 'Docker configuration backup {{ item.container }}'
+    minute: '0'
+    hour: '2'
     user: root
-    job: "sudo -u pi rsync -a --delete-after /home/pi/docker_config/{{ item.container }} /mnt/md0/docker_config/"
+    job: 'sudo -u pi rsync -a --delete-after {{ home_directory }}/docker_config/{{ item.container }} /mnt/md0/docker_config/'
 - name: Delete {{ item.container }} docker compose file
   file:
-    path: /home/pi/docker-compose.yml
+    path: '{{ home_directory }}/docker-compose.yml'
     state: absent

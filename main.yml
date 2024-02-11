@@ -1,7 +1,7 @@
 ---
 - name: Personal Deployment
   hosts: all
-  remote_user: '{{ user }}'
+  remote_user: '{{ remote_user }}'
   become: true
   tasks:
     - name: Update Raspbian

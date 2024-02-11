@@ -1,7 +1,11 @@
+- name: Create authelia configuration folders
+  file:
+    path: '{{ home_directory }}/docker_config/authelia/config'
+    state: directory
 - name: Authelia Secrets
   template:
     src: "{{ file }}"
-    dest: /home/pi/docker_config/authelia/config/{{ file }}
+    dest: '{{ home_directory }}/docker_config/authelia/config/{{ file }}'
   loop:
     - configuration.yml
     - users.yml

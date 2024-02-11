@@ -10,7 +10,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - /home/pi/docker_config/dashboard/:/app/config
+      - '{{ home_directory }}/docker_config/dashboard/:/app/config'
       - /media/md0:/mnt/md0:ro
       - /media/md1:/mnt/md1:ro
     restart: unless-stopped

@@ -18,12 +18,12 @@
 - name: Copy authentication key
   template:
     src: personal-deployment.json
-    dest: /home/pi/
+    dest: '{{ home_directory }}'
 - name: Authenticate GCloud Instance
-  shell: "gcloud auth activate-service-account franklin@personal-deployment-384310.iam.gserviceaccount.com --key-file=/home/pi/personal-deployment.json --project=personal-deployment-384310"
+  shell: "gcloud auth activate-service-account franklin@personal-deployment-384310.iam.gserviceaccount.com --key-file={{ home_directory }}/personal-deployment.json --project=personal-deployment-384310"
 - name: Delete authentication key
   file:
-    path: /home/pi/personal-deployment.json
+    path: '{{ home_directory }}/personal-deployment.json'
     state: absent
 - name: GCloud Bucket Backup to add additional files
   cron:

@@ -1,7 +1,7 @@
 - name: Copy traefik configuration file for {{ item.container }}
   template:
     src: "../../traefik/proxy/{{ item.container }}.yml"
-    dest: /home/pi/docker_config/traefik/config/proxy/{{ item.container }}.yml
+    dest: '{{ home_directory }}/docker_config/traefik/config/proxy/{{ item.container }}.yml'
 - name: Connect traefik network to {{ item.container }}
   ignore_errors: true
   when: inventory_hostname == 'franklin'

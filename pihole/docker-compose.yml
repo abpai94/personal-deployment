@@ -4,17 +4,16 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    network_mode: host
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - "67:67/udp"
-      - "80:80/tcp"
+      - "81:80/tcp"
     environment:
       TZ: 'Europe/Paris'
     volumes:
-      - '/home/pi/docker_config/pihole/etc-pihole:/etc/pihole'
-      - '/home/pi/docker_config/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
+      - '{{ home_directory }}/docker_config/pihole/etc-pihole:/etc/pihole'
+      - '{{ home_directory }}/docker_config/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
     cap_add:
       - NET_ADMIN
     restart: unless-stopped

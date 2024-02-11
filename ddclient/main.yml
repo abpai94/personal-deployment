@@ -1,4 +1,11 @@
-- name: Create ddclient secret directory
+- name: Create ddclient secrets directory
+  file:
+    path: /root/.secrets/
+    state: directory
+    mode: 0700
+    owner: root
+    group: root
+- name: Create ddclient configuration directory
   file:
     path: /root/.secrets/ddclient
     state: directory

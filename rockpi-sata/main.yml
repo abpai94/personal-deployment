@@ -14,7 +14,7 @@
 - name: Download rockpi-sata binaries
   get_url:
     url: "https://rock.sh/get-rockpi-sata"
-    dest: /home/pi/rockpi.sh
+    dest: '{{ home_directory }}/rockpi.sh'
     mode: 0755
     owner: '{{ owner }}'
     group: '{{ group }}'

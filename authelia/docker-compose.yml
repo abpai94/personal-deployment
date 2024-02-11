@@ -8,4 +8,4 @@ services:
     ports:
       - 9091:9091
     volumes:
-      - /home/pi/docker_config/authelia/config:/config
+      - '{{ home_directory }}/docker_config/authelia/config:/config'

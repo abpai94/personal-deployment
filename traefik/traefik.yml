@@ -19,7 +19,7 @@ serversTransport:
 
 entryPoints:
   http:
-    address: :81
+    address: :80
   https:
     address: :443
     http:

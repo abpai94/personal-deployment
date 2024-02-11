@@ -9,7 +9,7 @@ services:
       - WG_DEFAULT_DNS=192.168.1.1
       - WG_DEFAULT_ADDRESS=10.252.1.x
     volumes:
-      - /home/pi/docker_config/wireguard/:/etc/wireguard/
+      - '{{ home_directory }}/docker_config/wireguard/:/etc/wireguard/'
     ports:
       - "51820:51820/udp"
       - "51821:51821/tcp"

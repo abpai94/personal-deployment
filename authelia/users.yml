@@ -2,7 +2,7 @@ users:
   abpai94:
     disabled: false
     displayname: "Abhishek Pai"
-    password: "{{ autheliad_user_abhishek_password }}"
+    password: "{{ authelia_user_abhishek_password }}"
     email: abpai94@gmail.com
     groups:
       - admins
