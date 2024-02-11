@@ -10,6 +10,7 @@ This repository tracks the journey of deploying services on my raspberry pi's na
 * Portainer (https://portainer.abhishekpai.co.uk)
 * Vaultwarden (https://vault.abhishekpai.co.uk)
 * Authelia (https://auth.abhishekpai.co.uk)
+* Personal Website (https://www.abhishekpai.co.uk)
 
 ## Eleanor
 * RAID 0
