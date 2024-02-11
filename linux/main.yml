@@ -32,3 +32,12 @@
     state: link
     owner: '{{ owner }}'
     group: '{{ group }}'
+- name: Adding deny veth interfaces to DHCPCD config
+  blockinfile:
+    path: /etc/dhcpcd.conf
+    block: |
+      denyinterfaces veth*
+- name: Restart DHCPCD systemd service
+  systemd_service:
+    name: dhcpcd
+    state: restarted
