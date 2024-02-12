@@ -32,20 +32,27 @@
     hour: 2
     weekday: 1
     user: root
-    job: gsutil -m rsync -P -r /media/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/
+    job: gsutil -m rsync -P -r /media/{{ item.key }}/{{ item.value }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/{{ item.value }}
   loop:
-    - md0/personal
-    - md0/family
-    - md0/india_wedding
-    - md0/programs
-    - md0/zips
+    - key: 'md0'
+      value: 'personal'
+    - key: 'md0'
+      value: 'family'
+    - key: 'md0'
+      value: 'india_wedding'
+    - key: 'md0'
+      value: 'programs'
+    - key: 'md0'
+      value: 'zips'
 - name: GCloud Bucket Backup to duplicate local
   cron:
     name: GCloud Bucket Backup {{ item }}
     minute: 0
     hour: 1
     user: root
-    job: gsutil -m rsync -P -d -r /media/{{ item }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/
+    job: gsutil -m rsync -P -d -r /media/{{ item.key }}/{{ item.value}} gs://4dae3233-7420-457c-b25f-5f11d4580da5/{{ item.value}}
   loop:
-    - md1/cloud
-    - md0/docker_config
+    - key: 'md1'
+      value: 'cloud'
+    - key: 'md0'
+      value: 'docker_config'
