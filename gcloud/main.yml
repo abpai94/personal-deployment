@@ -29,7 +29,7 @@
   cron:
     name: GCloud Bucket Backup {{ item }}
     minute: 0
-    hour: 2
+    hour: 3
     weekday: 1
     user: root
     job: gsutil -m rsync -P -r /media/{{ item.key }}/{{ item.value }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/{{ item.value }}
@@ -48,7 +48,7 @@
   cron:
     name: GCloud Bucket Backup {{ item }}
     minute: 0
-    hour: 1
+    hour: 3
     user: root
     job: gsutil -m rsync -P -d -r /media/{{ item.key }}/{{ item.value}} gs://4dae3233-7420-457c-b25f-5f11d4580da5/{{ item.value}}
   loop:
