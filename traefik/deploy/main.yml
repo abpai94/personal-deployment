@@ -2,8 +2,3 @@
   template:
     src: "../../traefik/proxy/{{ item.container }}.yml"
     dest: '{{ home_directory }}/docker_config/traefik/config/proxy/{{ item.container }}.yml'
-- name: Connect traefik network to {{ item.container }}
-  ignore_errors: true
-  when: inventory_hostname == 'franklin'
-  command:
-    cmd: sudo docker network connect {{ item.container }}_default traefik
