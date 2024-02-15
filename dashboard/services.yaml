@@ -13,7 +13,7 @@
       target: _self
       widget:
         type: traefik
-        url: http://192.168.1.1:8000
+        url: http://192.168.1.1:8080
   - Portainer Franklin:
       href: https://portainer.abhishekpai.co.uk/#!/2/docker/dashboard
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/portainer.png
