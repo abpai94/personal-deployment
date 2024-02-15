@@ -2,10 +2,13 @@
 version: "3.3"
 services:
   traefik:
-    image: traefik:latest
     container_name: traefik
+    image: traefik:latest
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.4
     ports:
-      - 80:80
+      - 81:80
       - 443:443
       - 8080:8080
     environment:
@@ -16,3 +19,7 @@ services:
       - '{{ home_directory }}/docker_config/traefik/config/:/etc/traefik/'
       - '{{ home_directory }}/docker_config/traefik/log/:/var/log/traefik/'
     restart: unless-stopped
+
+networks:
+  proxy:
+    external: true

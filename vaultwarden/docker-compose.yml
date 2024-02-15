@@ -4,6 +4,9 @@ services:
   vaultwarden:
     container_name: vaultwarden
     image: vaultwarden/server:latest
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.8
     ports:
       - 82:80
     volumes:
@@ -11,3 +14,7 @@ services:
     environment:
       - ADMIN_TOKEN={{ vaultwarden_admin_password }}
     restart: unless-stopped
+
+networks:
+  proxy:
+    external: true

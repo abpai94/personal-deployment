@@ -4,8 +4,15 @@ services:
   authelia:
     container_name: authelia
     image: authelia/authelia:latest
-    restart: unless-stopped
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.6
     ports:
       - 9091:9091
     volumes:
       - '{{ home_directory }}/docker_config/authelia/config:/config'
+    restart: unless-stopped
+
+networks:
+  proxy:
+    external: true

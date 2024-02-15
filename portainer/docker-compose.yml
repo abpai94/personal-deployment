@@ -4,6 +4,9 @@ services:
   portainer:
     container_name: portainer
     image: portainer/portainer-ce:latest
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.7
     ports:
       - 9000:9000
       - 9443:9443
@@ -11,3 +14,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - '{{ home_directory }}/docker_config/portainer:/data'
     restart: unless-stopped
+
+networks:
+  proxy:
+    external: true

@@ -4,9 +4,12 @@ services:
   wireguard:
     container_name: wireguard
     image: ghcr.io/wg-easy/wg-easy:latest
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.3
     environment:
       - WG_HOST=abhishekpai.co.uk
-      - WG_DEFAULT_DNS=172.24.0.2
+      - WG_DEFAULT_DNS=192.168.1.1
       - WG_DEFAULT_ADDRESS=10.252.1.x
     volumes:
       - '{{ home_directory }}/docker_config/wireguard/:/etc/wireguard/'
@@ -20,3 +23,7 @@ services:
     sysctls:
       - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
+
+networks:
+  proxy:
+    external: true

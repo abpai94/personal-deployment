@@ -2,8 +2,11 @@
 version: "3.3"
 services:
   dashboard:
-    image: ghcr.io/gethomepage/homepage:latest
     container_name: dashboard
+    image: ghcr.io/gethomepage/homepage:latest
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.10
     environment:
       PUID: 1000
       PGID: 1000
@@ -14,3 +17,7 @@ services:
       - /media/md0:/mnt/md0:ro
       - /media/md1:/mnt/md1:ro
     restart: unless-stopped
+
+networks:
+  proxy:
+    external: true
