@@ -9,6 +9,10 @@
       apt:
         update_cache: true
         upgrade: full
+    - name: Unbound configuration
+      when: unbound is true
+      include_tasks:
+        file: unbound/main.yml
     - name: Linux configuration
       when: linux is true
       include_tasks:
