@@ -16,34 +16,34 @@ all:
       docker:
         setup: false
         old_config: false
-        deploy: true
+        deploy: false
         prune: false
         pull: false
         delete: false
         stop: false
       services:
-        # - image: pihole/pihole
-        #   container: pihole
-        #   config: true
-        #   traefik: true
-        # - image: ghcr.io/wg-easy/wg-easy
-        #   container: wireguard
-        #   traefik: true
-        #   config: true
+        - image: pihole/pihole
+          container: pihole
+          config: true
+          traefik: true
+        - image: ghcr.io/wg-easy/wg-easy
+          container: wireguard
+          traefik: true
+          config: true
         - image: traefik
           container: traefik
           config: true
           traefik: true
-        # - image: lscr.io/linuxserver/ddclient
-        #   container: ddclient
-        #   config: true
-        # - image: authelia/authelia
-        #   container: authelia
-        #   config: true
-        #   traefik: true
-        # - image: portainer/portainer-ce
-        #   container: portainer
-        #   traefik: true
+        - image: lscr.io/linuxserver/ddclient
+          container: ddclient
+          config: true
+        - image: authelia/authelia
+          container: authelia
+          config: true
+          traefik: true
+        - image: portainer/portainer-ce
+          container: portainer
+          traefik: true
         - image: vaultwarden/server
           container: vaultwarden
           config: true
@@ -51,10 +51,10 @@ all:
         - image: abpai94/personal-website
           container: personal-website
           traefik: true
-        # - image: ghcr.io/gethomepage/homepage
-        #   container: dashboard
-        #   config: true
-        #   traefik: true
+        - image: ghcr.io/gethomepage/homepage
+          container: dashboard
+          config: true
+          traefik: true
     eleanor:
       ansible_host: eleanor.local
       remote_user: pi
