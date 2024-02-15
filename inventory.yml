@@ -15,7 +15,7 @@ all:
       docker:
         setup: false
         old_config: false
-        deploy: false
+        deploy: true
         prune: false
         pull: false
         delete: false
@@ -45,6 +45,7 @@ all:
           traefik: true
         - image: vaultwarden/server
           container: vaultwarden
+          config: true
           traefik: true
         - image: abpai94/personal-website
           container: personal-website
