@@ -21,29 +21,31 @@ all:
         delete: false
         stop: false
       services:
-        - image: traefik
-          container: traefik
-          config: true
-          traefik: true
-        - image: authelia/authelia
-          container: authelia
+        - image: pihole/pihole
+          container: pihole
           config: true
           traefik: true
         - image: ghcr.io/wg-easy/wg-easy
           container: wireguard
           traefik: true
-        - image: pihole/pihole
-          container: pihole
-          traefik: true
-        - image: vaultwarden/server
-          container: vaultwarden
-          traefik: true
-        - image: portainer/portainer-ce
-          container: portainer
+          config: true
+        - image: traefik
+          container: traefik
+          config: true
           traefik: true
         - image: lscr.io/linuxserver/ddclient
           container: ddclient
           config: true
+        - image: authelia/authelia
+          container: authelia
+          config: true
+          traefik: true
+        - image: portainer/portainer-ce
+          container: portainer
+          traefik: true
+        - image: vaultwarden/server
+          container: vaultwarden
+          traefik: true
         - image: abpai94/personal-website
           container: personal-website
           traefik: true

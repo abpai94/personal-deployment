@@ -1,0 +1,19 @@
+- name: Create pihole configuration directory
+  file:
+    path: '{{ home_directory }}/docker_config/pihole'
+    state: directory
+    mode: 0700
+    owner: root
+    group: root
+- name: Copy pihole backup script
+  template:
+    mode: 0700
+    src: 'backup.sh'
+    dest: '{{ home_directory }}/docker_config/pihole/'
+- name: Crontab pihole backup
+  cron:
+    name: 'Pihole backup script'
+    minute: '0'
+    hour: '2'
+    user: root
+    job: '{{ home_directory }}/docker_config/pihole/backup.sh'

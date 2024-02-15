@@ -12,14 +12,7 @@
     owner: '{{ owner }}'
     group: '{{ group }}'
     remote_src: true
-- name: Create {{ item.container }} configuration directory
-  file:
-    path: '{{ home_directory }}/docker_config/{{ item.container }}'
-    state: directory
-    mode: 0700
-    owner: root
-    group: root
-- name: Copy {{ item.container }} configuration
+- name: Setup {{ item.container }} configuration
   when: item.config is defined
   include_tasks:
     file: '{{ item.container }}/main.yml'
@@ -42,13 +35,6 @@
   when: item.traefik is defined
   include_tasks:
     file: traefik/deploy/main.yml
-- name: Crontab {{ item.container }} backup
-  cron:
-    name: 'Docker configuration backup {{ item.container }}'
-    minute: '0'
-    hour: '2'
-    user: root
-    job: 'sudo -u pi rsync -a --delete-after {{ home_directory }}/docker_config/{{ item.container }} /mnt/md0/docker_config/'
 - name: Delete {{ item.container }} docker compose file
   file:
     path: '{{ home_directory }}/docker-compose.yml'
