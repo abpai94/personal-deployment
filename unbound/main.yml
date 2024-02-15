@@ -12,6 +12,12 @@
     - forward-records.conf
   loop_control:
     loop_var: file
+- name: Create log file
+  file:
+    path: '/var/log/unbound.log'
+    owner: unbound
+    group: unbound
+    state: touch
 - name: Restart unbound service
   when: inventory_hostname == 'franklin'
   systemd_service:
