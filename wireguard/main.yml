@@ -1,7 +1,12 @@
-- name: Crontab wireguard backup
+- name: Copy Wireguard backup script
+  template:
+    mode: 0700
+    src: 'backup.sh'
+    dest: '{{ home_directory }}/docker_config/wireguard_backup.sh'
+- name: Crontab Wireguard backup
   cron:
-    name: 'Wireguard configuration backup'
+    name: 'Wireguard backup script'
     minute: '0'
     hour: '2'
     user: root
-    job: 'sudo -u pi rsync -a --delete-after {{ home_directory }}/docker_config/{{ item.container }} /mnt/md0/docker_config/'
+    job: '{{ home_directory }}/docker_config/./wireguard_backup.sh'

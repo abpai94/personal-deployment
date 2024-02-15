@@ -9,11 +9,11 @@
   template:
     mode: 0700
     src: 'backup.sh'
-    dest: '{{ home_directory }}/docker_config/pihole/'
+    dest: '{{ home_directory }}/docker_config/pihole_backup.sh'
 - name: Crontab pihole backup
   cron:
     name: 'Pihole backup script'
     minute: '0'
     hour: '2'
     user: root
-    job: '{{ home_directory }}/docker_config/pihole/backup.sh'
+    job: '{{ home_directory }}/docker_config/./pihole_backup.sh'
