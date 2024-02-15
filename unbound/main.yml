@@ -1,0 +1,19 @@
+- name: Install unbound
+  apt:
+    name: unbound
+    state: present
+- name: Copy unbound configuration
+  template:
+    src: '{{ file }}'
+    dest: '/etc/unbound/{{ file }}'
+  loop:
+    - unbound.conf
+    - a-records.conf
+    - forward-records.conf
+  loop_control:
+    loop_var: file
+- name: Restart unbound service
+  when: inventory_hostname == 'franklin'
+  systemd_service:
+    name: unbound
+    state: restarted
