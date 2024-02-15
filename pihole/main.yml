@@ -3,8 +3,6 @@
     path: '{{ home_directory }}/docker_config/pihole'
     state: directory
     mode: 0700
-    owner: root
-    group: root
 - name: Copy pihole backup script
   template:
     mode: 0700
@@ -17,3 +15,10 @@
     hour: '2'
     user: root
     job: '{{ home_directory }}/docker_config/./pihole_backup.sh'
+- name: Copy pihole static dhcp
+  template:
+    mode: 0644
+    owner: root
+    group: root
+    src: '04-pihole-static-dhcp.conf'
+    dest: '{{ home_directory }}/docker_config/pihole/etc-dnsmasq.d/04-pihole-static-dhcp.conf'
