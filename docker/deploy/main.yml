@@ -12,6 +12,13 @@
     owner: '{{ owner }}'
     group: '{{ group }}'
     remote_src: true
+- name: Create {{ item.container }} configuration directory
+  file:
+    path: '{{ home_directory }}/docker_config/{{ item.container }}'
+    state: directory
+    mode: 0700
+    owner: root
+    group: root
 - name: Setup {{ item.container }} configuration
   when: item.config is defined
   include_tasks:
