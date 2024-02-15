@@ -8,7 +8,7 @@ services:
       proxy:
         ipv4_address: 172.24.0.9
     ports:
-      - 84:80
+      - 82:80
     restart: unless-stopped
 
 networks:

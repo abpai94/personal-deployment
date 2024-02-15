@@ -8,7 +8,7 @@ services:
       proxy:
         ipv4_address: 172.24.0.8
     ports:
-      - 82:80
+      - 81:80
     volumes:
       - '{{ home_directory }}/docker_config/vaultwarden:/data'
     environment:

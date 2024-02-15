@@ -8,17 +8,17 @@ Vagrant.configure('2') do | config |
     franklin.vm.network 'forwarded_port', guest: 51820, host: 51820, protocol: 'udp'  # wireguard_vpn
     franklin.vm.network 'forwarded_port', guest: 51821, host: 51821, protocol: 'tcp'  # wireguard_ui
     franklin.vm.network 'forwarded_port', guest: 9091, host: 9091                     # authelia
-    franklin.vm.network 'forwarded_port', guest: 80, host: 80                         # traefik_http
+    franklin.vm.network 'forwarded_port', guest: 8080, host: 8080                     # traefik_http
     franklin.vm.network 'forwarded_port', guest: 443, host: 443                       # traefik_https
-    franklin.vm.network 'forwarded_port', guest: 8080, host: 8080                     # traefik_dashboard
+    franklin.vm.network 'forwarded_port', guest: 8000, host: 8000                     # traefik_dashboard
     franklin.vm.network 'forwarded_port', guest: 3000, host: 3000                     # dashboard
     franklin.vm.network 'forwarded_port', guest: 9000, host: 9000                     # portainer
-    franklin.vm.network 'forwarded_port', guest: 81, host: 80                         # pihole_ui
+    franklin.vm.network 'forwarded_port', guest: 80, host: 80                         # pihole_ui
     franklin.vm.network 'forwarded_port', guest: 53, host: 53, protocol: 'udp'        # pihole_dns_udp
     franklin.vm.network 'forwarded_port', guest: 53, host: 53, protocol: 'tcp'        # pihole_dns_tcp
     franklin.vm.network 'forwarded_port', guest: 67, host: 67                         # pihole_dhcp
-    franklin.vm.network 'forwarded_port', guest: 82, host: 80                         # vaultwarden
-    franklin.vm.network 'forwarded_port', guest: 84, host: 80                         # personal-website
+    franklin.vm.network 'forwarded_port', guest: 81, host: 80                         # vaultwarden
+    franklin.vm.network 'forwarded_port', guest: 82, host: 80                         # personal-website
   end
   config.vm.provider "virtualbox" do | eleanorvm |
     eleanorvm.cpus = 8
