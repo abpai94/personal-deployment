@@ -14,6 +14,7 @@ http:
       rule: Host(`pihole.abhishekpai.co.uk`)
       middlewares:
         - authelia-auth
+        - redirect-to-admin
       tls:
         certResolver: cloudflare
         domains:
@@ -25,3 +26,8 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.1.1:80/admin"
+  middlewares:
+    redirect-to-admin:
+      redirectregex:
+        regex: ^https:\/\/([^\/]+)\/?$
+        replacement: https://${1}/admin/
