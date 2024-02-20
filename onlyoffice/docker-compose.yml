@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  nextcloud:
+    image: onlyoffice/documentserver:latest
+    container_name: onlyoffice
+    volumes:
+      - '{{ home_directory }}/docker_config/onlyoffice/logs:/var/log/onlyoffice'
+      - '{{ home_directory }}/docker_config/onlyoffice/data:/var/www/onlyoffice/Data'
+      - '{{ home_directory }}/docker_config/onlyoffice/rabbitmq:/var/lib/rabbitmq'
+      - '{{ home_directory }}/docker_config/onlyoffice/redis:/var/lib/redis'
+      - '{{ home_directory }}/docker_config/onlyoffice/onlyoffice:/var/lib/onlyoffice'
+      - '{{ home_directory }}/docker_config/onlyoffice/postgresql:/var/lib/postgresql'
+      - '{{ home_directory }}/docker_config/onlyoffice/truetype:/usr/share/fonts/truetype/custom'
+    ports:
+      - 83:80
+    restart: unless-stopped
