@@ -50,6 +50,7 @@ all:
           traefik: true
         - image: abpai94/personal-website
           container: personal-website
+          config: false
           traefik: true
         - image: ghcr.io/gethomepage/homepage
           container: dashboard
