@@ -56,6 +56,10 @@ all:
           container: dashboard
           config: true
           traefik: true
+        # - image: onlyoffice/documentserver
+        #   container: onlyoffice
+        #   config: true
+        #   traefik: true
     eleanor:
       ansible_host: eleanor.local
       remote_user: pi

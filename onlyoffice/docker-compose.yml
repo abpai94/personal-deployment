@@ -2,8 +2,11 @@
 version: "2.1"
 services:
   nextcloud:
-    image: onlyoffice/documentserver:latest
     container_name: onlyoffice
+    image: onlyoffice/documentserver:latest
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.11
     volumes:
       - '{{ home_directory }}/docker_config/onlyoffice/logs:/var/log/onlyoffice'
       - '{{ home_directory }}/docker_config/onlyoffice/data:/var/www/onlyoffice/Data'
@@ -15,3 +18,7 @@ services:
     ports:
       - 83:80
     restart: unless-stopped
+
+networks:
+  proxy:
+    external: true
