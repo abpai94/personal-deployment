@@ -19,7 +19,6 @@
     group: unbound
     state: touch
 - name: Restart unbound service
-  when: inventory_hostname == 'franklin'
   systemd_service:
     name: unbound
     state: restarted
