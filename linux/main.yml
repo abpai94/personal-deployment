@@ -2,42 +2,52 @@
   blockinfile:
     path: /etc/hosts
     block: |
-      192.168.1.1     franklin
-      192.168.1.2     eleanor
-- name: RAID md0 directory
+      192.168.1.1     turing
+      192.168.1.2     franklin
+- name: RAID directory
   file:
+    path: /media/eleanor
+    state: directory
+    mode: 0755
+    owner: '{{ owner }}'
+    group: '{{ group }}'
+- name: Symbolic links
+  file:
+    src: /media/eleanor
+    dest: /mnt/eleanor
+    state: link
+    owner: '{{ owner }}'
+    group: '{{ group }}'
+- name: Symbolic links for eleanor
+  file:
+    src: /media/eleanor
+    dest: /mnt/eleanor
+    state: link
+    owner: '{{ owner }}'
+    group: '{{ group }}'
+- name: Install NFS Client
+  apt:
+    name:
+      - nfs-common
+- name: NFS Mount md0 RAID from Eleanor
+  ansible.posix.mount:
+    src: eleanor:/media/md0
     path: /media/md0
-    state: directory
-    mode: 0755
-    owner: '{{ owner }}'
-    group: '{{ group }}'
-- name: RAID md1 directory
-  file:
+    state: mounted
+    fstype: nfs
+- name: NFS Mount md1 RAID from Eleanor
+  ansible.posix.mount:
+    src: eleanor:/media/md1
     path: /media/md1
-    state: directory
-    mode: 0755
-    owner: '{{ owner }}'
-    group: '{{ group }}'
-- name: Symbolic links for md0
-  file:
-    src: /media/md0
-    dest: /mnt/md0
-    state: link
-    owner: '{{ owner }}'
-    group: '{{ group }}'
-- name: Symbolic links for md1
-  file:
-    src: /media/md1
-    dest: /mnt/md1
-    state: link
-    owner: '{{ owner }}'
-    group: '{{ group }}'
-- name: Adding deny veth interfaces to DHCPCD config
-  blockinfile:
-    path: /etc/dhcpcd.conf
-    block: |
-      denyinterfaces veth*
-- name: Restart DHCPCD systemd service
-  systemd_service:
-    name: dhcpcd
-    state: restarted
+    state: mounted
+    fstype: nfs
+# MAYBE NEEDED IN THE FUTURE
+# - name: Adding deny veth interfaces to DHCPCD config
+#   blockinfile:
+#     path: /etc/dhcpcd.conf
+#     block: |
+#       denyinterfaces veth*
+# - name: Restart DHCPCD systemd service
+#   systemd_service:
+#     name: dhcpcd
+#     state: restarted
