@@ -1,9 +1,9 @@
 - name: Pull latest {{ item.image }}
-  when: docker.pull is true
+  when: podman.pull is true
   command:
     cmd: sudo docker pull {{ item.image }}
 - name: Copy original config {{ item.container }}
-  when: docker.old_config is true
+  when: podman.old_config is true
   become: false
   copy:
     src: /mnt/md0/docker_config/{{ item.container }}/
@@ -29,12 +29,12 @@
     dest: '{{ home_directory }}/docker-compose.yml'
 - name: Stop {{ item.container }} container
   ignore_errors: true
-  when: docker.stop is true
+  when: podman.stop is true
   command:
     cmd: sudo docker stop {{ item.container }}
 - name: Delete {{ item.container }} container
   ignore_errors: true
-  when: docker.delete is true
+  when: podman.delete is true
   command:
     cmd: sudo docker rm {{ item.container }}
 - name: Start {{ item.container }} container
