@@ -2,25 +2,21 @@ all:
   hosts:
     franklin:
       ansible_host: franklin.local
-      remote_user: pi
-      home_directory: /home/pi
-      owner: pi
-      group: pi
-      update: false
-      linux: false
-      unbound: false
-      rockpi: false
-      raid: false
-      mount: false
-      gcp: false
-      docker:
-        setup: false
-        old_config: false
-        deploy: false
-        prune: false
-        pull: false
-        delete: false
-        stop: false
+      remote_user: sysadmin
+      home_directory: /home/sysadmin
+      owner: sysadmin
+      group: sysadmin
+      update: true
+      unbound: true
+      linux: true
+      podman:
+        setup: true
+        old_config: true
+        deploy: true
+        prune: true
+        pull: true
+        delete: true
+        stop: true
       services:
         - image: pihole/pihole
           container: pihole
@@ -60,27 +56,6 @@ all:
         #   container: onlyoffice
         #   config: true
         #   traefik: true
-    eleanor:
-      ansible_host: eleanor.local
-      remote_user: pi
-      home_directory: /home/pi
-      owner: pi
-      group: pi
-      update: false
-      linux: false
-      rockpi: false
-      raid: false
-      mount: false
-      gcp: false
-      docker:
-        setup: false
-        old_config: false
-        deploy: false
-        prune: false
-        pull: false
-        delete: false
-        stop: false
-      services:
         - image: lscr.io/linuxserver/deluge
           container: deluge
         - image: lscr.io/linuxserver/jellyfin
@@ -99,20 +74,17 @@ all:
       home_directory: /home/vagrant
       owner: vagrant
       group: vagrant
-      update: false
-      linux: false
-      rockpi: false
-      raid: false
-      mount: false
-      gcp: false
-      docker:
-        setup: false
-        old_config: false
-        deploy: false
-        prune: false
-        pull: false
-        delete: false
-        stop: false
+      update: true
+      unbound: true
+      linux: true
+      podman:
+        setup: true
+        old_config: true
+        deploy: true
+        prune: true
+        pull: true
+        delete: true
+        stop: true
       services:
         - image: traefik
           container: traefik
@@ -144,27 +116,6 @@ all:
           container: dashboard
           config: true
           traefik: true
-    vagrant_eleanor:
-      ansible_host: eleanor
-      remote_user: vagrant
-      home_directory: /home/vagrant
-      owner: vagrant
-      group: vagrant
-      update: false
-      linux: false
-      rockpi: false
-      raid: false
-      mount: false
-      gcp: false
-      docker:
-        setup: false
-        old_config: false
-        deploy: false
-        prune: false
-        pull: false
-        delete: false
-        stop: false
-      services:
         - image: lscr.io/linuxserver/deluge
           container: deluge
         - image: lscr.io/linuxserver/jellyfin
