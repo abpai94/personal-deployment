@@ -20,3 +20,8 @@ This repository tracks the journey of deploying services on my raspberry pi's na
 * Sonarr (https://sonarr.abhishekpai.co.uk)
 * Prowlarr (https://prowlarr.abhishekpai.co.uk)
 * Nextcloud (https://cloud.abhishekpai.co.uk)
+
+## Setup
+* Configure a password for ansible vault in `~/.secrets/ansible-password` file or change the location in `ansible.cfg`
+* `main.yml` contains all the playbooks which will be executed
+* Execute playbooks with the following command: `ansible-playbook -i inventory.yml -i vault.yml main.yml`
