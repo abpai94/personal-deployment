@@ -1,15 +1,15 @@
 - name: Create folders
   file:
-    path: '{{ home_directory }}/docker_config/traefik/config'
+    path: '{{ config_directory }}/traefik/config'
     state: directory
 - name: Create folders
   file:
-    path: '{{ home_directory }}/docker_config/traefik/config/proxy'
+    path: '{{ config_directory }}/traefik/config/proxy'
     state: directory
 - name: Copy traefik configuration file
   template:
     src: '{{ file }}'
-    dest: '{{ home_directory }}/docker_config/traefik/config/{{ file }}'
+    dest: '{{ config_directory }}/traefik/config/{{ file }}'
   loop:
     - traefik.yml
     - proxy/common.yml

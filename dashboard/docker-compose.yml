@@ -13,7 +13,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - '{{ home_directory }}/docker_config/dashboard/:/app/config'
+      - '{{ config_directory }}/dashboard/:/app/config'
       - /media/md0:/mnt/md0:ro
       - /media/md1:/mnt/md1:ro
     restart: unless-stopped

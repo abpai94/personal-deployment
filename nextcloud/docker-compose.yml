@@ -9,7 +9,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - '{{ home_directory }}/docker_config/nextcloud/config/:/config'
+      - '{{ config_directory }}/nextcloud/config/:/config'
       - /mnt/md1/cloud/:/data
     ports:
       - 443:443

@@ -1,20 +1,10 @@
 - name: Pull latest {{ item.image }}
   when: podman.pull is true
   command:
-    cmd: sudo docker pull {{ item.image }}
-- name: Copy original config {{ item.container }}
-  when: podman.old_config is true
-  become: false
-  copy:
-    src: /mnt/md0/docker_config/{{ item.container }}/
-    dest: '{{ home_directory }}/docker_config/{{ item.container }}/'
-    mode: 0755
-    owner: '{{ owner }}'
-    group: '{{ group }}'
-    remote_src: true
+    cmd: podman pull {{ item.image }}
 - name: Create {{ item.container }} configuration directory
   file:
-    path: '{{ home_directory }}/docker_config/{{ item.container }}'
+    path: '{{ config_directory }}/{{ item.container }}'
     state: directory
     mode: 0700
     owner: root
@@ -26,26 +16,26 @@
 - name: Copy {{ item.container }} docker files
   template:
     src: '{{ item.container }}/docker-compose.yml'
-    dest: '{{ home_directory }}/docker-compose.yml'
+    dest: '{{ config_directory }}/docker-compose.yml'
 - name: Stop {{ item.container }} container
   ignore_errors: true
   when: podman.stop is true
   command:
-    cmd: sudo docker stop {{ item.container }}
+    cmd: podman stop {{ item.container }}
 - name: Delete {{ item.container }} container
   ignore_errors: true
   when: podman.delete is true
   command:
-    cmd: sudo docker rm {{ item.container }}
+    cmd: podman rm {{ item.container }}
 - name: Start {{ item.container }} container
   ignore_errors: true
   command:
-    cmd: 'docker-compose -f {{ home_directory }}/docker-compose.yml up -d'
+    cmd: 'podman-compose -f {{ config_directory }}/docker-compose.yml up -d'
 - name: Copy {{ item.container }} traefik configuration
   when: item.traefik is defined
   include_tasks:
     file: traefik/deploy/main.yml
 - name: Delete {{ item.container }} docker compose file
   file:
-    path: '{{ home_directory }}/docker-compose.yml'
+    path: '{{ config_directory }}/docker-compose.yml'
     state: absent

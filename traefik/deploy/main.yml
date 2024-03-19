@@ -1,4 +1,4 @@
 - name: Copy traefik configuration file for {{ item.container }}
   template:
     src: "../../traefik/proxy/{{ item.container }}.yml"
-    dest: '{{ home_directory }}/docker_config/traefik/config/proxy/{{ item.container }}.yml'
+    dest: '{{ config_directory }}/traefik/config/proxy/{{ item.container }}.yml'

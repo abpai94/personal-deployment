@@ -10,7 +10,7 @@ services:
     ports:
       - 81:80
     volumes:
-      - '{{ home_directory }}/docker_config/vaultwarden:/data'
+      - '{{ config_directory }}/vaultwarden:/data'
     environment:
       - ADMIN_TOKEN={{ vaultwarden_admin_password }}
     restart: unless-stopped

@@ -10,7 +10,7 @@ services:
       - TZ=Europe/Paris
       - JELLYFIN_PublishedServerUrl=https://jellyfin.abhishekpai.co.uk
     volumes:
-      - '{{ home_directory }}/docker_config/jellyfin/:/config'
+      - '{{ config_directory }}/jellyfin/:/config'
       - /mnt/md1/tv:/data/tvshows
       - /mnt/md1/movies:/data/movies
     devices:

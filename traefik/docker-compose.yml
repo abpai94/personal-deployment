@@ -16,8 +16,8 @@ services:
       - CF_API_KEY={{ cloudflare_global_api_key }}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - '{{ home_directory }}/docker_config/traefik/config/:/etc/traefik/'
-      - '{{ home_directory }}/docker_config/traefik/log/:/var/log/traefik/'
+      - '{{ config_directory }}/traefik/config/:/etc/traefik/'
+      - '{{ config_directory }}/traefik/log/:/var/log/traefik/'
     restart: unless-stopped
 
 networks:

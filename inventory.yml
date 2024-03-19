@@ -3,7 +3,7 @@ all:
     franklin:
       ansible_host: franklin.local
       remote_user: sysadmin
-      home_directory: /home/sysadmin
+      config_directory: /mnt/eleanor/docker_config/
       owner: sysadmin
       group: sysadmin
       update: true
@@ -18,33 +18,30 @@ all:
         delete: true
         stop: true
       services:
-        - image: pihole/pihole
+        - image: docker.io/pihole/pihole
           container: pihole
-          config: true
           traefik: true
         - image: ghcr.io/wg-easy/wg-easy
           container: wireguard
           traefik: true
-          config: true
-        - image: traefik
+        - image: docker.io/traefik
           container: traefik
           config: true
           traefik: true
         - image: lscr.io/linuxserver/ddclient
           container: ddclient
           config: true
-        - image: authelia/authelia
+        - image: docker.io/authelia/authelia
           container: authelia
           config: true
           traefik: true
-        - image: portainer/portainer-ce
+        - image: docker.io/portainer/portainer-ce
           container: portainer
           traefik: true
-        - image: vaultwarden/server
+        - image: docker.io/vaultwarden/server
           container: vaultwarden
-          config: true
           traefik: true
-        - image: abpai94/personal-website
+        - image: docker.io/abpai94/personal-website
           container: personal-website
           config: false
           traefik: true
@@ -52,7 +49,7 @@ all:
           container: dashboard
           config: true
           traefik: true
-        # - image: onlyoffice/documentserver
+        # - image: docker.io/onlyoffice/documentserver
         #   container: onlyoffice
         #   config: true
         #   traefik: true
@@ -71,7 +68,7 @@ all:
     vagrant_franklin:
       ansible_host: franklin
       remote_user: vagrant
-      home_directory: /home/vagrant
+      config_directory: /home/vagrant
       owner: vagrant
       group: vagrant
       update: true
@@ -86,36 +83,44 @@ all:
         delete: true
         stop: true
       services:
-        - image: traefik
-          container: traefik
-          config: true
-          traefik: true
-        - image: authelia/authelia
-          container: authelia
+        - image: docker.io/pihole/pihole
+          container: pihole
           config: true
           traefik: true
         - image: ghcr.io/wg-easy/wg-easy
           container: wireguard
           traefik: true
-        - image: pihole/pihole
-          container: pihole
-          traefik: true
-        - image: vaultwarden/server
-          container: vaultwarden
-          traefik: true
-        - image: portainer/portainer-ce
-          container: portainer
+          config: true
+        - image: docker.io/traefik
+          container: traefik
+          config: true
           traefik: true
         - image: lscr.io/linuxserver/ddclient
           container: ddclient
           config: true
-        - image: abpai94/personal-website
+        - image: docker.io/authelia/authelia
+          container: authelia
+          config: true
+          traefik: true
+        - image: docker.io/portainer/portainer-ce
+          container: portainer
+          traefik: true
+        - image: docker.io/vaultwarden/server
+          container: vaultwarden
+          config: true
+          traefik: true
+        - image: docker.io/abpai94/personal-website
           container: personal-website
+          config: false
           traefik: true
         - image: ghcr.io/gethomepage/homepage
           container: dashboard
           config: true
           traefik: true
+        # - image: docker.io/onlyoffice/documentserver
+        #   container: onlyoffice
+        #   config: true
+        #   traefik: true
         - image: lscr.io/linuxserver/deluge
           container: deluge
         - image: lscr.io/linuxserver/jellyfin

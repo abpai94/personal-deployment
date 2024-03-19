@@ -9,7 +9,7 @@ services:
       - PGID=1000
       - TZ=Europe/Paris
     volumes:
-      - '{{ home_directory }}/docker_config/radarr/:/config'
+      - '{{ config_directory }}/radarr/:/config'
       - /mnt/md1/movies:/movies
       - /mnt/md1/downloads/:/downloads
     ports:

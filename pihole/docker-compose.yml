@@ -13,8 +13,8 @@ services:
     environment:
       TZ: 'Europe/Paris'
     volumes:
-      - '{{ home_directory }}/docker_config/pihole/etc-pihole:/etc/pihole'
-      - '{{ home_directory }}/docker_config/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
+      - '{{ config_directory }}/pihole/etc-pihole:/etc/pihole'
+      - '{{ config_directory }}/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
