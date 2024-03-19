@@ -1,9 +1,15 @@
+- name: Update OS
+  when: update is true
+  apt:
+    update_cache: true
+    upgrade: full
 - name: Adding hostnames
   blockinfile:
     path: /etc/hosts
     block: |
-      192.168.1.1     turing
-      192.168.1.2     franklin
+      192.168.1.1     franklin
+      192.168.1.2     eleanor
+      192.168.1.3     turing
 - name: RAID directory
   file:
     path: /media/eleanor
@@ -18,27 +24,14 @@
     state: link
     owner: '{{ owner }}'
     group: '{{ group }}'
-- name: Symbolic links for eleanor
-  file:
-    src: /media/eleanor
-    dest: /mnt/eleanor
-    state: link
-    owner: '{{ owner }}'
-    group: '{{ group }}'
 - name: Install NFS Client
   apt:
     name:
       - nfs-common
 - name: NFS Mount md0 RAID from Eleanor
   ansible.posix.mount:
-    src: eleanor:/media/md0
-    path: /media/md0
-    state: mounted
-    fstype: nfs
-- name: NFS Mount md1 RAID from Eleanor
-  ansible.posix.mount:
-    src: eleanor:/media/md1
-    path: /media/md1
+    src: turing:/media/eleanor
+    path: /media/eleanor
     state: mounted
     fstype: nfs
 # MAYBE NEEDED IN THE FUTURE

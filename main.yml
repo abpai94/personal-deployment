@@ -4,23 +4,14 @@
   remote_user: '{{ remote_user }}'
   become: true
   tasks:
-    - name: Update OS
-      when: update is true
-      apt:
-        update_cache: true
-        upgrade: full
-    - name: Unbound configuration
-      when: unbound is true
-      include_tasks:
-        file: unbound/main.yml
     - name: Linux configuration
       when: linux is true
       include_tasks:
         file: linux/main.yml
-    - name: Mount configuration
-      when: mount is true
+    - name: Unbound configuration
+      when: unbound is true
       include_tasks:
-        file: mount/main.yml
+        file: unbound/main.yml
     - name: Setup Podman
       when: podman.setup is true
       include_tasks:
