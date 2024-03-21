@@ -22,6 +22,7 @@ This repository tracks the journey of deploying services on my raspberry pi's na
 * Nextcloud (https://cloud.abhishekpai.co.uk)
 
 ## Setup
+* Clone with `git clone --recursive git@github.com:abpai94/personal-deployment.git` to ensure personal-website(https://github.com/abpai94/personal-website) repo is cloned
 * Configure a password for ansible vault in `~/.secrets/ansible-password` file or change the location in `ansible.cfg`
 * `main.yml` contains all the playbooks which will be executed
 * Execute playbooks with the following command: `ansible-playbook -i inventory.yml -i vault.yml main.yml`
