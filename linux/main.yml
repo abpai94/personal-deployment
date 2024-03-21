@@ -1,5 +1,4 @@
 - name: Update OS
-  when: update is true
   apt:
     update_cache: true
     upgrade: full

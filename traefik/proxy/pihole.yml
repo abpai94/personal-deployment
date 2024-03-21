@@ -25,7 +25,7 @@ http:
     pihole:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.1:80/admin"
+          - url: "http://192.168.1.4:80/admin"
   middlewares:
     redirect-to-admin:
       redirectregex:

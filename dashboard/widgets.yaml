@@ -1,5 +1,5 @@
 - resources:
-    label: franklin
+    label: turing
     cpu: true
     memory: true
     cputemp: true

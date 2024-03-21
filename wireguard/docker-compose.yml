@@ -9,7 +9,7 @@ services:
         ipv4_address: 172.24.0.3
     environment:
       - WG_HOST=abhishekpai.co.uk
-      - WG_DEFAULT_DNS=192.168.1.1
+      - WG_DEFAULT_DNS=192.168.1.4
       - WG_DEFAULT_ADDRESS=10.252.1.x
     volumes:
       - '{{ config_directory }}/wireguard/:/etc/wireguard/'

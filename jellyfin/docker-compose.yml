@@ -13,10 +13,10 @@ services:
       - '{{ config_directory }}/jellyfin/:/config'
       - /mnt/eleanor/tv:/data/tvshows
       - /mnt/eleanor/movies:/data/movies
-    devices:
-      - /dev/video10:/dev/video10
-      - /dev/video11:/dev/video11
-      - /dev/video19:/dev/video19
+    # devices:
+    #   - /dev/video10:/dev/video10
+    #   - /dev/video11:/dev/video11
+    #   - /dev/video19:/dev/video19
     ports:
       - 8096:8096
     restart: unless-stopped

@@ -31,13 +31,6 @@
 #     name: docker
 #     state: restarted
 #     daemon_reload: true
-# - name: Create docker_config folder
-#   file:
-#     path: '{{ config_directory }}/docker_config'
-#     state: directory
-#     mode: 0755
-#     owner: '{{ owner }}'
-#     group: '{{ group }}'
 - name: Docker network command
   ignore_errors: true
   command: docker network create --driver=bridge --subnet=172.24.0.0/16 proxy --attachable=true

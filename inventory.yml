@@ -6,16 +6,15 @@ all:
       config_directory: /mnt/eleanor/docker_config
       owner: sysadmin
       group: sysadmin
-      update: true
-      unbound: true
-      linux: true
+      linux: false
+      unbound: false
       docker:
-        setup: true
-        deploy: true
-        prune: true
-        pull: true
-        delete: true
-        stop: true
+        setup: false
+        pull: false
+        delete: false
+        stop: false
+        deploy: false
+        prune: false
       services:
         - image: docker.io/pihole/pihole
           container: pihole
@@ -39,73 +38,6 @@ all:
           traefik: true
         - image: docker.io/vaultwarden/server
           container: vaultwarden
-          traefik: true
-        # - image: docker.io/abpai94/personal-website
-        #   container: personal-website
-        #   config: false
-        #   traefik: true
-        - image: ghcr.io/gethomepage/homepage
-          container: dashboard
-          config: true
-          traefik: true
-        # - image: docker.io/onlyoffice/documentserver
-        #   container: onlyoffice
-        #   config: true
-        #   traefik: true
-        - image: lscr.io/linuxserver/deluge
-          container: deluge
-        - image: lscr.io/linuxserver/jellyfin
-          container: jellyfin
-        - image: lscr.io/linuxserver/prowlarr
-          container: prowlarr
-        - image: lscr.io/linuxserver/radarr
-          container: radarr
-        - image: lscr.io/linuxserver/sonarr
-          container: sonarr
-        - image: lscr.io/linuxserver/nextcloud
-          container: nextcloud
-    vagrant_franklin:
-      ansible_host: franklin
-      remote_user: vagrant
-      config_directory: /home/vagrant
-      owner: vagrant
-      group: vagrant
-      update: true
-      unbound: true
-      linux: true
-      docker:
-        setup: true
-        deploy: true
-        prune: true
-        pull: true
-        delete: true
-        stop: true
-      services:
-        - image: docker.io/pihole/pihole
-          container: pihole
-          config: true
-          traefik: true
-        - image: ghcr.io/wg-easy/wg-easy
-          container: wireguard
-          traefik: true
-          config: true
-        - image: docker.io/traefik
-          container: traefik
-          config: true
-          traefik: true
-        - image: lscr.io/linuxserver/ddclient
-          container: ddclient
-          config: true
-        - image: docker.io/authelia/authelia
-          container: authelia
-          config: true
-          traefik: true
-        - image: docker.io/portainer/portainer-ce
-          container: portainer
-          traefik: true
-        - image: docker.io/vaultwarden/server
-          container: vaultwarden
-          config: true
           traefik: true
         - image: docker.io/abpai94/personal-website
           container: personal-website
@@ -115,19 +47,82 @@ all:
           container: dashboard
           config: true
           traefik: true
-        # - image: docker.io/onlyoffice/documentserver
-        #   container: onlyoffice
-        #   config: true
-        #   traefik: true
-        - image: lscr.io/linuxserver/deluge
-          container: deluge
+        - image: docker.io/onlyoffice/documentserver
+          container: onlyoffice
+          config: true
+          traefik: true
         - image: lscr.io/linuxserver/jellyfin
           container: jellyfin
+        - image: lscr.io/linuxserver/nextcloud
+          container: nextcloud
+        - image: lscr.io/linuxserver/deluge
+          container: deluge
         - image: lscr.io/linuxserver/prowlarr
           container: prowlarr
         - image: lscr.io/linuxserver/radarr
           container: radarr
         - image: lscr.io/linuxserver/sonarr
           container: sonarr
+    vagrant_franklin:
+      ansible_host: franklin
+      remote_user: vagrant
+      config_directory: /home/vagrant
+      owner: vagrant
+      group: vagrant
+      linux: false
+      unbound: false
+      docker:
+        setup: false
+        pull: false
+        delete: false
+        stop: false
+        deploy: false
+        prune: false
+      services:
+        - image: docker.io/pihole/pihole
+          container: pihole
+          traefik: true
+        - image: ghcr.io/wg-easy/wg-easy
+          container: wireguard
+          traefik: true
+        - image: docker.io/traefik
+          container: traefik
+          config: true
+          traefik: true
+        - image: lscr.io/linuxserver/ddclient
+          container: ddclient
+          config: true
+        - image: docker.io/authelia/authelia
+          container: authelia
+          config: true
+          traefik: true
+        - image: docker.io/portainer/portainer-ce
+          container: portainer
+          traefik: true
+        - image: docker.io/vaultwarden/server
+          container: vaultwarden
+          traefik: true
+        - image: docker.io/abpai94/personal-website
+          container: personal-website
+          config: false
+          traefik: true
+        - image: ghcr.io/gethomepage/homepage
+          container: dashboard
+          config: true
+          traefik: true
+        - image: docker.io/onlyoffice/documentserver
+          container: onlyoffice
+          config: true
+          traefik: true
+        - image: lscr.io/linuxserver/jellyfin
+          container: jellyfin
         - image: lscr.io/linuxserver/nextcloud
           container: nextcloud
+        - image: lscr.io/linuxserver/deluge
+          container: deluge
+        - image: lscr.io/linuxserver/prowlarr
+          container: prowlarr
+        - image: lscr.io/linuxserver/radarr
+          container: radarr
+        - image: lscr.io/linuxserver/sonarr
+          container: sonarr
