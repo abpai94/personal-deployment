@@ -11,7 +11,7 @@ services:
       - DELUGE_LOGLEVEL=info
     volumes:
       - '{{ config_directory }}/deluge/config:/config'
-      - /mnt/md1/downloads/:/downloads
+      - /mnt/eleanor/downloads/:/downloads
     ports:
       - 8112:8112
       - 6881:6881

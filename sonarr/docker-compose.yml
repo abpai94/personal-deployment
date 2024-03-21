@@ -10,8 +10,8 @@ services:
       - TZ=Europe/Paris
     volumes:
       - {{ config_directory }}/sonarr:/config
-      - /mnt/md1/tv:/tv
-      - /mnt/md1/downloads/:/downloads
+      - /mnt/eleanor/tv:/tv
+      - /mnt/eleanor/downloads/:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped

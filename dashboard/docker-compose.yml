@@ -14,8 +14,7 @@ services:
       - 3000:3000
     volumes:
       - '{{ config_directory }}/dashboard/:/app/config'
-      - /media/md0:/mnt/md0:ro
-      - /media/md1:/mnt/md1:ro
+      - /media/eleanor:/media/eleanor:ro
     restart: unless-stopped
 
 networks:

@@ -11,8 +11,8 @@ services:
       - JELLYFIN_PublishedServerUrl=https://jellyfin.abhishekpai.co.uk
     volumes:
       - '{{ config_directory }}/jellyfin/:/config'
-      - /mnt/md1/tv:/data/tvshows
-      - /mnt/md1/movies:/data/movies
+      - /mnt/eleanor/tv:/data/tvshows
+      - /mnt/eleanor/movies:/data/movies
     devices:
       - /dev/video10:/dev/video10
       - /dev/video11:/dev/video11

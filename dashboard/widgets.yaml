@@ -12,5 +12,4 @@
 - resources:
     label: raid array
     disk:
-      - /mnt/md0
-      - /mnt/md1
+      - /media/eleanor

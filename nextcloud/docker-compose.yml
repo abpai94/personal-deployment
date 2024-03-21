@@ -10,7 +10,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - '{{ config_directory }}/nextcloud/config/:/config'
-      - /mnt/md1/cloud/:/data
+      - /mnt/eleanor/cloud/:/data
     ports:
       - 443:443
     restart: unless-stopped

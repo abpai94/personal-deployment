@@ -2,16 +2,6 @@
   when: docker.pull is true
   command:
     cmd: sudo docker pull {{ item.image }}
-- name: Copy original config {{ item.container }}
-  when: docker.old_config is true
-  become: false
-  copy:
-    src: /mnt/md0/docker_config/{{ item.container }}/
-    dest: '{{ config_directory }}/docker_config/{{ item.container }}/'
-    mode: 0755
-    owner: '{{ owner }}'
-    group: '{{ group }}'
-    remote_src: true
 - name: Create {{ item.container }} configuration directory
   file:
     path: '{{ config_directory }}/docker_config/{{ item.container }}'

@@ -10,8 +10,8 @@ services:
       - TZ=Europe/Paris
     volumes:
       - '{{ config_directory }}/radarr/:/config'
-      - /mnt/md1/movies:/movies
-      - /mnt/md1/downloads/:/downloads
+      - /mnt/eleanor/movies:/movies
+      - /mnt/eleanor/downloads/:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
