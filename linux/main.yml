@@ -12,16 +12,9 @@
       192.168.1.3     turing
 - name: RAID directory
   file:
-    path: /media/eleanor
+    path: /mnt/eleanor
     state: directory
     mode: 0755
-    owner: '{{ owner }}'
-    group: '{{ group }}'
-- name: Symbolic links
-  file:
-    src: /media/eleanor
-    dest: /mnt/eleanor
-    state: link
     owner: '{{ owner }}'
     group: '{{ group }}'
 - name: Install NFS Client
@@ -30,8 +23,8 @@
       - nfs-common
 - name: NFS Mount md0 RAID from Eleanor
   ansible.posix.mount:
-    src: turing:/media/eleanor
-    path: /media/eleanor
+    src: turing:/mnt/eleanor
+    path: /mnt/eleanor
     state: mounted
     fstype: nfs
 # MAYBE NEEDED IN THE FUTURE

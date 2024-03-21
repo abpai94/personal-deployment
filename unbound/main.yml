@@ -18,7 +18,8 @@
     owner: unbound
     group: unbound
     state: touch
-- name: Restart unbound service
-  systemd_service:
-    name: unbound
-    state: restarted
+    mode: 0664
+# - name: Restart unbound service
+#   systemd_service:
+#     name: unbound
+#     state: restarted

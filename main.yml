@@ -12,16 +12,16 @@
       when: unbound is true
       include_tasks:
         file: unbound/main.yml
-    - name: Setup Podman
-      when: podman.setup is true
+    - name: Setup docker
+      when: docker.setup is true
       include_tasks:
-        file: podman/setup/main.yml
-    - name: Podman deployment
-      when: podman.deploy is true
+        file: docker/setup/main.yml
+    - name: docker deployment
+      when: docker.deploy is true
       include_tasks:
-        file: podman/deploy/main.yml
+        file: docker/deploy/main.yml
       with_items:
         - "{{ services }}"
-    - name: Podman pruning
-      when: podman.prune is true
-      command: sudo podman system prune -a
+    - name: docker pruning
+      when: docker.prune is true
+      command: sudo docker system prune -a

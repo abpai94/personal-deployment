@@ -1,17 +1,16 @@
 all:
   hosts:
     franklin:
-      ansible_host: franklin.local
+      ansible_host: franklin-test
       remote_user: sysadmin
-      config_directory: /mnt/eleanor/docker_config/
+      config_directory: /mnt/eleanor/docker_config
       owner: sysadmin
       group: sysadmin
       update: true
       unbound: true
       linux: true
-      podman:
+      docker:
         setup: true
-        old_config: true
         deploy: true
         prune: true
         pull: true
@@ -41,10 +40,10 @@ all:
         - image: docker.io/vaultwarden/server
           container: vaultwarden
           traefik: true
-        - image: docker.io/abpai94/personal-website
-          container: personal-website
-          config: false
-          traefik: true
+        # - image: docker.io/abpai94/personal-website
+        #   container: personal-website
+        #   config: false
+        #   traefik: true
         - image: ghcr.io/gethomepage/homepage
           container: dashboard
           config: true
@@ -74,9 +73,8 @@ all:
       update: true
       unbound: true
       linux: true
-      podman:
+      docker:
         setup: true
-        old_config: true
         deploy: true
         prune: true
         pull: true

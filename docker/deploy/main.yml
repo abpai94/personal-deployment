@@ -1,0 +1,69 @@
+- name: Pull latest {{ item.image }}
+  when: docker.pull is true
+  command:
+    cmd: sudo docker pull {{ item.image }}
+- name: Copy original config {{ item.container }}
+  when: docker.old_config is true
+  become: false
+  copy:
+    src: /mnt/md0/docker_config/{{ item.container }}/
+    dest: '{{ config_directory }}/docker_config/{{ item.container }}/'
+    mode: 0755
+    owner: '{{ owner }}'
+    group: '{{ group }}'
+    remote_src: true
+- name: Create {{ item.container }} configuration directory
+  file:
+    path: '{{ config_directory }}/docker_config/{{ item.container }}'
+    state: directory
+    mode: 0700
+    owner: root
+    group: root
+- name: Setup {{ item.container }} configuration
+  when: item.config is defined
+  include_tasks:
+    file: '{{ item.container }}/main.yml'
+- name: Copy {{ item.container }} docker files
+  template:
+    src: '{{ item.container }}/docker-compose.yml'
+    dest: '/root/docker-compose.yml'
+- name: Stop {{ item.container }} container
+  ignore_errors: true
+  when: docker.stop is true
+  command:
+    cmd: sudo docker stop {{ item.container }}
+- name: Delete {{ item.container }} container
+  ignore_errors: true
+  when: docker.delete is true
+  command:
+    cmd: sudo docker rm {{ item.container }}
+- name: Start {{ item.container }} container
+  ignore_errors: true
+  command:
+    cmd: 'docker-compose -f /root/docker-compose.yml up -d'
+- name: Create traefik proxy directory
+  when: item.traefik is defined
+  file:
+    path: '{{ config_directory }}/traefik/'
+    state: directory
+    mode: 0740
+- name: Create traefik proxy directory
+  when: item.traefik is defined
+  file:
+    path: '{{ config_directory }}/traefik/config/'
+    state: directory
+    mode: 0740
+- name: Create traefik proxy directory
+  when: item.traefik is defined
+  file:
+    path: '{{ config_directory }}/traefik/config/proxy'
+    state: directory
+    mode: 0740
+- name: Copy {{ item.container }} traefik configuration
+  when: item.traefik is defined
+  include_tasks:
+    file: traefik/deploy/main.yml
+- name: Delete {{ item.container }} docker compose file
+  file:
+    path: '/root/docker-compose.yml'
+    state: absent
