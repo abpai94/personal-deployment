@@ -1,0 +1,25 @@
+http:
+  routers:
+    truenas:
+      entryPoints:
+        - http
+      service: truenas
+      rule: Host(`truenas.abhishekpai.co.uk`)
+      middlewares:
+        - https-redirect
+    truenas-https:
+      entryPoints:
+        - https
+      service: truenas
+      rule: Host(`truenas.abhishekpai.co.uk`)
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+  services:
+    truenas:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.3"
