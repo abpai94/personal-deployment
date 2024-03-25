@@ -13,11 +13,5 @@
   loop:
     - traefik.yml
     - proxy/common.yml
-    - proxy/deluge.yml
-    - proxy/jellyfin.yml
-    - proxy/prowlarr.yml
-    - proxy/radarr.yml
-    - proxy/sonarr.yml
-    - proxy/nextcloud.yml
   loop_control:
     loop_var: file
