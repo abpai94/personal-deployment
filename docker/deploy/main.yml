@@ -2,13 +2,6 @@
   when: docker.pull is true
   command:
     cmd: sudo docker pull {{ item.image }}
-- name: Create {{ item.container }} configuration directory
-  file:
-    path: '{{ config_directory }}/{{ item.container }}'
-    state: directory
-    mode: 0700
-    owner: root
-    group: root
 - name: Setup {{ item.container }} configuration
   when: item.config is defined
   include_tasks:
