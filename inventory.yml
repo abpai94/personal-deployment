@@ -41,28 +41,33 @@ all:
           traefik: true
         - image: docker.io/abpai94/personal-website
           container: personal-website
-          config: false
           traefik: true
         - image: ghcr.io/gethomepage/homepage
           container: dashboard
           config: true
           traefik: true
+        - image: lscr.io/linuxserver/deluge
+          container: deluge
+          traefik: true
+        - image: lscr.io/linuxserver/prowlarr
+          container: prowlarr
+          traefik: true
+        - image: lscr.io/linuxserver/radarr
+          container: radarr
+          traefik: true
+        - image: lscr.io/linuxserver/sonarr
+          container: sonarr
+          traefik: true
+        - image: lscr.io/linuxserver/jellyfin
+          container: jellyfin
+          traefik: true
+        - image: lscr.io/linuxserver/nextcloud
+          container: nextcloud
+          traefik: true
         - image: docker.io/onlyoffice/documentserver
           container: onlyoffice
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/jellyfin
-          container: jellyfin
-        - image: lscr.io/linuxserver/nextcloud
-          container: nextcloud
-        - image: lscr.io/linuxserver/deluge
-          container: deluge
-        - image: lscr.io/linuxserver/prowlarr
-          container: prowlarr
-        - image: lscr.io/linuxserver/radarr
-          container: radarr
-        - image: lscr.io/linuxserver/sonarr
-          container: sonarr
     vagrant_franklin:
       ansible_host: franklin
       remote_user: vagrant
@@ -104,25 +109,30 @@ all:
           traefik: true
         - image: docker.io/abpai94/personal-website
           container: personal-website
-          config: false
           traefik: true
         - image: ghcr.io/gethomepage/homepage
           container: dashboard
           config: true
           traefik: true
+        - image: lscr.io/linuxserver/deluge
+          container: deluge
+          traefik: true
+        - image: lscr.io/linuxserver/prowlarr
+          container: prowlarr
+          traefik: true
+        - image: lscr.io/linuxserver/radarr
+          container: radarr
+          traefik: true
+        - image: lscr.io/linuxserver/sonarr
+          container: sonarr
+          traefik: true
+        - image: lscr.io/linuxserver/jellyfin
+          container: jellyfin
+          traefik: true
+        - image: lscr.io/linuxserver/nextcloud
+          container: nextcloud
+          traefik: true
         - image: docker.io/onlyoffice/documentserver
           container: onlyoffice
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/jellyfin
-          container: jellyfin
-        - image: lscr.io/linuxserver/nextcloud
-          container: nextcloud
-        - image: lscr.io/linuxserver/deluge
-          container: deluge
-        - image: lscr.io/linuxserver/prowlarr
-          container: prowlarr
-        - image: lscr.io/linuxserver/radarr
-          container: radarr
-        - image: lscr.io/linuxserver/sonarr
-          container: sonarr
