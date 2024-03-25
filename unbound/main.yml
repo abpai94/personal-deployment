@@ -15,11 +15,11 @@
 - name: Create log file
   file:
     path: '/var/log/unbound.log'
-    owner: unbound
-    group: unbound
+    owner: root
+    group: root
     state: touch
-    mode: 0664
-# - name: Restart unbound service
-#   systemd_service:
-#     name: unbound
-#     state: restarted
+    mode: 0644
+- name: Restart unbound service
+  systemd_service:
+    name: unbound
+    state: restarted
