@@ -14,6 +14,7 @@ services:
     volumes:
       - '{{ config_directory }}/nextcloud/config/:/config'
       - /mnt/eleanor/cloud/:/data
+      - /mnt/eleanor/photos:/photos
     ports:
       - 83:443
     restart: unless-stopped
