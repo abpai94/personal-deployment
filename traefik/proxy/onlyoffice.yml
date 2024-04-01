@@ -4,14 +4,14 @@ http:
       entryPoints:
         - http
       service: onlyoffice
-      rule: Host(`onlyoffice.abhishekpai.co.uk`)
+      rule: Host(`office.abhishekpai.co.uk`)
       middlewares:
         - https-redirect
     onlyoffice-https:
       entryPoints:
         - https
       service: onlyoffice
-      rule: Host(`onlyoffice.abhishekpai.co.uk`)
+      rule: Host(`office.abhishekpai.co.uk`)
       tls:
         certResolver: cloudflare
         domains:
@@ -22,5 +22,5 @@ http:
     onlyoffice:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.4:83"
-#        passHostHeader: true
+          - url: "http://192.168.1.4:84"
+        passHostHeader: true
