@@ -19,6 +19,13 @@
     group: root
     state: touch
     mode: 0644
+- name: Add permission for log file
+  blockinfile:
+    path: /etc/apparmor.d/local/usr.sbin.unbound
+    block: |
+      /var/log/unbound.log rw,
+- name: Enable log permission
+  cmd: apparmor_parser -r /etc/apparmor.d/usr.sbin.unbound
 - name: Restart unbound service
   systemd_service:
     name: unbound
