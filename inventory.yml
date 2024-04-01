@@ -18,6 +18,7 @@ all:
       services:
         - image: docker.io/pihole/pihole
           container: pihole
+          config: true
           traefik: true
         - image: ghcr.io/wg-easy/wg-easy
           container: wireguard
@@ -66,7 +67,6 @@ all:
           traefik: true
         - image: docker.io/onlyoffice/documentserver
           container: onlyoffice
-          config: true
           traefik: true
     vagrant_franklin:
       ansible_host: franklin
@@ -86,6 +86,7 @@ all:
       services:
         - image: docker.io/pihole/pihole
           container: pihole
+          config: true
           traefik: true
         - image: ghcr.io/wg-easy/wg-easy
           container: wireguard
@@ -134,5 +135,4 @@ all:
           traefik: true
         - image: docker.io/onlyoffice/documentserver
           container: onlyoffice
-          config: true
           traefik: true
