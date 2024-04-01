@@ -14,7 +14,6 @@ services:
       - "80:80/tcp"
     environment:
       TZ: 'Europe/Paris'
-      WEBPASSWORD: '{{ pihole_password }}'
     volumes:
       - '{{ config_directory }}/pihole/etc-pihole:/etc/pihole'
       - '{{ config_directory }}/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
