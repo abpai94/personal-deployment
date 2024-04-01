@@ -25,7 +25,8 @@
     block: |
       /var/log/unbound.log rw,
 - name: Enable log permission
-  cmd: apparmor_parser -r /etc/apparmor.d/usr.sbin.unbound
+  command:
+    cmd: apparmor_parser -r /etc/apparmor.d/usr.sbin.unbound
 - name: Restart unbound service
   systemd_service:
     name: unbound
