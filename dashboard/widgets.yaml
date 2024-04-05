@@ -2,14 +2,7 @@
     label: turing
     cpu: true
     memory: true
-    cputemp: true
-    disk: /
 
 - search:
     provider: duckduckgo
     target: _blank
-
-- resources:
-    label: raid array
-    disk:
-      - /media/eleanor
