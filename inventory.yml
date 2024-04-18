@@ -1,7 +1,7 @@
 all:
   hosts:
     franklin:
-      ansible_host: franklin-test
+      ansible_host: franklin
       remote_user: sysadmin
       config_directory: /mnt/eleanor/docker_config
       owner: sysadmin
@@ -67,9 +67,8 @@ all:
           traefik: true
         - image: docker.io/onlyoffice/documentserver
           container: onlyoffice
-          traefik: true
     vagrant_franklin:
-      ansible_host: franklin
+      ansible_host: franklin-test
       remote_user: vagrant
       config_directory: /home/vagrant
       owner: vagrant
@@ -135,4 +134,3 @@ all:
           traefik: true
         - image: docker.io/onlyoffice/documentserver
           container: onlyoffice
-          traefik: true

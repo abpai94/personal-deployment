@@ -5,7 +5,7 @@
       target: _self
       widget:
         type: truenas
-        url: http://192.168.1.3
+        url: http://192.168.1.1
         key: {{ truenas_api }}
         enablePools: true
   - Portainer:
@@ -14,7 +14,7 @@
       target: _self
       widget:
         type: portainer
-        url: https://192.168.1.4:9443
+        url: https://192.168.1.2:9443
         env: 8
         key: {{ portainer_dashboard_api }}
   - PiHole:
@@ -23,7 +23,7 @@
       target: _self
       widget:
         type: pihole
-        url: http://192.168.1.4:80
+        url: http://192.168.1.2:80
         key: {{ pihole_api_key }}
   - Traefik:
       href: https://traefik.abhishekpai.co.uk
@@ -31,7 +31,7 @@
       target: _self
       widget:
         type: traefik
-        url: http://192.168.1.4:8080
+        url: http://192.168.1.2:8080
   - Wireguard:
       href: https://wireguard.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png
@@ -55,7 +55,7 @@
       target: _self
       widget:
         type: prowlarr
-        url: http://192.168.1.4:9696
+        url: http://192.168.1.2:9696
         key: {{ prowlarr_api_key }}
   - Sonarr:
       href: https://sonarr.abhishekpai.co.uk
@@ -63,7 +63,7 @@
       target: _self
       widget:
         type: sonarr
-        url: http://192.168.1.4:8989
+        url: http://192.168.1.2:8989
         key: {{ sonarr_api_key }}
   - Radarr:
       href: https://radarr.abhishekpai.co.uk
@@ -71,7 +71,7 @@
       target: _self
       widget:
         type: radarr
-        url: http://192.168.1.4:7878
+        url: http://192.168.1.2:7878
         key: {{ radarr_api_key }}
   - Deluge:
       href: https://deluge.abhishekpai.co.uk
@@ -79,5 +79,5 @@
       target: _self
       widget:
         type: deluge
-        url: http://192.168.1.4:8112
+        url: http://192.168.1.2:8112
         password: ""

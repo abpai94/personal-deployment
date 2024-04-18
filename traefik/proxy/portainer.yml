@@ -22,4 +22,4 @@ http:
     portainer:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.4:9000"
+          - url: "http://192.168.1.2:9000"

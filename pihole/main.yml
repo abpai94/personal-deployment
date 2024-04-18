@@ -3,7 +3,7 @@
     path: /etc/systemd/resolved.conf
     insertafter: '[Resolve]'
     block: |
-      DNS=192.168.1.4:54
+      DNS=192.168.1.2:54
 - name: Restart systemd-resolved.service
   systemd_service:
     name: systemd-resolved.service

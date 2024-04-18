@@ -6,9 +6,8 @@
   blockinfile:
     path: /etc/hosts
     block: |
-      192.168.1.1     franklin
-      192.168.1.2     eleanor
-      192.168.1.3     turing
+      192.168.1.1     turing
+      192.168.1.2     franklin
 - name: RAID directory
   file:
     path: /mnt/eleanor
