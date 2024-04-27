@@ -42,6 +42,7 @@ all:
           traefik: true
         - image: docker.io/abpai94/personal-website
           container: personal-website
+          config: true
           traefik: true
         - image: ghcr.io/gethomepage/homepage
           container: dashboard
@@ -109,6 +110,7 @@ all:
           traefik: true
         - image: docker.io/abpai94/personal-website
           container: personal-website
+          config: true
           traefik: true
         - image: ghcr.io/gethomepage/homepage
           container: dashboard
