@@ -1,0 +1,58 @@
+- name: Install required binaries
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+      - curl
+      - sudo
+- name: Adding GCloud Sources
+  shell: "echo \"deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main\" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list"
+- name: Adding GPG public key
+  shell: "curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -"
+- name: Install GCloud CLI
+  apt:
+    update_cache: true
+    name:
+      - google-cloud-cli
+- name: Copy authentication key
+  template:
+    src: personal-deployment.json
+    dest: '{{ home_directory }}'
+- name: Authenticate GCloud Instance
+  shell: "gcloud auth activate-service-account franklin@personal-deployment-384310.iam.gserviceaccount.com --key-file={{ home_directory }}/personal-deployment.json --project=personal-deployment-384310"
+- name: Delete authentication key
+  file:
+    path: '{{ home_directory }}/personal-deployment.json'
+    state: absent
+- name: GCloud Bucket Backup to add additional files
+  cron:
+    name: GCloud Bucket Backup {{ item }}
+    minute: 0
+    hour: 3
+    weekday: 1
+    user: root
+    job: gsutil -m rsync -P -r /media/{{ item.key }}/{{ item.value }} gs://4dae3233-7420-457c-b25f-5f11d4580da5/{{ item.value }}
+  loop:
+    - key: 'md0'
+      value: 'personal'
+    - key: 'md0'
+      value: 'family'
+    - key: 'md0'
+      value: 'india_wedding'
+    - key: 'md0'
+      value: 'programs'
+    - key: 'md0'
+      value: 'zips'
+- name: GCloud Bucket Backup to duplicate local
+  cron:
+    name: GCloud Bucket Backup {{ item }}
+    minute: 0
+    hour: 3
+    user: root
+    job: gsutil -m rsync -P -d -r /media/{{ item.key }}/{{ item.value}} gs://4dae3233-7420-457c-b25f-5f11d4580da5/{{ item.value}}
+  loop:
+    - key: 'md1'
+      value: 'cloud'
+    - key: 'md0'
+      value: 'docker_config'
