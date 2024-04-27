@@ -3,7 +3,7 @@
   command:
     cmd: sudo docker pull {{ item.image }}
 - name: Setup {{ item.container }} configuration
-  when: item.config is defined
+  when: item.config is true
   include_tasks:
     file: '{{ item.container }}/main.yml'
 - name: Copy {{ item.container }} docker files
@@ -25,25 +25,25 @@
   command:
     cmd: 'docker-compose -f /root/docker-compose.yml up -d'
 - name: Create traefik proxy directory
-  when: item.traefik is defined
+  when: item.traefik is true
   file:
     path: '{{ config_directory }}/traefik/'
     state: directory
     mode: 0740
 - name: Create traefik proxy directory
-  when: item.traefik is defined
+  when: item.traefik is true
   file:
     path: '{{ config_directory }}/traefik/config/'
     state: directory
     mode: 0740
 - name: Create traefik proxy directory
-  when: item.traefik is defined
+  when: item.traefik is true
   file:
     path: '{{ config_directory }}/traefik/config/proxy'
     state: directory
     mode: 0740
 - name: Copy {{ item.container }} traefik configuration
-  when: item.traefik is defined
+  when: item.traefik is true
   include_tasks:
     file: traefik/deploy/main.yml
 - name: Delete {{ item.container }} docker compose file
