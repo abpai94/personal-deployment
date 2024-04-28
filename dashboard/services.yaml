@@ -48,6 +48,10 @@
       href: https://vault.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vaultwarden.png
       target: _self
+  - Postgres:
+      href: https://postgres.abhishekpai.co.uk
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/postgres.png
+      target: _self
 - Downloaders:
   - Prowlarr:
       href: https://prowlarr.abhishekpai.co.uk

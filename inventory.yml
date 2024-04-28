@@ -11,62 +11,66 @@ all:
       docker:
         setup: false
         pull: false
-        delete: false
         stop: false
+        delete: false
         deploy: false
-        prune: false
       services:
-        - image: docker.io/pihole/pihole
+        - image: docker.io/pihole/pihole:latest
           container: pihole
           config: true
           traefik: true
-        - image: ghcr.io/wg-easy/wg-easy
+        - image: ghcr.io/wg-easy/wg-easy:latest
           container: wireguard
           traefik: true
-        - image: docker.io/traefik
+        - image: docker.io/traefik:latest
           container: traefik
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/ddclient
+        - image: lscr.io/linuxserver/ddclient:latest
           container: ddclient
           config: true
-        - image: docker.io/authelia/authelia
+        - image: postgres:16.2
+          container: postgres
+          traefik: true
+        - image: dpage/pgadmin4:8.4
+          container: pgadmin
+        - image: docker.io/authelia/authelia:latest
           container: authelia
           config: true
           traefik: true
-        - image: docker.io/portainer/portainer-ce
+        - image: docker.io/portainer/portainer-ce:latest
           container: portainer
           traefik: true
-        - image: docker.io/vaultwarden/server
+        - image: docker.io/vaultwarden/server:latest
           container: vaultwarden
           traefik: true
-        - image: docker.io/abpai94/personal-website
+        - image: docker.io/abpai94/personal-website:latest
           container: personal-website
           config: true
           traefik: true
-        - image: ghcr.io/gethomepage/homepage
+        - image: ghcr.io/gethomepage/homepage:latest
           container: dashboard
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/deluge
+        - image: lscr.io/linuxserver/deluge:latest
           container: deluge
           traefik: true
-        - image: lscr.io/linuxserver/prowlarr
+        - image: lscr.io/linuxserver/prowlarr:latest
           container: prowlarr
           traefik: true
-        - image: lscr.io/linuxserver/radarr
+        - image: lscr.io/linuxserver/radarr:latest
           container: radarr
           traefik: true
-        - image: lscr.io/linuxserver/sonarr
+        - image: lscr.io/linuxserver/sonarr:latest
           container: sonarr
           traefik: true
-        - image: lscr.io/linuxserver/jellyfin
+        - image: lscr.io/linuxserver/jellyfin:latest
           container: jellyfin
           traefik: true
-        - image: lscr.io/linuxserver/nextcloud
+        - image: lscr.io/linuxserver/nextcloud:latest
           container: nextcloud
           traefik: true
-        - image: docker.io/onlyoffice/documentserver
+        - image: docker.io/onlyoffice/documentserver:latest
           container: onlyoffice
     vagrant_franklin:
       ansible_host: franklin-test
@@ -79,60 +83,64 @@ all:
       docker:
         setup: false
         pull: false
-        delete: false
         stop: false
+        delete: false
         deploy: false
-        prune: false
       services:
-        - image: docker.io/pihole/pihole
+        - image: docker.io/pihole/pihole:latest
           container: pihole
           config: true
           traefik: true
-        - image: ghcr.io/wg-easy/wg-easy
+        - image: ghcr.io/wg-easy/wg-easy:latest
           container: wireguard
           traefik: true
-        - image: docker.io/traefik
+        - image: docker.io/traefik:latest
           container: traefik
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/ddclient
+        - image: lscr.io/linuxserver/ddclient:latest
           container: ddclient
           config: true
-        - image: docker.io/authelia/authelia
+        - image: postgres:16.2
+          container: postgres
+          traefik: true
+        - image: dpage/pgadmin4:8.4
+          container: pgadmin
+        - image: docker.io/authelia/authelia:latest
           container: authelia
           config: true
           traefik: true
-        - image: docker.io/portainer/portainer-ce
+        - image: docker.io/portainer/portainer-ce:latest
           container: portainer
           traefik: true
-        - image: docker.io/vaultwarden/server
+        - image: docker.io/vaultwarden/server:latest
           container: vaultwarden
           traefik: true
-        - image: docker.io/abpai94/personal-website
+        - image: docker.io/abpai94/personal-website:latest
           container: personal-website
           config: true
           traefik: true
-        - image: ghcr.io/gethomepage/homepage
+        - image: ghcr.io/gethomepage/homepage:latest
           container: dashboard
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/deluge
+        - image: lscr.io/linuxserver/deluge:latest
           container: deluge
           traefik: true
-        - image: lscr.io/linuxserver/prowlarr
+        - image: lscr.io/linuxserver/prowlarr:latest
           container: prowlarr
           traefik: true
-        - image: lscr.io/linuxserver/radarr
+        - image: lscr.io/linuxserver/radarr:latest
           container: radarr
           traefik: true
-        - image: lscr.io/linuxserver/sonarr
+        - image: lscr.io/linuxserver/sonarr:latest
           container: sonarr
           traefik: true
-        - image: lscr.io/linuxserver/jellyfin
+        - image: lscr.io/linuxserver/jellyfin:latest
           container: jellyfin
           traefik: true
-        - image: lscr.io/linuxserver/nextcloud
+        - image: lscr.io/linuxserver/nextcloud:latest
           container: nextcloud
           traefik: true
-        - image: docker.io/onlyoffice/documentserver
+        - image: docker.io/onlyoffice/documentserver:latest
           container: onlyoffice

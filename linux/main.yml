@@ -1,7 +1,3 @@
-- name: Update OS
-  apt:
-    update_cache: true
-    upgrade: full
 - name: Adding hostnames
   blockinfile:
     path: /etc/hosts

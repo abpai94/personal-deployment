@@ -4,6 +4,10 @@
   remote_user: '{{ remote_user }}'
   become: true
   tasks:
+    - name: Update OS
+      apt:
+        update_cache: true
+        upgrade: full
     - name: Linux configuration
       when: linux is true
       include_tasks:
@@ -22,6 +26,3 @@
         file: docker/deploy/main.yml
       with_items:
         - "{{ services }}"
-    - name: docker pruning
-      when: docker.prune is true
-      command: sudo docker system prune -a
