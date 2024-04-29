@@ -1,4 +1,4 @@
 - name: Prowlarr configuration
   template:
     src: "config.xml"
-    dest: '{{ config_directory }}/prowlarr/config.xml'
+    dest: '{{ config_directory }}/prowlarr.xml'
