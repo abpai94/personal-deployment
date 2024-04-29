@@ -1,0 +1,4 @@
+- name: Radarr configuration
+  template:
+    src: "config.xml"
+    dest: '{{ config_directory }}/radarr/config.xml'

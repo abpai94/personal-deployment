@@ -12,7 +12,7 @@ services:
       - PGID=1000
       - TZ=Europe/Paris
     volumes:
-      - '{{ config_directory }}/radarr/:/config'
+      - '{{ config_directory }}/radarr/config.xml:/config/config.xml:rw'
       - /mnt/eleanor/movies:/movies
       - /mnt/eleanor/downloads/:/downloads
     ports:

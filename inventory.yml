@@ -57,12 +57,15 @@ all:
           traefik: true
         - image: lscr.io/linuxserver/prowlarr:latest
           container: prowlarr
+          config: true
           traefik: true
         - image: lscr.io/linuxserver/radarr:latest
           container: radarr
+          config: true
           traefik: true
         - image: lscr.io/linuxserver/sonarr:latest
           container: sonarr
+          config: true
           traefik: true
         - image: lscr.io/linuxserver/jellyfin:latest
           container: jellyfin

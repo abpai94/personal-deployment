@@ -1,3 +1,7 @@
+- name: Create folder
+  file:
+    state: directory
+    path: '{{ config_directory }}/{{ item.container }}'
 - name: Pull latest {{ item.image }}
   when: docker.pull is true
   command:
