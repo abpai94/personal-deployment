@@ -1,17 +1,10 @@
-- name: Create pihole configuration directory
-  file:
-    path: '{{ home_directory }}/docker_config/pihole'
-    state: directory
-    mode: 0700
-- name: Copy pihole backup script
-  template:
-    mode: 0700
-    src: 'backup.sh'
-    dest: '{{ home_directory }}/docker_config/pihole_backup.sh'
-- name: Crontab pihole backup
-  cron:
-    name: 'Pihole backup script'
-    minute: '0'
-    hour: '2'
-    user: root
-    job: '{{ home_directory }}/docker_config/./pihole_backup.sh'
+- name: Add pihole IP:PORT
+  blockinfile:
+    path: /etc/systemd/resolved.conf
+    insertafter: '[Resolve]'
+    block: |
+      DNS=192.168.1.2:54
+- name: Restart systemd-resolved.service
+  systemd_service:
+    name: systemd-resolved.service
+    state: restarted

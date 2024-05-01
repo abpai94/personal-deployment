@@ -4,45 +4,25 @@
   remote_user: '{{ remote_user }}'
   become: true
   tasks:
-    - name: Update Raspbian
-      when: update is true
+    - name: Update OS
       apt:
         update_cache: true
         upgrade: full
-    - name: Unbound configuration
-      when: unbound is true
-      include_tasks:
-        file: unbound/main.yml
     - name: Linux configuration
       when: linux is true
       include_tasks:
         file: linux/main.yml
-    - name: Rock-pi SATA HAT configuration
-      when: rockpi is true
+    - name: Unbound configuration
+      when: unbound is true
       include_tasks:
-        file: rockpi-sata/main.yml
-    - name: RAID configuration
-      when: raid is true
-      include_tasks:
-        file: raid/main.yml
-    - name: Mount configuration
-      when: mount is true
-      include_tasks:
-        file: mount/main.yml
+        file: unbound/main.yml
     - name: Setup docker
       when: docker.setup is true
       include_tasks:
         file: docker/setup/main.yml
-    - name: Docker deployment
+    - name: docker deployment
       when: docker.deploy is true
       include_tasks:
         file: docker/deploy/main.yml
       with_items:
         - "{{ services }}"
-    - name: Docker pruning
-      when: docker.prune is true
-      command: sudo docker system prune -a
-    - name: GCloud & GSUtil configuration
-      when: gcp is true
-      include_tasks:
-        file: gcloud/main.yml

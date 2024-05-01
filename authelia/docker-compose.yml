@@ -10,7 +10,7 @@ services:
     ports:
       - 9091:9091
     volumes:
-      - '{{ home_directory }}/docker_config/authelia/config:/config'
+      - '{{ config_directory }}/authelia/config:/config'
     restart: unless-stopped
 
 networks:

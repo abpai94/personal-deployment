@@ -1,7 +1,7 @@
 - name: Copy dashboard configuration
   template:
     src: '{{ file }}'
-    dest: '{{ home_directory }}/docker_config/dashboard/{{ file }}'
+    dest: '{{ config_directory }}/dashboard/{{ file }}'
   loop:
     - settings.yaml
     - services.yaml

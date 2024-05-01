@@ -1,0 +1,4 @@
+- name: Sonarr configuration
+  template:
+    src: "config.xml"
+    dest: '{{ config_directory }}/sonarr.xml'

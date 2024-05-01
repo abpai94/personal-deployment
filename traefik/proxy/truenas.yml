@@ -1,17 +1,17 @@
 http:
   routers:
-    onlyoffice:
+    truenas:
       entryPoints:
         - http
-      service: onlyoffice
-      rule: Host(`onlyoffice.abhishekpai.co.uk`)
+      service: truenas
+      rule: Host(`truenas.abhishekpai.co.uk`)
       middlewares:
         - https-redirect
-    onlyoffice-https:
+    truenas-https:
       entryPoints:
         - https
-      service: onlyoffice
-      rule: Host(`onlyoffice.abhishekpai.co.uk`)
+      service: truenas
+      rule: Host(`truenas.abhishekpai.co.uk`)
       tls:
         certResolver: cloudflare
         domains:
@@ -19,8 +19,7 @@ http:
             sans:
               - "*.abhishekpai.co.uk"
   services:
-    onlyoffice:
+    truenas:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.1:83"
-#        passHostHeader: true
+          - url: "https://192.168.1.1"

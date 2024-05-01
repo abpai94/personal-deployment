@@ -22,4 +22,4 @@ http:
     personal-website:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.1:82"
+          - url: "http://192.168.1.2:82"

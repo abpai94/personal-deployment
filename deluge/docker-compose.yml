@@ -4,16 +4,23 @@ services:
   deluge:
     image: lscr.io/linuxserver/deluge:latest
     container_name: deluge
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.11
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Paris
       - DELUGE_LOGLEVEL=info
     volumes:
-      - '{{ home_directory }}/docker_config/deluge/config:/config'
-      - /mnt/md1/downloads/:/downloads
+      - '{{ config_directory }}/deluge/config:/config'
+      - /mnt/eleanor/downloads/:/downloads
     ports:
       - 8112:8112
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
+
+networks:
+  proxy:
+    external: true

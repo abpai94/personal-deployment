@@ -4,13 +4,21 @@ services:
   nextcloud:
     image: lscr.io/linuxserver/nextcloud:latest
     container_name: nextcloud
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.16
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - '{{ home_directory }}/docker_config/nextcloud/config/:/config'
-      - /mnt/md1/cloud/:/data
+      - '{{ config_directory }}/nextcloud/config/:/config'
+      - /mnt/eleanor/cloud/:/data
+      - /mnt/eleanor/photos:/photos
     ports:
-      - 443:443
+      - 83:443
     restart: unless-stopped
+
+networks:
+  proxy:
+    external: true

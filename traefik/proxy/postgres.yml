@@ -1,17 +1,17 @@
 http:
   routers:
-    vaultwarden:
+    postgre:
       entryPoints:
         - http
-      service: vaultwarden
-      rule: Host(`vault.abhishekpai.co.uk`)
+      service: postgre
+      rule: Host(`postgres.abhishekpai.co.uk`)
       middlewares:
         - https-redirect
-    vaultwarden-https:
+    postgre-https:
       entryPoints:
         - https
-      service: vaultwarden
-      rule: Host(`vault.abhishekpai.co.uk`)
+      service: postgre
+      rule: Host(`postgres.abhishekpai.co.uk`)
       tls:
         certResolver: cloudflare
         domains:
@@ -19,7 +19,7 @@ http:
             sans:
               - "*.abhishekpai.co.uk"
   services:
-    vaultwarden:
+    postgre:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.2:81"
+          - url: "http://192.168.1.2:84"

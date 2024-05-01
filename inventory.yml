@@ -1,179 +1,152 @@
 all:
   hosts:
     franklin:
-      ansible_host: franklin.local
-      remote_user: pi
-      home_directory: /home/pi
-      owner: pi
-      group: pi
-      update: false
+      ansible_host: franklin
+      remote_user: sysadmin
+      config_directory: /mnt/eleanor/docker_config
+      owner: sysadmin
+      group: sysadmin
       linux: false
       unbound: false
-      rockpi: false
-      raid: false
-      mount: false
-      gcp: false
       docker:
         setup: false
-        old_config: false
-        deploy: false
-        prune: false
         pull: false
-        delete: false
         stop: false
+        delete: false
+        deploy: false
       services:
-        - image: pihole/pihole
+        - image: docker.io/pihole/pihole:latest
           container: pihole
           config: true
           traefik: true
-        - image: ghcr.io/wg-easy/wg-easy
+        - image: ghcr.io/wg-easy/wg-easy:latest
           container: wireguard
           traefik: true
-          config: true
-        - image: traefik
+        - image: docker.io/traefik:latest
           container: traefik
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/ddclient
+        - image: lscr.io/linuxserver/ddclient:latest
           container: ddclient
           config: true
-        - image: authelia/authelia
+        - image: postgres:16.2
+          container: postgres
+          traefik: true
+        - image: dpage/pgadmin4:8.4
+          container: pgadmin
+        - image: docker.io/authelia/authelia:latest
           container: authelia
           config: true
           traefik: true
-        - image: portainer/portainer-ce
+        - image: docker.io/portainer/portainer-ce:latest
           container: portainer
           traefik: true
-        - image: vaultwarden/server
+        - image: docker.io/vaultwarden/server:latest
           container: vaultwarden
+          traefik: true
+        - image: docker.io/abpai94/personal-website:latest
+          container: personal-website
           config: true
           traefik: true
-        - image: abpai94/personal-website
-          container: personal-website
-          config: false
-          traefik: true
-        - image: ghcr.io/gethomepage/homepage
+        - image: ghcr.io/gethomepage/homepage:latest
           container: dashboard
           config: true
           traefik: true
-        # - image: onlyoffice/documentserver
-        #   container: onlyoffice
-        #   config: true
-        #   traefik: true
-    eleanor:
-      ansible_host: eleanor.local
-      remote_user: pi
-      home_directory: /home/pi
-      owner: pi
-      group: pi
-      update: false
-      linux: false
-      rockpi: false
-      raid: false
-      mount: false
-      gcp: false
-      docker:
-        setup: false
-        old_config: false
-        deploy: false
-        prune: false
-        pull: false
-        delete: false
-        stop: false
-      services:
-        - image: lscr.io/linuxserver/deluge
+        - image: lscr.io/linuxserver/deluge:latest
           container: deluge
-        - image: lscr.io/linuxserver/jellyfin
-          container: jellyfin
-        - image: lscr.io/linuxserver/prowlarr
+          traefik: true
+        - image: lscr.io/linuxserver/prowlarr:latest
           container: prowlarr
-        - image: lscr.io/linuxserver/radarr
+          config: true
+          traefik: true
+        - image: lscr.io/linuxserver/radarr:latest
           container: radarr
-        - image: lscr.io/linuxserver/sonarr
+          config: true
+          traefik: true
+        - image: lscr.io/linuxserver/sonarr:latest
           container: sonarr
-        - image: lscr.io/linuxserver/nextcloud
+          config: true
+          traefik: true
+        - image: lscr.io/linuxserver/jellyfin:latest
+          container: jellyfin
+          traefik: true
+        - image: lscr.io/linuxserver/nextcloud:latest
           container: nextcloud
+          traefik: true
+        - image: docker.io/onlyoffice/documentserver:latest
+          container: onlyoffice
     vagrant_franklin:
-      ansible_host: franklin
+      ansible_host: franklin-test
       remote_user: vagrant
-      home_directory: /home/vagrant
+      config_directory: /home/vagrant
       owner: vagrant
       group: vagrant
-      update: false
       linux: false
-      rockpi: false
-      raid: false
-      mount: false
-      gcp: false
+      unbound: false
       docker:
         setup: false
-        old_config: false
-        deploy: false
-        prune: false
         pull: false
-        delete: false
         stop: false
+        delete: false
+        deploy: false
       services:
-        - image: traefik
+        - image: docker.io/pihole/pihole:latest
+          container: pihole
+          config: true
+          traefik: true
+        - image: ghcr.io/wg-easy/wg-easy:latest
+          container: wireguard
+          traefik: true
+        - image: docker.io/traefik:latest
           container: traefik
           config: true
           traefik: true
-        - image: authelia/authelia
+        - image: lscr.io/linuxserver/ddclient:latest
+          container: ddclient
+          config: true
+        - image: postgres:16.2
+          container: postgres
+          traefik: true
+        - image: dpage/pgadmin4:8.4
+          container: pgadmin
+        - image: docker.io/authelia/authelia:latest
           container: authelia
           config: true
           traefik: true
-        - image: ghcr.io/wg-easy/wg-easy
-          container: wireguard
-          traefik: true
-        - image: pihole/pihole
-          container: pihole
-          traefik: true
-        - image: vaultwarden/server
-          container: vaultwarden
-          traefik: true
-        - image: portainer/portainer-ce
+        - image: docker.io/portainer/portainer-ce:latest
           container: portainer
           traefik: true
-        - image: lscr.io/linuxserver/ddclient
-          container: ddclient
-          config: true
-        - image: abpai94/personal-website
-          container: personal-website
+        - image: docker.io/vaultwarden/server:latest
+          container: vaultwarden
           traefik: true
-        - image: ghcr.io/gethomepage/homepage
+        - image: docker.io/abpai94/personal-website:latest
+          container: personal-website
+          config: true
+          traefik: true
+        - image: ghcr.io/gethomepage/homepage:latest
           container: dashboard
           config: true
           traefik: true
-    vagrant_eleanor:
-      ansible_host: eleanor
-      remote_user: vagrant
-      home_directory: /home/vagrant
-      owner: vagrant
-      group: vagrant
-      update: false
-      linux: false
-      rockpi: false
-      raid: false
-      mount: false
-      gcp: false
-      docker:
-        setup: false
-        old_config: false
-        deploy: false
-        prune: false
-        pull: false
-        delete: false
-        stop: false
-      services:
-        - image: lscr.io/linuxserver/deluge
+        - image: lscr.io/linuxserver/deluge:latest
           container: deluge
-        - image: lscr.io/linuxserver/jellyfin
-          container: jellyfin
-        - image: lscr.io/linuxserver/prowlarr
+          traefik: true
+        - image: lscr.io/linuxserver/prowlarr:latest
           container: prowlarr
-        - image: lscr.io/linuxserver/radarr
+          config: true
+          traefik: true
+        - image: lscr.io/linuxserver/radarr:latest
           container: radarr
-        - image: lscr.io/linuxserver/sonarr
+          config: true
+          traefik: true
+        - image: lscr.io/linuxserver/sonarr:latest
           container: sonarr
-        - image: lscr.io/linuxserver/nextcloud
+          config: true
+          traefik: true
+        - image: lscr.io/linuxserver/jellyfin:latest
+          container: jellyfin
+          traefik: true
+        - image: lscr.io/linuxserver/nextcloud:latest
           container: nextcloud
+          traefik: true
+        - image: docker.io/onlyoffice/documentserver:latest
+          container: onlyoffice
