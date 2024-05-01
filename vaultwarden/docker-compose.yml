@@ -12,7 +12,7 @@ services:
     volumes:
       - '{{ config_directory }}/vaultwarden:/data'
     environment:
-      - ADMIN_TOKEN={{ vaultwarden_admin_password }}
+      ADMIN_TOKEN: {{ vaultwarden_admin_password }}
     restart: unless-stopped
 
 networks:

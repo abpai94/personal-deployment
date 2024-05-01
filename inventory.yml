@@ -73,8 +73,6 @@ all:
         - image: lscr.io/linuxserver/nextcloud:latest
           container: nextcloud
           traefik: true
-        - image: docker.io/onlyoffice/documentserver:latest
-          container: onlyoffice
     vagrant_franklin:
       ansible_host: franklin-test
       remote_user: vagrant
@@ -148,5 +146,3 @@ all:
         - image: lscr.io/linuxserver/nextcloud:latest
           container: nextcloud
           traefik: true
-        - image: docker.io/onlyoffice/documentserver:latest
-          container: onlyoffice
