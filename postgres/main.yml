@@ -1,8 +1,23 @@
+- name: Backup Folder
+  file:
+    path: '{{ config_directory }}/postgres/backup/'
+    mode:  '0700'
+    state: directory
 - name: Postgres cronjob for backup
   cron:
-    name: Postgres Backup
+    name: Postgres Backup {{ item }}
     minute: 0
     hour: 2
     weekday: '*'
     user: root
-    job: docker exec postgres pg_dumpall -U postgres -f /var/lib/postgresql/data/backup_$(date "+%Y.%m.%d-%H.%M.%S").sql
+    job: docker exec postgres pg_dump -U postgres -d {{ item }} -f /var/lib/postgresql/data/backup/{{ item }}_$(date "+%Y.%m.%d-%H.%M.%S").sql
+  loop:
+    - authelia
+    - nextcloud
+    - prowlarr-log
+    - prowlarr-main
+    - radarr-log
+    - radarr-main
+    - sonarr-log
+    - sonarr-main
+    - vaultwarden
