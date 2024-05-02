@@ -10,9 +10,11 @@ services:
     ports:
       - 81:80
     volumes:
-      - '{{ config_directory }}/vaultwarden:/data'
+      - '{{ config_directory }}/vaultwarden.json:/data/config.json'
     environment:
       ADMIN_TOKEN: {{ vaultwarden_admin_password }}
+      I_REALLY_WANT_VOLATILE_STORAGE: 'true'
+      DATABASE_URL: postgresql://vaultwarden:{{ vaultwarden_admin_password }}@172.24.0.17:5432/vaultwarden
     restart: unless-stopped
 
 networks:
