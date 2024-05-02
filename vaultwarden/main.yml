@@ -1,0 +1,4 @@
+- name: Vaultwarden configuration
+  template:
+    src: "config.json"
+    dest: '{{ config_directory }}/vaultwarden.json'
