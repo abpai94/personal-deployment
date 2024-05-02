@@ -31,6 +31,7 @@ all:
           config: true
         - image: postgres:16.2
           container: postgres
+          config: true
           traefik: true
         - image: dpage/pgadmin4:8.4
           container: pgadmin

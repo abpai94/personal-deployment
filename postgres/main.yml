@@ -1,0 +1,8 @@
+- name: Postgres cronjob for backup
+  cron:
+    name: Postgres Backup
+    minute: 0
+    hour: 2
+    weekday: '*'
+    user: root
+    job: docker exec postgres pg_dumpall -U postgres -f /var/lib/postgresql/data/backup_$(date "+%Y.%m.%d-%H.%M.%S").sql
