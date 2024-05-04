@@ -3,7 +3,7 @@ version: "3"
 services:
   wireguard:
     container_name: wireguard
-    image: ghcr.io/wg-easy/wg-easy:latest
+    image: ghcr.io/wg-easy/wg-easy:12
     networks:
       proxy:
         ipv4_address: 172.24.0.3

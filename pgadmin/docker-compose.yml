@@ -2,7 +2,7 @@ version: '3.9'
 services:
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4:8.4
+    image: docker.io/dpage/pgadmin4:8.6
     networks:
       proxy:
         ipv4_address: 172.24.0.18

@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:latest
+    image: lscr.io/linuxserver/prowlarr:1.16.2
     container_name: prowlarr
     networks:
       proxy:
