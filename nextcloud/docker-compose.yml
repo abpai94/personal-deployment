@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   nextcloud:
-    image: lscr.io/linuxserver/nextcloud:latest
+    image: lscr.io/linuxserver/nextcloud:29.0.0
     container_name: nextcloud
     networks:
       proxy:

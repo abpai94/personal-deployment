@@ -15,34 +15,34 @@ all:
         delete: false
         deploy: false
       services:
-        - image: docker.io/pihole/pihole:latest
+        - image: docker.io/pihole/pihole:2024.03.2
           container: pihole
           config: true
           traefik: true
-        - image: ghcr.io/wg-easy/wg-easy:latest
+        - image: ghcr.io/wg-easy/wg-easy:12
           container: wireguard
           traefik: true
-        - image: docker.io/traefik:latest
+        - image: docker.io/traefik:v3.0.0
           container: traefik
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/ddclient:latest
+        - image: lscr.io/linuxserver/ddclient:3.11.2
           container: ddclient
           config: true
         - image: postgres:16.2
           container: postgres
           config: true
           traefik: true
-        - image: dpage/pgadmin4:8.4
+        - image: docker.io/dpage/pgadmin4:8.6
           container: pgadmin
-        - image: docker.io/authelia/authelia:latest
+        - image: docker.io/authelia/authelia:4.38.8
           container: authelia
           config: true
           traefik: true
-        - image: docker.io/portainer/portainer-ce:latest
+        - image: docker.io/portainer/portainer-ce:2.20.2
           container: portainer
           traefik: true
-        - image: docker.io/vaultwarden/server:latest
+        - image: docker.io/vaultwarden/server:1.30.5
           container: vaultwarden
           config: true
           traefik: true
@@ -50,28 +50,28 @@ all:
           container: personal-website
           config: true
           traefik: true
-        - image: ghcr.io/gethomepage/homepage:latest
+        - image: ghcr.io/gethomepage/homepage:v0.8.12
           container: dashboard
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/deluge:latest
+        - image: lscr.io/linuxserver/deluge:2.1.1
           container: deluge
           traefik: true
-        - image: lscr.io/linuxserver/prowlarr:latest
+        - image: lscr.io/linuxserver/prowlarr:1.16.2
           container: prowlarr
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/radarr:latest
+        - image: lscr.io/linuxserver/radarr:5.4.6
           container: radarr
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/sonarr:latest
+        - image: lscr.io/linuxserver/sonarr:4.0.4
           container: sonarr
           config: true
           traefik: true
-        - image: lscr.io/linuxserver/jellyfin:latest
+        - image: lscr.io/linuxserver/jellyfin:10.8.13
           container: jellyfin
           traefik: true
-        - image: lscr.io/linuxserver/nextcloud:latest
+        - image: lscr.io/linuxserver/nextcloud:29.0.0
           container: nextcloud
           traefik: true
