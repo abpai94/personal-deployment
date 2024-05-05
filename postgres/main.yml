@@ -9,14 +9,14 @@
     minute: 0
     hour: 2
     weekday: '*'
-    job: mkdir /mnt/eleanor/docker_config/postgres/backup/$(date "+%Y.%m.%d")
+    job: mkdir /mnt/eleanor/docker_config/postgres/backup/$(date "+\%Y.\%m.\%d")
 - name: Postgres cronjob for backup
   cron:
     name: Postgres Backup {{ item }}
     minute: 5
     hour: 2
     weekday: '*'
-    job: docker exec postgres pg_dump -U postgres -d {{ item }} -f /var/lib/postgresql/data/backup/$(date "+%Y.%m.%d")/{{ item }}.sql
+    job: docker exec postgres pg_dump -U postgres -d {{ item }} -f /var/lib/postgresql/data/backup/$(date "+\%Y.\%m.\%d")/{{ item }}.sql
   loop:
     - authelia
     - nextcloud
