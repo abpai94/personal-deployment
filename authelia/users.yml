@@ -1,5 +1,5 @@
 users:
-  abpai94:
+  abpai94@gmail.com:
     disabled: false
     displayname: "Abhishek Pai"
     password: "{{ authelia_user_abhishek_password }}"
