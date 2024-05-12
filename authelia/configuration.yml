@@ -9,22 +9,11 @@ identity_validation:
 access_control:
   default_policy: deny
   rules:
-    - domain: 'pihole.abhishekpai.co.uk'
+    - domain: 'abhishekpai.co.uk'
+      domain_regex: '^(pihole|wireguard|traefik|prowlarr|sonarr|radarr|deluge|dashboard)\.abhishekpai\.co\.uk'
       policy: one_factor
-    - domain: 'wireguard.abhishekpai.co.uk'
-      policy: one_factor
-    - domain: 'traefik.abhishekpai.co.uk'
-      policy: one_factor
-    - domain: 'prowlarr.abhishekpai.co.uk'
-      policy: one_factor
-    - domain: 'sonarr.abhishekpai.co.uk'
-      policy: one_factor
-    - domain: 'radarr.abhishekpai.co.uk'
-      policy: one_factor
-    - domain: 'deluge.abhishekpai.co.uk'
-      policy: one_factor
-    - domain: 'dashboard.abhishekpai.co.uk'
-      policy: one_factor
+      subject:
+      - ['user:abpai94@gmail.com']
 session:
   name: authelia_session
   secret: {{ authelia_session_secret }}

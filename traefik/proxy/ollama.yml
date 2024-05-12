@@ -1,17 +1,17 @@
 http:
   routers:
-    dashboard:
+    ollama:
       entryPoints:
         - http
-      service: dashboard
-      rule: Host(`dashboard.abhishekpai.co.uk`)
+      service: open-webui
+      rule: Host(`ollama.abhishekpai.co.uk`)
       middlewares:
         - https-redirect
-    dashboard-https:
+    ollama-https:
       entryPoints:
         - https
-      service: dashboard
-      rule: Host(`dashboard.abhishekpai.co.uk`)
+      service: open-webui
+      rule: Host(`ollama.abhishekpai.co.uk`)
       tls:
         certResolver: cloudflare
         domains:
@@ -19,7 +19,7 @@ http:
             sans:
               - "*.abhishekpai.co.uk"
   services:
-    dashboard:
+    open-webui:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.2:3000"
+          - url: "http://192.168.1.2:3001"
