@@ -16,7 +16,7 @@
     minute: 5
     hour: 2
     weekday: '*'
-    job: docker exec postgres pg_dump -U postgres -d {{ item }} -f /var/lib/postgresql/data/backup/$(date "+\%Y.\%m.\%d")/{{ item }}.sql
+    job: docker exec postgres pg_dump -U postgres -d {{ services }} -f /var/lib/postgresql/data/backup/$(date "+\%Y.\%m.\%d")/{{ services }}.sql
   loop:
     - authelia
     - nextcloud
@@ -27,3 +27,5 @@
     - sonarr-log
     - sonarr-main
     - vaultwarden
+  loop_control:
+    loop_var: services
