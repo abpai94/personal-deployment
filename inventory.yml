@@ -15,10 +15,16 @@ all:
         delete: false
         deploy: false
       services:
-        - image: docker.io/pihole/pihole:2024.03.2
-          container: pihole
+        - image: postgres:16.2
+          container: postgres
           config: true
           traefik: true
+        - image: docker.io/dpage/pgadmin4:8.6
+          container: pgadmin
+        # - image: docker.io/pihole/pihole:2024.03.2
+        #   container: pihole
+        #   config: true
+        #   traefik: true
         - image: ghcr.io/wg-easy/wg-easy:12
           container: wireguard
           traefik: true
@@ -29,12 +35,6 @@ all:
         - image: lscr.io/linuxserver/ddclient:3.11.2
           container: ddclient
           config: true
-        - image: postgres:16.2
-          container: postgres
-          config: true
-          traefik: true
-        - image: docker.io/dpage/pgadmin4:8.6
-          container: pgadmin
         - image: docker.io/authelia/authelia:4.38.8
           container: authelia
           config: true
@@ -74,4 +74,7 @@ all:
           traefik: true
         - image: lscr.io/linuxserver/nextcloud:29.0.0
           container: nextcloud
+          traefik: true
+        - image: docker.io/ollama/ollama:0.1.34-rocm
+          container: ollama
           traefik: true
