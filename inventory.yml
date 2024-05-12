@@ -19,12 +19,6 @@ all:
           container: postgres
           config: true
           traefik: true
-        - image: docker.io/dpage/pgadmin4:8.6
-          container: pgadmin
-        # - image: docker.io/pihole/pihole:2024.03.2
-        #   container: pihole
-        #   config: true
-        #   traefik: true
         - image: ghcr.io/wg-easy/wg-easy:12
           container: wireguard
           traefik: true
