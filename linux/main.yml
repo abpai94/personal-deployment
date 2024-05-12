@@ -15,19 +15,10 @@
   apt:
     name:
       - nfs-common
+      - cron
 - name: NFS Mount md0 RAID from Eleanor
   ansible.posix.mount:
     src: turing:/mnt/eleanor
     path: /mnt/eleanor
     state: mounted
     fstype: nfs
-# MAYBE NEEDED IN THE FUTURE
-# - name: Adding deny veth interfaces to DHCPCD config
-#   blockinfile:
-#     path: /etc/dhcpcd.conf
-#     block: |
-#       denyinterfaces veth*
-# - name: Restart DHCPCD systemd service
-#   systemd_service:
-#     name: dhcpcd
-#     state: restarted
