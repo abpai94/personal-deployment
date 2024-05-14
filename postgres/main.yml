@@ -9,14 +9,14 @@
     minute: 0
     hour: 2
     weekday: '*'
-    job: mkdir /mnt/eleanor/docker_config/postgres/backup/$(date "+\%Y.\%m.\%d")
+    job: mkdir /mnt/eleanor/docker_config/postgres/$(date "+\%Y.\%m.\%d")
 - name: Postgres cronjob for backup
   cron:
-    name: Postgres Backup {{ item }}
+    name: Postgres Backup {{ services }}
     minute: 5
     hour: 2
     weekday: '*'
-    job: docker exec postgres pg_dump -U postgres -d {{ services }} -f /var/lib/postgresql/data/backup/$(date "+\%Y.\%m.\%d")/{{ services }}.sql
+    job: docker exec postgres pg_dump -U postgres -d {{ services }} -f /var/lib/postgresql/data/$(date "+\%Y.\%m.\%d")/{{ services }}.sql
   loop:
     - authelia
     - nextcloud
@@ -29,3 +29,10 @@
     - vaultwarden
   loop_control:
     loop_var: services
+- name: Move backup
+  cron:
+    name: Move backup
+    minute: 10
+    hour: 2
+    weekday: '*'
+    job: mv /mnt/eleanor/docker_config/postgres/$(date "+\%Y.\%m.\%d") /mnt/eleanor/docker_config/backup/
