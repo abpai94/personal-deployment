@@ -1,8 +1,3 @@
-- name: Backup Folder
-  file:
-    path: '{{ config_directory }}/postgres/backup/'
-    mode:  '0700'
-    state: directory
 - name: Folder per backup
   cron:
     name: Date Folder
@@ -35,4 +30,4 @@
     minute: 10
     hour: 2
     weekday: '*'
-    job: mv /mnt/eleanor/docker_config/postgres/$(date "+\%Y.\%m.\%d") /mnt/eleanor/docker_config/backup/
+    job: mv /mnt/eleanor/docker_config/postgres/$(date "+\%Y.\%m.\%d") /mnt/eleanor/backup/
