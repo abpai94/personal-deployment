@@ -20,8 +20,8 @@ services:
       proxy:
         ipv4_address: 172.24.0.20
     environment:
-      ENABLE_SIGNUP: false
-      ENABLE_IMAGE_GENERATION: true
+      ENABLE_SIGNUP: 'false'
+      ENABLE_IMAGE_GENERATION: 'true'
     ports:
       - 3001:8080
     volumes:
