@@ -24,10 +24,17 @@
     - vaultwarden
   loop_control:
     loop_var: services
-- name: Move backup
+- name: Backups
   cron:
-    name: Move backup
+    name: '{{ item.title }}'
     minute: 10
     hour: 2
     weekday: '*'
-    job: mv /mnt/eleanor/docker_config/postgres/$(date "+\%Y.\%m.\%d") /mnt/eleanor/backup/
+    job: '{{ item.command }}'
+  loop:
+    - title: Copy backup
+      command: mv /mnt/eleanor/docker_config/postgres/$(date "+\%Y.\%m.\%d") /mnt/eleanor/backup/
+    - title: Link latest backup
+      command: ln -s /mnt/eleanor/backup/$(date "+\%Y.\%m.\%d") /mnt/eleanor/backup/latest
+    - title: Delete old backups
+      command: rm -rf $(date "+\%Y.\%m.\%d" -d "+31 days")
