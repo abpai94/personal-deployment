@@ -3,7 +3,7 @@ version: "2.1"
 services:
   ddclient:
     container_name: ddclient
-    image: lscr.io/linuxserver/ddclient:3.11.2
+    image: '{{ item.image }}'
     networks:
       proxy:
         ipv4_address: 172.24.0.5

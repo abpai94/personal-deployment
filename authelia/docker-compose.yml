@@ -3,7 +3,7 @@ version: "3"
 services:
   authelia:
     container_name: authelia
-    image: docker.io/authelia/authelia:4.38.8
+    image: '{{ item.image }}'
     networks:
       proxy:
         ipv4_address: 172.24.0.6

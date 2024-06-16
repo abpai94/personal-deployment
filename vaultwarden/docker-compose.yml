@@ -3,7 +3,7 @@ version: "3"
 services:
   vaultwarden:
     container_name: vaultwarden
-    image: docker.io/vaultwarden/server:1.30.5
+    image: '{{ item.image }}'
     networks:
       proxy:
         ipv4_address: 172.24.0.8

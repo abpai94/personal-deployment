@@ -2,8 +2,8 @@
 version: "2.1"
 services:
   nextcloud:
-    image: lscr.io/linuxserver/nextcloud:29.0.0
     container_name: nextcloud
+    image: '{{ item.image }}'
     networks:
       proxy:
         ipv4_address: 172.24.0.16

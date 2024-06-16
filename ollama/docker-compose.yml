@@ -3,29 +3,13 @@ version: '3'
 services:
   ollama:
     container_name: ollama
-    image: docker.io/ollama/ollama:0.1.34-rocm
+    image: '{{ item.image }}'
     networks:
       proxy:
         ipv4_address: 172.24.0.19
     ports:
       - 11434:11434
     volumes:
-      - '/mnt/eleanor/llms:/root/.ollama'
-    restart: unless-stopped
-
-  open-webui:
-    container_name: open-webui
-    image: ghcr.io/open-webui/open-webui:ollama
-    networks:
-      proxy:
-        ipv4_address: 172.24.0.20
-    environment:
-      ENABLE_SIGNUP: 'false'
-      ENABLE_IMAGE_GENERATION: 'true'
-    ports:
-      - 3001:8080
-    volumes:
-      - '{{ config_directory }}/open-webui:/app/backend/data'
       - '/mnt/eleanor/llms:/root/.ollama'
     restart: unless-stopped
 

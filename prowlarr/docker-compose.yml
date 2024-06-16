@@ -2,8 +2,8 @@
 version: "2.1"
 services:
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:1.16.2
     container_name: prowlarr
+    image: '{{ item.image }}'
     networks:
       proxy:
         ipv4_address: 172.24.0.12
