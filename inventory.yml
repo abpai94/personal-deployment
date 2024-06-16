@@ -10,20 +10,20 @@ all:
       unbound: false
       docker:
         setup: false
-        pull: true
-        stop: true
-        delete: true
-        deploy: true
+        pull: false
+        stop: false
+        delete: false
+        deploy: false
       services:
-        # - image: docker.io/postgres:16.2
-        #   container: postgres
-        #   config: true
-        #   traefik: true
+        - image: docker.io/postgres:16.2
+          container: postgres
+          config: true
         - image: docker.io/dpage/pgadmin4:8.6
           container: pgadmin
-        # - image: ghcr.io/wg-easy/wg-easy:12
-        #   container: wireguard
-        #   traefik: true
+          traefik: true
+        - image: ghcr.io/wg-easy/wg-easy:12
+          container: wireguard
+          traefik: true
         - image: docker.io/traefik:v3.0.2
           container: traefik
           config: true
@@ -73,6 +73,6 @@ all:
           traefik: true
         - image: docker.io/ollama/ollama:0.1.44-rocm
           container: ollama
-          traefik: true
         - image: ghcr.io/open-webui/open-webui:v0.3.4
           container: open-webui
+          traefik: true
