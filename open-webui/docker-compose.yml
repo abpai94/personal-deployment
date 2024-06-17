@@ -1,0 +1,22 @@
+---
+version: '3'
+services:
+  open-webui:
+    container_name: open-webui
+    image: '{{ item.image }}'
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.20
+    environment:
+      ENABLE_SIGNUP: 'false'
+      ENABLE_IMAGE_GENERATION: 'true'
+    ports:
+      - 3001:8080
+    volumes:
+      - '{{ config_directory }}/open-webui:/app/backend/data'
+      - '/mnt/eleanor/llms:/root/.ollama'
+    restart: unless-stopped
+
+networks:
+  proxy:
+    external: true
