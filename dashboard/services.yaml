@@ -16,7 +16,7 @@
         type: portainer
         url: https://192.168.1.2:9443
         env: 8
-        key: {{ portainer_dashboard_api }}
+        key: {{ portainer.dashboard_api }}
   - PiHole:
       href: https://pihole.abhishekpai.co.uk/admin
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pi-hole.png
@@ -24,7 +24,7 @@
       widget:
         type: pihole
         url: http://192.168.1.2:80
-        key: {{ pihole_api_key }}
+        key: {{ pihole.api_key }}
   - Traefik:
       href: https://traefik.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/traefik.png
@@ -64,7 +64,7 @@
       widget:
         type: prowlarr
         url: http://192.168.1.2:9696
-        key: {{ prowlarr_api_key }}
+        key: {{ prowlarr.api_key }}
   - Sonarr:
       href: https://sonarr.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/sonarr.png
@@ -72,7 +72,7 @@
       widget:
         type: sonarr
         url: http://192.168.1.2:8989
-        key: {{ sonarr_api_key }}
+        key: {{ sonarr.api_key }}
   - Radarr:
       href: https://radarr.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/radarr.png
@@ -80,7 +80,7 @@
       widget:
         type: radarr
         url: http://192.168.1.2:7878
-        key: {{ radarr_api_key }}
+        key: {{ radarr.api_key }}
   - Deluge:
       href: https://deluge.abhishekpai.co.uk
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/deluge.png
