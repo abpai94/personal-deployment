@@ -4,6 +4,7 @@
     block: |
       192.168.1.1     turing
       192.168.1.2     franklin
+      192.168.1.3     theodore
 - name: RAID directory
   file:
     path: /mnt/eleanor
@@ -11,11 +12,17 @@
     mode: 0755
     owner: '{{ owner }}'
     group: '{{ group }}'
-- name: Install NFS Client
+- name: Install NFS Client on Franklin
+  when: ansible_host == 'franklin'
   apt:
     name:
       - nfs-common
       - cron
+- name: Install NFS Client on Theodore
+  when: ansible_host == 'theodore'
+  pacman:
+    name:
+      - nfs-utils
 - name: NFS Mount md0 RAID from Eleanor
   ansible.posix.mount:
     src: turing:/mnt/eleanor
@@ -23,10 +30,12 @@
     state: mounted
     fstype: nfs
 - name: Copy private SSH key
+  when: ansible_host == 'franklin'
   copy:
     src: /home/abhishek/.ssh/id_rsa
     dest: /home/sysadmin/.ssh/id_rsa
 - name: Copy public SSH key
+  when: ansible_host == 'franklin'
   copy:
     content: /home/abhishek/.ssh/id_rsa.pub
     dest: /home/sysadmin/.ssh/id_rsa.pub

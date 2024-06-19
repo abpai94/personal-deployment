@@ -1,13 +1,50 @@
 all:
   hosts:
+    theodore:
+      ansible_host: theodore
+      remote_user: root
+      config_directory: /mnt/eleanor/docker_config
+      owner: root
+      group: root
+      linux: true
+      unbound: false
+      docker:
+        setup: true
+        pull: false
+        stop: false
+        delete: false
+        deploy: false
+      services:
+        - image: ghcr.io/wg-easy/wg-easy:12
+          container: wireguard_primary
+          traefik: true
+        - image: docker.io/traefik:v3.0.0
+          container: traefik
+          config: true
+          traefik: true
+        - image: docker.io/portainer/portainer-ce:2.20.2
+          container: portainer
+          traefik: true
+        - image: docker.io/pihole/pihole:2024.03.2
+          container: pihole
+          config: true
+          traefik: true
+        - image: ghcr.io/gethomepage/homepage:v0.8.12
+          container: dashboard
+          config: true
+          traefik: true
+        - image: docker.io/abpai94/personal-website:latest
+          container: personal-website
+          config: true
+          traefik: true
     franklin:
       ansible_host: franklin
       remote_user: sysadmin
       config_directory: /mnt/eleanor/docker_config
       owner: sysadmin
       group: sysadmin
+      update: false
       linux: false
-      unbound: false
       docker:
         setup: false
         pull: false
@@ -15,28 +52,23 @@ all:
         delete: false
         deploy: false
       services:
-        - image: docker.io/postgres:16.2
+        - image: ghcr.io/wg-easy/wg-easy:12
+          container: wireguard_backup
+          traefik: true
+        - image: postgres:16.2
           container: postgres
           config: true
         - image: docker.io/dpage/pgadmin4:8.6
           container: pgadmin
           traefik: true
-        - image: ghcr.io/wg-easy/wg-easy:12
-          container: wireguard
-          traefik: true
-        - image: docker.io/traefik:v3.0.2
-          container: traefik
-          config: true
-          traefik: true
+        - image: portainer-agent:2.20.3
+          container: portainer-agent
         - image: lscr.io/linuxserver/ddclient:3.11.2
           container: ddclient
           config: true
         - image: docker.io/authelia/authelia:4.38.9
           container: authelia
           config: true
-          traefik: true
-        - image: docker.io/portainer/portainer-ce:2.20.3
-          container: portainer
           traefik: true
         - image: docker.io/vaultwarden/server:1.30.5
           container: vaultwarden

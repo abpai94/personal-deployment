@@ -2,7 +2,7 @@
 version: "3"
 services:
   wireguard:
-    container_name: wireguard
+    container_name: '{{ item.container }}'
     image: '{{ item.image }}'
     networks:
       proxy:

@@ -5,7 +5,7 @@
   <SslPort>9898</SslPort>
   <UrlBase></UrlBase>
   <BindAddress>*</BindAddress>
-  <ApiKey>{{ sonarr_api_key }}</ApiKey>
+  <ApiKey>{{ sonarr.api_key }}</ApiKey>
   <AuthenticationMethod>Forms</AuthenticationMethod>
   <UpdateMechanism>Docker</UpdateMechanism>
   <LaunchBrowser>True</LaunchBrowser>
@@ -16,7 +16,7 @@
   <SslCertPath></SslCertPath>
   <SslCertPassword></SslCertPassword>
   <PostgresUser>sonarr</PostgresUser>
-  <PostgresPassword>{{ sonarr_password }}</PostgresPassword>
+  <PostgresPassword>{{ sonarr.password }}</PostgresPassword>
   <PostgresPort>5432</PostgresPort>
   <PostgresHost>172.24.0.17</PostgresHost>
   <PostgresMainDb>sonarr-main</PostgresMainDb>

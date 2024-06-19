@@ -7,7 +7,7 @@
   <SslPort>6969</SslPort>
   <EnableSsl>False</EnableSsl>
   <LaunchBrowser>True</LaunchBrowser>
-  <ApiKey>{{ prowlarr_api_key }}</ApiKey>
+  <ApiKey>{{ prowlarr.api_key }}</ApiKey>
   <AuthenticationMethod>Forms</AuthenticationMethod>
   <AuthenticationRequired>DisabledForLocalAddresses</AuthenticationRequired>
   <Branch>master</Branch>
@@ -15,7 +15,7 @@
   <SslCertPassword></SslCertPassword>
   <InstanceName>Prowlarr</InstanceName>
   <PostgresUser>prowlarr</PostgresUser>
-  <PostgresPassword>{{ prowlarr_password }}</PostgresPassword>
+  <PostgresPassword>{{ prowlarr.password }}</PostgresPassword>
   <PostgresPort>5432</PostgresPort>
   <PostgresHost>172.24.0.17</PostgresHost>
   <PostgresMainDb>prowlarr-main</PostgresMainDb>
