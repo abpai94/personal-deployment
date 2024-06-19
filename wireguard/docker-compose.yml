@@ -14,7 +14,7 @@ services:
     volumes:
       - '{{ config_directory }}/wireguard/:/etc/wireguard/'
     ports:
-      - "16383:51820/udp"
+      - "{{ item.port }}:51820/udp"
       - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:

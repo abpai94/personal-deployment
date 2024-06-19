@@ -23,6 +23,30 @@
   pacman:
     name:
       - nfs-utils
+      - docker
+      - docker-compose
+- name: Enable and Start Dockerd service
+  when: ansible_host == 'theodore'
+  systemd_service:
+    name: docker
+    state: started
+    enabled: true
+- name: Changing kvmd ports
+  when: ansible_host == 'theodore'
+  blockinfile:
+    path: /etc/kvmd/override.yaml
+    block: |
+      nginx:
+        https:
+          port: 444
+        http:
+          port: 85
+- name: Enable and Start kvmd service
+  when: ansible_host == 'theodore'
+  systemd_service:
+    name: kvmd-nginx
+    state: restarted
+    enabled: true
 - name: NFS Mount md0 RAID from Eleanor
   ansible.posix.mount:
     src: turing:/mnt/eleanor
