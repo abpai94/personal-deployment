@@ -1,7 +1,12 @@
+- name: Docker proxy nextwork
+  ignore_errors: true
+  run_once: true
+  command:
+    cmd: docker network create --driver=bridge --subnet 172.24.0.0/16 proxy
 - name: Pull latest {{ item.image }}
   when: docker.pull is true
   command:
-    cmd: sudo docker pull {{ item.image }}
+    cmd: docker pull {{ item.image }}
 - name: Setup {{ item.container }} configuration
   when: item.config is true
   include_tasks:
@@ -14,12 +19,12 @@
   ignore_errors: true
   when: docker.stop is true
   command:
-    cmd: sudo docker stop {{ item.container }}
+    cmd: docker stop {{ item.container }}
 - name: Delete {{ item.container }} container
   ignore_errors: true
   when: docker.delete is true
   command:
-    cmd: sudo docker rm {{ item.container }}
+    cmd: docker rm {{ item.container }}
 - name: Start {{ item.container }} container
   ignore_errors: true
   command:
