@@ -31,11 +31,10 @@ all:
       update: false
       linux: false
       docker:
-        setup: false
-        pull: true
-        stop: true
-        delete: true
-        deploy: true
+        pull: false
+        stop: false
+        delete: false
+        deploy: false
       services:
         - image: ghcr.io/wg-easy/wg-easy:13
           container: wireguard
