@@ -14,5 +14,6 @@
     - traefik.yml
     - proxy/common.yml
     - proxy/truenas.yml
+    - proxy/pikvm.yml
   loop_control:
     loop_var: file

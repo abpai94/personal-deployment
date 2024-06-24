@@ -1,5 +1,5 @@
 - name: Install unbound
-  apt:
+  pacman:
     name: unbound
     state: present
 - name: Copy unbound configuration

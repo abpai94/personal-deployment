@@ -18,7 +18,7 @@ all:
           container: wireguard
           port: 16382
           traefik: true
-        - image: docker.io/pihole/pihole:2024.03.2
+        - image: docker.io/pihole/pihole:2024.06.0
           container: pihole
           config: true
           traefik: true
@@ -61,7 +61,7 @@ all:
         - image: docker.io/postgres:16.2
           container: postgres
           config: true
-        - image: docker.io/dpage/pgadmin4:8.6
+        - image: docker.io/dpage/pgadmin4:8.8
           container: pgadmin
           traefik: true
         - image: docker.io/authelia/authelia:4.38.9
@@ -97,4 +97,9 @@ all:
           container: ollama
         - image: ghcr.io/open-webui/open-webui:v0.3.4
           container: open-webui
+          traefik: true
+        - image: docker.io/onlyoffice/communityserver:12.6.0.1900
+          container: onlyoffice
+        - image: lscr.io/linuxserver/code-server:4.89.1
+          container: code-server
           traefik: true

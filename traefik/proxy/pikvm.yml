@@ -1,17 +1,17 @@
 http:
   routers:
-    dashboard:
+    pikvm:
       entryPoints:
         - http
-      service: dashboard
-      rule: Host(`dashboard.abhishekpai.co.uk`)
+      service: pikvm
+      rule: Host(`pikvm.abhishekpai.co.uk`)
       middlewares:
         - https-redirect
-    dashboard-https:
+    pikvm-https:
       entryPoints:
         - https
-      service: dashboard
-      rule: Host(`dashboard.abhishekpai.co.uk`)
+      service: pikvm
+      rule: Host(`pikvm.abhishekpai.co.uk`)
       middlewares:
         - authelia-auth
       tls:
@@ -21,7 +21,7 @@ http:
             sans:
               - "*.abhishekpai.co.uk"
   services:
-    dashboard:
+    pikvm:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.2:3000"
+          - url: "https://192.168.1.3:444/"
