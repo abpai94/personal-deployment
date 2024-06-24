@@ -6,6 +6,7 @@ all:
       config_directory: /mnt/eleanor/docker_config
       owner: root
       group: root
+      theodore: false
       linux: false
       unbound: false
       docker:
@@ -28,7 +29,7 @@ all:
       config_directory: /mnt/eleanor/docker_config
       owner: sysadmin
       group: sysadmin
-      update: false
+      franklin: false
       linux: false
       docker:
         pull: false

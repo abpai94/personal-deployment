@@ -12,54 +12,9 @@
     mode: 0755
     owner: '{{ owner }}'
     group: '{{ group }}'
-- name: Install NFS Client on Franklin
-  when: ansible_host == 'franklin'
-  apt:
-    name:
-      - nfs-common
-      - cron
-- name: Install NFS Client on Theodore
-  when: ansible_host == 'theodore'
-  pacman:
-    name:
-      - nfs-utils
-      - docker
-      - docker-compose
-- name: Enable and Start Dockerd service
-  when: ansible_host == 'theodore'
-  systemd_service:
-    name: docker
-    state: started
-    enabled: true
-- name: Changing kvmd ports
-  when: ansible_host == 'theodore'
-  blockinfile:
-    path: /etc/kvmd/override.yaml
-    block: |
-      nginx:
-        https:
-          port: 444
-        http:
-          port: 85
-- name: Enable and Start kvmd service
-  when: ansible_host == 'theodore'
-  systemd_service:
-    name: kvmd-nginx
-    state: restarted
-    enabled: true
 - name: NFS Mount md0 RAID from Eleanor
   ansible.posix.mount:
     src: turing:/mnt/eleanor
     path: /mnt/eleanor
     state: mounted
     fstype: nfs
-- name: Copy private SSH key
-  when: ansible_host == 'franklin'
-  copy:
-    src: /home/abhishek/.ssh/id_rsa
-    dest: /home/sysadmin/.ssh/id_rsa
-- name: Copy public SSH key
-  when: ansible_host == 'franklin'
-  copy:
-    content: /home/abhishek/.ssh/id_rsa.pub
-    dest: /home/sysadmin/.ssh/id_rsa.pub

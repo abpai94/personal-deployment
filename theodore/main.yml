@@ -1,0 +1,30 @@
+- name: Install NFS Client on Theodore
+  pacman:
+    name:
+      - nfs-utils
+      - docker
+      - docker-compose
+- name: Enable and Start Dockerd service
+  systemd_service:
+    name: docker
+    state: started
+    enabled: true
+- name: Enabling rw at boot time
+  lineinfile:
+    path: /boot/cmdline.txt
+    regex: '^root=LABEL=PIROOT ro rootwait cma=128M console=serial0,115200 console=tty1 fsck.repair=yes audit=0'
+    line: 'root=LABEL=PIROOT rw rootwait cma=128M console=serial0,115200 console=tty1 fsck.repair=yes audit=0'
+- name: Changing kvmd ports
+  blockinfile:
+    path: /etc/kvmd/override.yaml
+    block: |
+      nginx:
+        https:
+          port: 444
+        http:
+          port: 81
+- name: Enable and Start kvmd service
+  systemd_service:
+    name: kvmd-nginx
+    state: restarted
+    enabled: true
