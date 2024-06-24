@@ -1,0 +1,37 @@
+---
+version: "2.1"
+services:
+  onlyoffice:
+    container_name: onlyoffice
+    image: '{{ item.image }}'
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.21
+    environment:
+      - JWT_ENABLED=false
+    #   - DB_TYPE=postgres
+    #   - DB_HOST=172.24.0.17
+    #   - DB_PORT=5432
+    #   - DB_NAME=onlyoffice
+    #   - DB_USER=onlyoffice
+    #   - DB_PASSWORD='{{ onlyoffice.db_password }}'
+    volumes:
+      - '{{ config_directory }}/onlyoffice/data:/var/www/onlyoffice/Data'
+      - '{{ config_directory }}/onlyoffice/logs:/var/log/onlyoffice'
+      - '{{ config_directory }}/onlyoffice/cachhe:/var/lib/onlyoffice/documentserver/App_Data/cache/files'
+      - '{{ config_directory }}/onlyoffice/files:/var/www/onlyoffice/documentserver-example/public/files'
+      - '{{ config_directory }}/onlyoffice/fonts:/usr/share/fonts'
+      # - '{{ config_directory }}/onlyoffice/logs:/var/log/onlyoffice'
+      # - '{{ config_directory }}/onlyoffice/data:/var/www/onlyoffice/Data'
+      # - '{{ config_directory }}/onlyoffice/rabbitmq:/var/lib/rabbitmq'
+      # - '{{ config_directory }}/onlyoffice/redis:/var/lib/redis'
+      # - '{{ config_directory }}/onlyoffice/onlyoffice:/var/lib/onlyoffice'
+      # - '{{ config_directory }}/onlyoffice/postgresql:/var/lib/postgresql'
+      # - '{{ config_directory }}/onlyoffice/truetype:/usr/share/fonts/truetype/custom'
+    ports:
+      - 85:80
+    restart: unless-stopped
+
+networks:
+  proxy:
+    external: true

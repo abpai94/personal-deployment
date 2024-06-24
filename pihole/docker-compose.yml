@@ -1,5 +1,5 @@
 ---
-version: "3"
+version: "2.1"
 services:
   pihole:
     container_name: pihole
@@ -14,6 +14,7 @@ services:
       - "80:80/tcp"
     environment:
       TZ: 'Europe/Paris'
+      WEBPASSWORD: '{{ pihole.password }}'
     volumes:
       - '{{ config_directory }}/pihole/etc-pihole:/etc/pihole'
       - '{{ config_directory }}/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'

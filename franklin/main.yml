@@ -1,0 +1,17 @@
+- name: Update OS
+  apt:
+    update_cache: true
+    upgrade: full
+- name: Install NFS Client on Franklin
+  apt:
+    name:
+      - nfs-common
+      - cron
+- name: Copy private SSH key
+  copy:
+    src: /home/abhishek/.ssh/id_rsa
+    dest: /home/sysadmin/.ssh/id_rsa
+- name: Copy public SSH key
+  copy:
+    content: /home/abhishek/.ssh/id_rsa.pub
+    dest: /home/sysadmin/.ssh/id_rsa.pub

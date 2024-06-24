@@ -20,8 +20,33 @@ http:
           - main: abhishekpai.co.uk
             sans:
               - "*.abhishekpai.co.uk"
+    wireguard-bkp:
+      entryPoints:
+        - http
+      service: wireguard-bkp
+      rule: Host(`wireguard-bkp.abhishekpai.co.uk`)
+      middlewares:
+        - https-redirect
+    wireguard-bkp-https:
+      entryPoints:
+        - https
+      service: wireguard-bkp
+      rule: Host(`wireguard-bkp.abhishekpai.co.uk`)
+      middlewares:
+        - authelia-auth
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: abhishekpai.co.uk
+            sans:
+              - "*.abhishekpai.co.uk"
+
   services:
     wireguard:
       loadBalancer:
         servers:
           - url: "http://192.168.1.2:51821"
+    wireguard-bkp:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.3:51821"

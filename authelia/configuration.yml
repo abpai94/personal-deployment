@@ -10,7 +10,7 @@ access_control:
   default_policy: deny
   rules:
     - domain: 'abhishekpai.co.uk'
-      domain_regex: '^(pihole|wireguard|traefik|prowlarr|sonarr|radarr|deluge|dashboard)\.abhishekpai\.co\.uk'
+      domain_regex: '^(pihole|wireguard|wireguard-bkp|pikvm|code|traefik|prowlarr|sonarr|radarr|deluge|dashboard)\.abhishekpai\.co\.uk'
       policy: one_factor
       subject:
       - ['user:abpai94@gmail.com']

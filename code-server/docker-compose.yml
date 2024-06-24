@@ -1,0 +1,24 @@
+---
+version: '2.1'
+services:
+  coder:
+    container_name: coder
+    image: '{{ item.image }}'
+    networks:
+      proxy:
+        ipv4_address: 172.24.0.22
+    environment:
+      PUID: 1000
+      PGID: 1000
+      DEFAULT_WORKSPACE: /home/coder/project
+    ports:
+      - 8443:8443
+    volumes:
+      - '{{ config_directory }}/coder/.local:/home/coder/.local'
+      - '{{ config_directory }}/coder/.config:/home/coder/.config'
+      - '/mnt/eleanor/git/:/home/coder/project'
+    restart: unless-stopped
+
+networks:
+  proxy:
+    external: true

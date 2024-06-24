@@ -4,11 +4,14 @@
   remote_user: '{{ remote_user }}'
   become: true
   tasks:
-    - name: Update OS
-      when: update is true
-      apt:
-        update_cache: true
-        upgrade: full
+    - name: Franklin configuration
+      when: franklin is true
+      include_tasks:
+        file: franklin/main.yml
+    - name: Theodore configuration
+      when: theodore is true
+      include_tasks:
+        file: theodore/main.yml
     - name: Linux configuration
       when: linux is true
       include_tasks:
