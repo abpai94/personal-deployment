@@ -5,7 +5,7 @@
 - name: Copy unbound configuration
   template:
     src: '{{ file }}'
-    dest: '/etc/unbound/{{ file }}'
+    dest: '/etc/unbound/unbound.conf.d/{{ file }}'
   loop:
     - unbound.conf
     - a-records.conf
@@ -19,6 +19,9 @@
     group: root
     state: touch
     mode: 0644
+- name: Download root.hints
+  command:
+    cmd: curl --output /etc/unbound/root.hints https://www.internic.net/domain/named.cache
 - name: Add permission for log file
   blockinfile:
     path: /etc/apparmor.d/local/usr.sbin.unbound
