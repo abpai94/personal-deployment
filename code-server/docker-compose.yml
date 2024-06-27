@@ -1,8 +1,8 @@
 ---
 version: '2.1'
 services:
-  coder:
-    container_name: coder
+  code-server:
+    container_name: code-server
     image: '{{ item.image }}'
     networks:
       proxy:
@@ -10,13 +10,13 @@ services:
     environment:
       PUID: 1000
       PGID: 1000
-      DEFAULT_WORKSPACE: /home/coder/project
+      DEFAULT_WORKSPACE: /config/project
     ports:
       - 8443:8443
     volumes:
-      - '{{ config_directory }}/coder/.local:/home/coder/.local'
-      - '{{ config_directory }}/coder/.config:/home/coder/.config'
-      - '/mnt/eleanor/git/:/home/coder/project'
+      - '{{ config_directory }}/coder/.local:/config/'
+      - '/mnt/eleanor/git/:/config/project'
+      - '/home/sysadmin/.ssh/:/config/.ssh/'
     restart: unless-stopped
 
 networks:
